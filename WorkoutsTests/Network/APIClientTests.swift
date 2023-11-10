@@ -24,11 +24,7 @@ final class APIClientTests: XCTestCase {
             return (response, Data())
         }
 
-        let configuration = URLSessionConfiguration.ephemeral
-        configuration.protocolClasses = [MockURLProtocol.self]
-        let session = URLSession(configuration: configuration)
-
-        let sut = APIClient(session: session)
+        let sut = makeSUT()
 
         _ = try? await sut.get(url.absoluteString, responseType: Exercise.self)
 
@@ -45,11 +41,7 @@ final class APIClientTests: XCTestCase {
             return (response, nil)
         }
 
-        let configuration = URLSessionConfiguration.ephemeral
-        configuration.protocolClasses = [MockURLProtocol.self]
-        let session = URLSession(configuration: configuration)
-
-        let sut = APIClient(session: session)
+        let sut = makeSUT()
 
         do {
             _ = try await sut.get(url.absoluteString, responseType: Exercise.self)
@@ -72,11 +64,7 @@ final class APIClientTests: XCTestCase {
             return (response, nil)
         }
 
-        let configuration = URLSessionConfiguration.ephemeral
-        configuration.protocolClasses = [MockURLProtocol.self]
-        let session = URLSession(configuration: configuration)
-
-        let sut = APIClient(session: session)
+        let sut = makeSUT()
 
         do {
             _ = try await sut.get(url.absoluteString, responseType: Exercise.self)
@@ -87,6 +75,18 @@ final class APIClientTests: XCTestCase {
         }
 
         wait(for: [expectation], timeout: 1.0)
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT() -> APIClient {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [MockURLProtocol.self]
+        let session = URLSession(configuration: configuration)
+
+        let sut = APIClient(session: session)
+        
+        return sut
     }
     
     enum APIError: Error {
