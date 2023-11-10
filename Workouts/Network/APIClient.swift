@@ -13,7 +13,11 @@ enum APIError: Error {
     case decodingError
 }
 
-final class APIClient {
+protocol HTTPClient {
+    func get<T: Decodable>(_ url: String, responseType: T.Type) async throws -> T
+}
+
+final class APIClient: HTTPClient {
     private let session: URLSession
     
     // MARK: - Init
