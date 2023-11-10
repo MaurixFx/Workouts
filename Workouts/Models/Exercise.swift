@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct ExerciseResponse: Codable {
+    let results: [Exercise]
+}
+
 struct Exercise: Codable {
     let id: Int
     let name: String

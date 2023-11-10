@@ -77,6 +77,43 @@ final class APIClientTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
     
+    func test_get_succeedsOnAValidHTTPURLResponse_andValidData() async {
+        let expectation = expectation(description: "API Request")
+        let url = URL(string: "https://www.fakeurl.com")!
+        let jsonString = """
+                         {
+                             "results": [
+                                 {
+                                     "id": 4,
+                                     "name": "Abs Abs",
+                                     "description": "bla bla bla bla",
+                                     "images": [],
+                                     "variations": []
+                                 }
+                             ]
+                         }
+                         """
+        
+        let data = jsonString.data(using: .utf8)
+
+        MockURLProtocol.loadingHandler = { request in
+            let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, data)
+        }
+
+        let sut = makeSUT()
+
+        do {
+            let response = try await sut.get(url.absoluteString, responseType: ExerciseResponse.self)
+            XCTAssertTrue(!response.results.isEmpty)
+            expectation.fulfill()
+        } catch  {
+            XCTFail("The request should have not failed in a valid HTTPURLResponse and valid Data")
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> APIClient {
