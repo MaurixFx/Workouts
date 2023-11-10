@@ -12,7 +12,8 @@
 		D5BE726B2AFEB6BC0077A86A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5BE726A2AFEB6BC0077A86A /* Assets.xcassets */; };
 		D5BE726E2AFEB6BC0077A86A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BE726C2AFEB6BC0077A86A /* LaunchScreen.storyboard */; };
 		D5BE72772AFEBE180077A86A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72762AFEBE180077A86A /* Exercise.swift */; };
-		D5BE727F2AFEC0A50077A86A /* WorkoutsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE727E2AFEC0A50077A86A /* WorkoutsTests.swift */; };
+		D5BE72872AFEC1390077A86A /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72862AFEC1390077A86A /* APIClientTests.swift */; };
+		D5BE728A2AFEC23D0077A86A /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72892AFEC23D0077A86A /* MockURLProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +35,8 @@
 		D5BE726F2AFEB6BC0077A86A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5BE72762AFEBE180077A86A /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		D5BE727C2AFEC0A50077A86A /* WorkoutsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkoutsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D5BE727E2AFEC0A50077A86A /* WorkoutsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsTests.swift; sourceTree = "<group>"; };
+		D5BE72862AFEC1390077A86A /* APIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTests.swift; sourceTree = "<group>"; };
+		D5BE72892AFEC23D0077A86A /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +99,26 @@
 		D5BE727D2AFEC0A50077A86A /* WorkoutsTests */ = {
 			isa = PBXGroup;
 			children = (
-				D5BE727E2AFEC0A50077A86A /* WorkoutsTests.swift */,
+				D5BE72852AFEC0DB0077A86A /* Network */,
 			);
 			path = WorkoutsTests;
+			sourceTree = "<group>";
+		};
+		D5BE72852AFEC0DB0077A86A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72882AFEC2150077A86A /* Helper */,
+				D5BE72862AFEC1390077A86A /* APIClientTests.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		D5BE72882AFEC2150077A86A /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72892AFEC23D0077A86A /* MockURLProtocol.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +174,7 @@
 					};
 					D5BE727B2AFEC0A50077A86A = {
 						CreatedOnToolsVersion = 15.0.1;
+						LastSwiftMigration = 1500;
 						TestTargetID = D5BE725D2AFEB6B10077A86A;
 					};
 				};
@@ -212,7 +232,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5BE727F2AFEC0A50077A86A /* WorkoutsTests.swift in Sources */,
+				D5BE72872AFEC1390077A86A /* APIClientTests.swift in Sources */,
+				D5BE728A2AFEC23D0077A86A /* MockURLProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5355TA2ZTC;
@@ -423,6 +445,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mauriciofigueroa.WorkoutsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Workouts.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Workouts";
@@ -433,6 +456,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5355TA2ZTC;
