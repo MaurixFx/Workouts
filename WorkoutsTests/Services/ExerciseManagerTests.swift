@@ -20,6 +20,19 @@ final class ExerciseManagerTests: XCTestCase {
         XCTAssertEqual(client.getCallsCount, 1, "get method on MockAPIClient should get called just once")
     }
     
+    func test_fetch_throwsAnError_whenAPIClientFails() async {
+        let client = MockAPIClient()
+        let expectedError = APIError.invalidResponse
+        let sut = ExerciseManager(client: client)
+        client.getResult = .failure(expectedError)
+        
+        do {
+            try await sut.fetch()
+        } catch {
+            XCTAssertEqual(error as? APIError, expectedError, "The error coming from the fetch operation should be same that our expected error")
+        }
+    }
+    
     private class ExerciseManager {
         private let client: HTTPClient
 
@@ -35,35 +48,28 @@ final class ExerciseManagerTests: XCTestCase {
     private class MockAPIClient: HTTPClient {
         private(set) var getCallsCount = 0
         private(set) var getWasCalled = false
+        var getResult: Result<ExerciseResponse, APIError>?
 
         func get<T>(_ url: String, responseType: T.Type) async throws -> T where T : Decodable {
             getWasCalled = true
             getCallsCount += 1
             
             let mockValue: T = try await withCheckedThrowingContinuation { continuation in
-                do {
-                    if let typedValue = anyExerciseResponse as? T {
-                        continuation.resume(returning: typedValue)
-                    } else {
-                        throw APIError.decodingError
-                    }
-                } catch {
-                    continuation.resume(throwing: error)
+                
+                guard let getResult else {
+                    continuation.resume(throwing: APIError.decodingError)
+                    return
+                }
+                
+                switch getResult {
+                case .failure(let expectedError):
+                    continuation.resume(throwing: expectedError)
+                default:
+                    break
                 }
             }
             
             return mockValue
-        }
-        
-        private var anyExerciseResponse: ExerciseResponse {
-            .init(results: [
-                Exercise(id: 4,
-                         name: "Abs Abs",
-                         description: "bla bla bla bla",
-                         images: [],
-                         variations: []
-                        )
-            ])
         }
     }
 }
