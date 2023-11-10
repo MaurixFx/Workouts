@@ -62,6 +62,33 @@ final class APIClientTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
     
+    func test_get_failsOnAValidHTTPURLResponse_andInvalidData() async {
+        let expectedError = APIError.decodingError
+        let expectation = expectation(description: "API Request")
+        let url = URL(string: "https://www.fakeurl.com")!
+
+        MockURLProtocol.loadingHandler = { request in
+            let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, nil)
+        }
+
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [MockURLProtocol.self]
+        let session = URLSession(configuration: configuration)
+
+        let sut = APIClient(session: session)
+
+        do {
+            _ = try await sut.get(url.absoluteString, responseType: Exercise.self)
+            XCTFail("The request should have failed in a valid HTTPURLResponse and invalid Data")
+        } catch  {
+            XCTAssertEqual(error as? APIError, expectedError)
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
     enum APIError: Error {
         case invalidURL
         case invalidResponse
