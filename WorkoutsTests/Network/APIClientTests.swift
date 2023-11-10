@@ -28,7 +28,7 @@ final class APIClientTests: XCTestCase {
 
         _ = try? await sut.get(url.absoluteString, responseType: Exercise.self)
 
-        wait(for: [expectation], timeout: 1.0)
+        await fulfillment(of: [expectation])
     }
     
     func test_get_failsOnInvalidRequestError() async {
@@ -80,7 +80,7 @@ final class APIClientTests: XCTestCase {
             }
         }
 
-        wait(for: [expectation], timeout: 1.0)
+        await fulfillment(of: [expectation])
     }
     
     private var anyFakeURL: URL {
