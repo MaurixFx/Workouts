@@ -62,17 +62,4 @@ final class ExerciseManagerTests: XCTestCase {
         
         return (sut, client)
     }
-    
-    private class ExerciseManager {
-        private let client: HTTPClient
-
-        init(client: HTTPClient = APIClient()) {
-            self.client = client
-        }
-        
-        func fetch() async throws -> [Exercise] {
-            let response = try await client.get("http://www.fakeURL.com", responseType: ExerciseResponse.self)
-            return response.results
-        }
-    }
 }

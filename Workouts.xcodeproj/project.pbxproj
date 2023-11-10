@@ -17,6 +17,7 @@
 		D5BE728D2AFED4BD0077A86A /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE728C2AFED4BD0077A86A /* APIClient.swift */; };
 		D5BE72902AFED60B0077A86A /* ExerciseManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE728F2AFED60A0077A86A /* ExerciseManagerTests.swift */; };
 		D5BE72932AFEE1FB0077A86A /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72922AFEE1FB0077A86A /* MockAPIClient.swift */; };
+		D5BE72962AFEE2AC0077A86A /* ExerciseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72952AFEE2AC0077A86A /* ExerciseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		D5BE728C2AFED4BD0077A86A /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		D5BE728F2AFED60A0077A86A /* ExerciseManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseManagerTests.swift; sourceTree = "<group>"; };
 		D5BE72922AFEE1FB0077A86A /* MockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIClient.swift; sourceTree = "<group>"; };
+		D5BE72952AFEE2AC0077A86A /* ExerciseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				D5BE728B2AFED4B10077A86A /* Network */,
+				D5BE72942AFEE2980077A86A /* Service */,
 				D5BE72752AFEBE010077A86A /* Models */,
 				D5BE72612AFEB6B10077A86A /* AppDelegate.swift */,
 				D5BE72652AFEB6B10077A86A /* ViewController.swift */,
@@ -152,6 +155,14 @@
 				D5BE72922AFEE1FB0077A86A /* MockAPIClient.swift */,
 			);
 			path = Mock;
+			sourceTree = "<group>";
+		};
+		D5BE72942AFEE2980077A86A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72952AFEE2AC0077A86A /* ExerciseManager.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5BE72662AFEB6B10077A86A /* ViewController.swift in Sources */,
+				D5BE72962AFEE2AC0077A86A /* ExerciseManager.swift in Sources */,
 				D5BE72622AFEB6B10077A86A /* AppDelegate.swift in Sources */,
 				D5BE72772AFEBE180077A86A /* Exercise.swift in Sources */,
 				D5BE728D2AFED4BD0077A86A /* APIClient.swift in Sources */,
