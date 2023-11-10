@@ -31,16 +31,20 @@ final class APIClientTests: XCTestCase {
         await fulfillment(of: [expectation])
     }
     
+    func test_get_failsOnInvalidURL() async {
+        await checkAPIResponse(for: makeSUT(), url: "", statusCode: 200, data: nil, expectedResponse: .failure(APIError.invalidURL))
+    }
+    
     func test_get_failsOnInvalidRequestError() async {
-        await checkAPIResponse(for: makeSUT(), statusCode: 400, data: nil, expectedResponse: .failure(APIError.invalidResponse))
+        await checkAPIResponse(for: makeSUT(), url: anyFakeURL.absoluteString, statusCode: 400, data: nil, expectedResponse: .failure(APIError.invalidResponse))
     }
     
     func test_get_failsOnAValidHTTPURLResponse_andInvalidData() async {
-        await checkAPIResponse(for: makeSUT(), statusCode: 200, data: nil, expectedResponse: .failure(APIError.decodingError))
+        await checkAPIResponse(for: makeSUT(), url: anyFakeURL.absoluteString, statusCode: 200, data: nil, expectedResponse: .failure(APIError.decodingError))
     }
     
     func test_get_succeedsOnAValidHTTPURLResponse_andValidData() async {
-        await checkAPIResponse(for: makeSUT(), statusCode: 200, data: anyValidData, expectedResponse: .success(anyExerciseResponse))
+        await checkAPIResponse(for: makeSUT(), url: anyFakeURL.absoluteString, statusCode: 200, data: anyValidData, expectedResponse: .success(anyExerciseResponse))
     }
     
     // MARK: - Helpers
@@ -55,7 +59,7 @@ final class APIClientTests: XCTestCase {
         return sut
     }
     
-    private func checkAPIResponse(for sut: APIClient, statusCode: Int, data: Data?, expectedResponse: Result<ExerciseResponse, APIError>) async {
+    private func checkAPIResponse(for sut: APIClient, url: String, statusCode: Int, data: Data?, expectedResponse: Result<ExerciseResponse, APIError>) async {
         let expectation = expectation(description: "API Request")
 
         MockURLProtocol.loadingHandler = { request in
@@ -67,12 +71,12 @@ final class APIClientTests: XCTestCase {
         
         switch expectedResponse {
         case .success(let expectedResponse):
-            let response = try? await sut.get(anyFakeURL.absoluteString, responseType: ExerciseResponse.self)
+            let response = try? await sut.get(url, responseType: ExerciseResponse.self)
             XCTAssertEqual(response!.results, expectedResponse.results)
             expectation.fulfill()
         case .failure(let expectedError):
             do {
-                let response = try await sut.get(anyFakeURL.absoluteString, responseType: ExerciseResponse.self)
+                let response = try await sut.get(url, responseType: ExerciseResponse.self)
                 XCTFail("The request should have failed, instead it got a \(response.results.count) exercise")
             } catch  {
                 XCTAssertEqual(error as? APIError, expectedError)
