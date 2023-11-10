@@ -55,7 +55,7 @@ final class APIClientTests: XCTestCase {
         return sut
     }
     
-    private func checkAPIResponse(for sut: APIClient, statusCode: Int, data: Data?, expectedResponse: Result<ExerciseResponse, Error>) async {
+    private func checkAPIResponse(for sut: APIClient, statusCode: Int, data: Data?, expectedResponse: Result<ExerciseResponse, APIError>) async {
         let expectation = expectation(description: "API Request")
 
         MockURLProtocol.loadingHandler = { request in
@@ -75,7 +75,7 @@ final class APIClientTests: XCTestCase {
                 let response = try await sut.get(anyFakeURL.absoluteString, responseType: ExerciseResponse.self)
                 XCTFail("The request should have failed, instead it got a \(response.results.count) exercise")
             } catch  {
-                XCTAssertEqual(error as? APIError, expectedError as? APIClientTests.APIError)
+                XCTAssertEqual(error as? APIError, expectedError)
                 expectation.fulfill()
             }
         }
@@ -114,38 +114,5 @@ final class APIClientTests: XCTestCase {
                          """
         
         return jsonString.data(using: .utf8)
-    }
-    
-    enum APIError: Error {
-        case invalidURL
-        case invalidResponse
-        case decodingError
-    }
-
-    private class APIClient {
-        private let session: URLSession
-
-        init(session: URLSession = .shared) {
-            self.session = session
-        }
-
-        func get<T: Decodable>(_ url: String, responseType: T.Type) async throws -> T {
-            guard let url = URL(string: url) else {
-                throw APIError.invalidURL
-            }
-
-            let (data, response) = try await session.data(from: url)
-            
-            guard let httpResponse = response as? HTTPURLResponse, (200..<300).contains(httpResponse.statusCode) else {
-                throw APIError.invalidResponse
-            }
-            
-            do {
-                let decodedData = try JSONDecoder().decode(T.self, from: data)
-                return decodedData
-            } catch {
-                throw APIError.decodingError
-            }
-        }
     }
 }
