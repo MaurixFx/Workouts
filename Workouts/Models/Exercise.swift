@@ -11,7 +11,11 @@ struct ExerciseResponse: Codable {
     let results: [Exercise]
 }
 
-struct Exercise: Codable {
+struct Exercise: Codable, Equatable {
+    static func == (lhs: Exercise, rhs: Exercise) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     let id: Int
     let name: String
     let description: String

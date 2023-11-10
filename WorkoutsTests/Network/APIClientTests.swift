@@ -15,8 +15,8 @@ final class APIClientTests: XCTestCase {
         let url = anyFakeURL
 
         MockURLProtocol.loadingHandler = { request in
-            XCTAssertEqual(request.url, url)
-            XCTAssertEqual(request.httpMethod, "GET")
+            XCTAssertEqual(request.url, url, "URL should be the same")
+            XCTAssertEqual(request.httpMethod, "GET", "Http method should be GETs")
 
             let response = HTTPURLResponse(url: request.url!, statusCode: 400, httpVersion: nil, headerFields: nil)!
             expectation.fulfill()
@@ -32,68 +32,15 @@ final class APIClientTests: XCTestCase {
     }
     
     func test_get_failsOnInvalidRequestError() async {
-        let expectedError = APIError.invalidResponse
-        let expectation = expectation(description: "API Request")
-
-        MockURLProtocol.loadingHandler = { request in
-            let response = HTTPURLResponse(url: request.url!, statusCode: 400, httpVersion: nil, headerFields: nil)!
-            return (response, nil)
-        }
-
-        let sut = makeSUT()
-
-        do {
-            _ = try await sut.get(anyFakeURL.absoluteString, responseType: Exercise.self)
-            XCTFail("The request should have failed in a invalid HTTPURLResponse")
-        } catch  {
-            XCTAssertEqual(error as? APIError, expectedError)
-            expectation.fulfill()
-        }
-
-        wait(for: [expectation], timeout: 1.0)
+        await checkAPIResponse(for: makeSUT(), statusCode: 400, data: nil, expectedResponse: .failure(APIError.invalidResponse))
     }
     
     func test_get_failsOnAValidHTTPURLResponse_andInvalidData() async {
-        let expectedError = APIError.decodingError
-        let expectation = expectation(description: "API Request")
-
-        MockURLProtocol.loadingHandler = { request in
-            let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
-            return (response, nil)
-        }
-
-        let sut = makeSUT()
-
-        do {
-            _ = try await sut.get(anyFakeURL.absoluteString, responseType: Exercise.self)
-            XCTFail("The request should have failed in a valid HTTPURLResponse and invalid Data")
-        } catch  {
-            XCTAssertEqual(error as? APIError, expectedError)
-            expectation.fulfill()
-        }
-
-        wait(for: [expectation], timeout: 1.0)
+        await checkAPIResponse(for: makeSUT(), statusCode: 200, data: nil, expectedResponse: .failure(APIError.decodingError))
     }
     
     func test_get_succeedsOnAValidHTTPURLResponse_andValidData() async {
-        let expectation = expectation(description: "API Request")
-
-        MockURLProtocol.loadingHandler = { request in
-            let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
-            return (response, self.anyValidData)
-        }
-
-        let sut = makeSUT()
-
-        do {
-            let response = try await sut.get(anyFakeURL.absoluteString, responseType: ExerciseResponse.self)
-            XCTAssertTrue(!response.results.isEmpty)
-            expectation.fulfill()
-        } catch  {
-            XCTFail("The request should have not failed in a valid HTTPURLResponse and valid Data")
-        }
-
-        wait(for: [expectation], timeout: 1.0)
+        await checkAPIResponse(for: makeSUT(), statusCode: 200, data: anyValidData, expectedResponse: .success(anyExerciseResponse))
     }
     
     // MARK: - Helpers
@@ -108,8 +55,47 @@ final class APIClientTests: XCTestCase {
         return sut
     }
     
+    private func checkAPIResponse(for sut: APIClient, statusCode: Int, data: Data?, expectedResponse: Result<ExerciseResponse, Error>) async {
+        let expectation = expectation(description: "API Request")
+
+        MockURLProtocol.loadingHandler = { request in
+            let response = HTTPURLResponse(url: request.url!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+            return (response, data)
+        }
+
+        let sut = makeSUT()
+        
+        switch expectedResponse {
+        case .success(let expectedResponse):
+            let response = try? await sut.get(anyFakeURL.absoluteString, responseType: ExerciseResponse.self)
+            XCTAssertEqual(response!.results, expectedResponse.results)
+            expectation.fulfill()
+        case .failure(let expectedError):
+            do {
+                let response = try await sut.get(anyFakeURL.absoluteString, responseType: ExerciseResponse.self)
+                XCTFail("The request should have failed, instead it got a \(response.results.count) exercise")
+            } catch  {
+                XCTAssertEqual(error as? APIError, expectedError as? APIClientTests.APIError)
+                expectation.fulfill()
+            }
+        }
+
+        wait(for: [expectation], timeout: 1.0)
+    }
+    
     private var anyFakeURL: URL {
         URL(string: "https://www.fakeurl.com")!
+    }
+    
+    private var anyExerciseResponse: ExerciseResponse {
+        .init(results: [
+            Exercise(id: 4,
+                     name: "Abs Abs",
+                     description: "bla bla bla bla",
+                     images: [],
+                     variations: []
+                    )
+        ])
     }
     
     private var anyValidData: Data? {
