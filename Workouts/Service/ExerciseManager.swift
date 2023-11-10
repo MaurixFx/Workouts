@@ -7,7 +7,11 @@
 
 import Foundation
 
-final class ExerciseManager {
+protocol ExerciseService {
+    func fetch() async throws -> [Exercise]
+}
+
+final class ExerciseManager: ExerciseService {
     private let client: HTTPClient
 
     // MARK: - Init
