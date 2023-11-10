@@ -11,8 +11,7 @@ import XCTest
 
 final class ExerciseManagerTests: XCTestCase {
     func test_fetch_callsAPIClient() async {
-        let client = MockAPIClient()
-        let sut = ExerciseManager(client: client)
+        let (sut, client) = makeSUT()
         
         _ = try? await sut.fetch()
         
@@ -21,9 +20,8 @@ final class ExerciseManagerTests: XCTestCase {
     }
     
     func test_fetch_throwsAnError_whenAPIClientFails() async {
-        let client = MockAPIClient()
         let expectedError = APIError.invalidResponse
-        let sut = ExerciseManager(client: client)
+        let (sut, client) = makeSUT()
         client.getResult = .failure(expectedError)
         
         do {
@@ -34,9 +32,7 @@ final class ExerciseManagerTests: XCTestCase {
     }
     
     func test_fetch_returnsAnExerciseList_whenAPIClientSucceeds() async {
-        let client = MockAPIClient()
-        let expectedError = APIError.invalidResponse
-        let sut = ExerciseManager(client: client)
+        let (sut, client) = makeSUT()
         client.getResult = .success(anyExerciseResponse)
         
         do {
@@ -48,6 +44,7 @@ final class ExerciseManagerTests: XCTestCase {
     }
     
     // MARK: - Helpers
+
     private var anyExerciseResponse: ExerciseResponse {
         .init(results: [
             Exercise(id: 4,
@@ -57,6 +54,13 @@ final class ExerciseManagerTests: XCTestCase {
                      variations: []
                     )
         ])
+    }
+    
+    private func makeSUT() -> (sut: ExerciseManager, client: MockAPIClient) {
+        let client = MockAPIClient()
+        let sut = ExerciseManager(client: client)
+        
+        return (sut, client)
     }
     
     private class ExerciseManager {
