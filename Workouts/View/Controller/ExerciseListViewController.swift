@@ -19,7 +19,6 @@ final class ExerciseListViewController: UIViewController {
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(ExerciseItemViewCell.self, forCellWithReuseIdentifier: ExerciseItemViewCell.identifier)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -70,21 +69,15 @@ final class ExerciseListViewController: UIViewController {
 
     private func configureCollectionView() {
         view.addSubview(collectionView)
-
-        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+        
+        collectionView.anchorToSuperview(top: 10, leading: 0, bottom: 10, trailing: 0)
     }
     
     private func configureSpinnerLoaderView() {
-        spinnerLoaderView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(spinnerLoaderView)
         
-        spinnerLoaderView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        spinnerLoaderView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        spinnerLoaderView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        spinnerLoaderView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        spinnerLoaderView.setDimensions(width: 100, height: 100)
+        spinnerLoaderView.centerInSuperview()
     }
     
     private func configureNavigationBar() {

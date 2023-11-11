@@ -12,20 +12,24 @@ import SDWebImage
 final class ExerciseItemViewCell: UICollectionViewCell {
     private enum Constants {
         static let exerciseImageHeight: CGFloat = 180
+        static let mainStackViewPadding: CGFloat = 8
+        static let mainStackViewSpacing: CGFloat = 8
+        static let borderWidth: CGFloat = 1
+        static let cornerRadius: CGFloat = 8
+        static let borderOpacity: CGFloat = 0.6
+        static let textInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
     }
 
     private let exerciseImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.font = UIFont(name: "AvenirNext-Medium", size: 13.0)
         return label
@@ -62,24 +66,19 @@ final class ExerciseItemViewCell: UICollectionViewCell {
         mainStackView.axis = .vertical
         mainStackView.alignment = .center
         mainStackView.distribution = .fill
-        mainStackView.spacing = 8
-        mainStackView.translatesAutoresizingMaskIntoConstraints = false
-        mainStackView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.6).cgColor
-        mainStackView.layer.borderWidth = 0.8
-        mainStackView.layer.cornerRadius = 8
+        mainStackView.spacing = Constants.mainStackViewSpacing
+        mainStackView.layer.borderColor = UIColor.lightGray.withAlphaComponent(Constants.borderOpacity).cgColor
+        mainStackView.layer.borderWidth = Constants.borderWidth
+        mainStackView.layer.cornerRadius = Constants.cornerRadius
         mainStackView.layer.masksToBounds = true
 
         mainStackView.addArrangedSubview(exerciseImageView)
         contentView.addSubview(mainStackView)
-
-        mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
-        mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
-        mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
-        mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
-
-        exerciseImageView.heightAnchor.constraint(equalToConstant: Constants.exerciseImageHeight).isActive = true
-        exerciseImageView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
-        exerciseImageView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
+        
+        mainStackView.anchorToSuperview(top: Constants.mainStackViewPadding, leading: Constants.mainStackViewPadding, bottom: Constants.mainStackViewPadding, trailing: Constants.mainStackViewPadding)
+        
+        exerciseImageView.setHeight(to: Constants.exerciseImageHeight)
+        exerciseImageView.constraintLeadingTrailing(to: mainStackView)
     }
 
     private func setUpTextStackView() {
@@ -88,7 +87,7 @@ final class ExerciseItemViewCell: UICollectionViewCell {
         textDetailStackView.alignment = .center
 
         textDetailStackView.isLayoutMarginsRelativeArrangement = true
-        textDetailStackView.layoutMargins = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
+        textDetailStackView.layoutMargins = Constants.textInsets
 
         textDetailStackView.addArrangedSubview(nameLabel)
         mainStackView.addArrangedSubview(textDetailStackView)

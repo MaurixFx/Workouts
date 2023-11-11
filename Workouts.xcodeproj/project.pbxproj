@@ -30,6 +30,7 @@
 		D5BE72B62B0018DB0077A86A /* ExerciseItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72B52B0018DB0077A86A /* ExerciseItemViewModelTests.swift */; };
 		D5BE72BA2B0021B40077A86A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72B92B0021B40077A86A /* UIColor+Extension.swift */; };
 		D5BE72BD2B0021EB0077A86A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72BC2B0021EB0077A86A /* Colors.swift */; };
+		D5BE72BF2B0029570077A86A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72BE2B0029570077A86A /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		D5BE72B52B0018DB0077A86A /* ExerciseItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseItemViewModelTests.swift; sourceTree = "<group>"; };
 		D5BE72B92B0021B40077A86A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D5BE72BC2B0021EB0077A86A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		D5BE72BE2B0029570077A86A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				D5BE72B92B0021B40077A86A /* UIColor+Extension.swift */,
+				D5BE72BE2B0029570077A86A /* UIView+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5BE72B12AFFF23D0077A86A /* ExerciseEndpoint.swift in Sources */,
+				D5BE72BF2B0029570077A86A /* UIView+Extension.swift in Sources */,
 				D5BE72BD2B0021EB0077A86A /* Colors.swift in Sources */,
 				D5BE729F2AFF8F830077A86A /* ExerciseListViewModel.swift in Sources */,
 				D5BE72662AFEB6B10077A86A /* ViewController.swift in Sources */,
