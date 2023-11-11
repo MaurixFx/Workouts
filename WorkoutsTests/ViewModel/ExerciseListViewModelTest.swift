@@ -57,7 +57,7 @@ final class ExerciseListViewModelTest: XCTestCase {
         
         await sut.loadExercises()
         
-        XCTAssertEqual(sut.numberOfItems, 1)
+        XCTAssertEqual(sut.numberOfItems, 1, "should have returned 1 since the array just have one item")
     }
     
     func test_exerciseItemViewModel_returnsNil_whenRowDoesNotExist() async {
@@ -66,7 +66,7 @@ final class ExerciseListViewModelTest: XCTestCase {
         
         await sut.loadExercises()
         
-        XCTAssertEqual(sut.exerciseListItemViewModel(for: 3), nil)
+        XCTAssertEqual(sut.exerciseListItemViewModel(for: 3), nil, "should have returned nil, since the row 3 does not exist")
     }
     
     func test_exerciseItemViewModel_returnsExpectedValue_whenRowExists() async {
@@ -76,7 +76,7 @@ final class ExerciseListViewModelTest: XCTestCase {
         
         await sut.loadExercises()
 
-        XCTAssertEqual(sut.exerciseListItemViewModel(for: 0), expectedItemViewModel)
+        XCTAssertEqual(sut.exerciseListItemViewModel(for: 0), expectedItemViewModel, "should have returned the expectedItemViewModel")
     }
     
     func test_cellSizeItem_returnsExpectedValue() async {
