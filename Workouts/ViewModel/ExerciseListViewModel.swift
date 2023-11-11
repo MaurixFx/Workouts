@@ -49,4 +49,23 @@ final class ExerciseListViewModel {
     var numberOfItems: Int {
         exercices.count
     }
+    
+    func exerciseListItemViewModel(for row: Int) -> ExerciseItemViewModel? {
+        guard row >= 0 && row < exercices.count else {
+            return nil
+        }
+        
+        let item = exercices[row]
+        
+        return .init(name: item.name, images: item.images)
+    }
+}
+
+struct ExerciseItemViewModel: Equatable {
+    static func == (lhs: ExerciseItemViewModel, rhs: ExerciseItemViewModel) -> Bool {
+        lhs.name == rhs.name
+    }
+    
+    let name: String
+    let images: [ExerciseImage]?
 }

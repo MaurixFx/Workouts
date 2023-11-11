@@ -51,13 +51,22 @@ final class ExerciseListViewModelTest: XCTestCase {
         XCTAssertEqual(exercices, anyExerciseResponse.results, "exercices array list should be equal to the expected exercies list")
     }
     
-    func test_numberOfItems_returnsTheExpectedValue() async {
+    func test_numberOfItems_returnsExpectedValue() async {
         let (sut, service) = makeSUT()
         service.fetchResult = .success(anyExerciseResponse.results)
         
         await sut.loadExercises()
         
         XCTAssertEqual(sut.numberOfItems, 1)
+    }
+    
+    func test_exerciseItemViewModel_returnsNil_whenRowDoesNotExist() async {
+        let (sut, service) = makeSUT()
+        service.fetchResult = .success(anyExerciseResponse.results)
+        
+        await sut.loadExercises()
+        
+        XCTAssertEqual(sut.exerciseListItemViewModel(for: 3), nil)
     }
     
     // MARK: - Helpers
