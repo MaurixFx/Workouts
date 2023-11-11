@@ -7,11 +7,13 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 final class ExerciseItemViewCell: UICollectionViewCell {
     private enum Constants {
         static let exerciseImageHeight: CGFloat = 180
     }
+
     private let exerciseImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -96,6 +98,7 @@ final class ExerciseItemViewCell: UICollectionViewCell {
         guard let viewModel else { return }
 
         nameLabel.text = viewModel.name
+        exerciseImageView.sd_setImage(with: viewModel.mainImageURL)
     }
 }
 
