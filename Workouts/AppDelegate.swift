@@ -17,7 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.rootViewController = ExerciseListViewController(viewModel: ExerciseListViewModel())
+        let viewController = ExerciseListViewController(viewModel: ExerciseListViewModel())
+        let navigationController = UINavigationController(rootViewController: viewController)
+        window?.rootViewController = navigationController
+        viewController.load()
         return true
     }
 }

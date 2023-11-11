@@ -9,7 +9,10 @@ import Foundation
 import UIKit
 
 final class ExerciseItemViewCell: UICollectionViewCell {
-    private let coverImageView: UIImageView = {
+    private enum Constants {
+        static let exerciseImageHeight: CGFloat = 180
+    }
+    private let exerciseImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -62,7 +65,7 @@ final class ExerciseItemViewCell: UICollectionViewCell {
         mainStackView.layer.cornerRadius = 8
         mainStackView.layer.masksToBounds = true
 
-        mainStackView.addArrangedSubview(coverImageView)
+        mainStackView.addArrangedSubview(exerciseImageView)
         contentView.addSubview(mainStackView)
 
         mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
@@ -70,9 +73,9 @@ final class ExerciseItemViewCell: UICollectionViewCell {
         mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
         mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
 
-        coverImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        coverImageView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
-        coverImageView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
+        exerciseImageView.heightAnchor.constraint(equalToConstant: Constants.exerciseImageHeight).isActive = true
+        exerciseImageView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor).isActive = true
+        exerciseImageView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor).isActive = true
     }
 
     private func setUpTextStackView() {

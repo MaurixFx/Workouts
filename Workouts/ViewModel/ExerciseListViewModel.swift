@@ -14,7 +14,7 @@ final class ExerciseListViewModel {
     var currentState = CurrentValueSubject<State, Never>(.loading)
     
     private enum Constants {
-        static let cellHeight: CGFloat = 200
+        static let cellHeight: CGFloat = 260
         static let widthDivider: CGFloat = 2
     }
     

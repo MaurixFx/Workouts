@@ -91,7 +91,7 @@ final class ExerciseListViewModelTest: XCTestCase {
         
         await sut.loadExercises()
 
-        XCTAssertEqual(sut.cellSizeItem(with: 400), .init(width: 200, height: 200))
+        XCTAssertEqual(sut.cellSizeItem(with: 400), .init(width: 200, height: 260))
     }
     
     // MARK: - Helpers
