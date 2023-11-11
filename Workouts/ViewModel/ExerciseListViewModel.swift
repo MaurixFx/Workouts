@@ -8,19 +8,10 @@
 import Foundation
 import Combine
 
-protocol ExerciseListViewModelProtocol {
-    var currentState: CurrentValueSubject<ExerciseListViewModel.State, Never> { get }
-    var numberOfItems: Int { get }
-
-    func loadExercises() async
-    func exerciseListItemViewModel(for row: Int) -> ExerciseItemViewModel?
-    func cellSizeItem(with collectionWidth: CGFloat) -> CGSize
-}
-
-final class ExerciseListViewModel: ExerciseListViewModelProtocol {
+final class ExerciseListViewModel {
     private let service: ExerciseService
     private var exercices: [Exercise] = []
-    var currentState: CurrentValueSubject<State, Never> = CurrentValueSubject<State, Never>(.loading)
+    var currentState = CurrentValueSubject<State, Never>(.loading)
     
     private enum Constants {
         static let cellHeight: CGFloat = 200

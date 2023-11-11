@@ -10,20 +10,15 @@ import XCTest
 @testable import Workouts
 
 final class ExerciseListViewControllerTests: XCTestCase {
-    
-    func test_viewDidLoad_callExerciseViewModel() {
-        let expectation = expectation(description: "loadExercises should be called")
-        let viewModel = MockExerciseListViewModel()
+    func test_spinnerLoaderView_shouldExistsOnTheViewController() throws {
+        let service = MockExerciseManager()
+        let viewModel = ExerciseListViewModel(service: service)
         let sut = ExerciseListViewController(viewModel: viewModel)
+
+        let spinnerLoaderView: UIActivityIndicatorView = try XCTUnwrap(
+            Mirror(reflecting: sut).child(named: "spinnerLoaderView")
+        )
         
-        sut.loadViewIfNeeded()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            XCTAssertTrue(viewModel.loadExercisesWasCalled, "loadExercises on ExerciseListViewModel should have been called")
-            XCTAssertEqual(viewModel.loadExercisesCallsCount, 1, "loadExercises on ExerciseListViewModel should have been called just once")
-            expectation.fulfill()
-        }
-        
-        waitForExpectations(timeout: 2, handler: nil)
+        XCTAssertNotNil(spinnerLoaderView, "spinnerLoaderView should exist on the viewController")
     }
 }

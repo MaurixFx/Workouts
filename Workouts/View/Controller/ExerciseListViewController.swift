@@ -10,7 +10,7 @@ import UIKit
 import Combine
 
 final class ExerciseListViewController: UIViewController {
-    private let viewModel: ExerciseListViewModelProtocol
+    private let viewModel: ExerciseListViewModel
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -25,11 +25,16 @@ final class ExerciseListViewController: UIViewController {
         return collectionView
     }()
     
+    private var spinnerLoaderView: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(frame: .zero)
+        return spinner
+    }()
+    
     private var anyCancellables = [AnyCancellable]()
 
     // MARK: - Init
 
-    init(viewModel: ExerciseListViewModelProtocol = ExerciseListViewModel()) {
+    init(viewModel: ExerciseListViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
@@ -53,6 +58,7 @@ final class ExerciseListViewController: UIViewController {
     private func setUpView() {
         view.backgroundColor = .white
         configureCollectionView()
+        configureSpinnerLoaderView()
     }
 
     private func configureCollectionView() {
@@ -62,6 +68,16 @@ final class ExerciseListViewController: UIViewController {
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+    }
+    
+    private func configureSpinnerLoaderView() {
+        spinnerLoaderView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(spinnerLoaderView)
+        
+        spinnerLoaderView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        spinnerLoaderView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        spinnerLoaderView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        spinnerLoaderView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
     // MARK: - Load
@@ -78,7 +94,8 @@ final class ExerciseListViewController: UIViewController {
         viewModel.currentState.sink { [weak self] state in
             switch state {
             case .loading:
-                print("loading")
+                self?.spinnerLoaderView.isHidden = false
+                self?.spinnerLoaderView.startAnimating()
             default:
                 break
             }
