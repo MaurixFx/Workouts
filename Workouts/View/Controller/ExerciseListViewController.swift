@@ -10,6 +10,17 @@ import UIKit
 
 final class ExerciseListViewController: UIViewController {
     private let viewModel: ExerciseListViewModelProtocol
+    
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(ExerciseItemViewCell.self, forCellWithReuseIdentifier: ExerciseItemViewCell.identifier)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+
+        return collectionView
+    }()
 
     // MARK: - Init
 
