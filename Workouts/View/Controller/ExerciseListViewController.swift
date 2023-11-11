@@ -43,6 +43,24 @@ final class ExerciseListViewController: UIViewController {
         load()
     }
     
+    // MARK: - Setup View
+    
+    private func setUpView() {
+        view.backgroundColor = .white
+        configureCollectionView()
+    }
+
+    private func configureCollectionView() {
+        view.addSubview(collectionView)
+
+        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+    }
+    
+    // MARK: - Load
+    
     private func load() {
         Task {
             await viewModel.loadExercises()
