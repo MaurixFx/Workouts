@@ -22,6 +22,7 @@
 		D5BE729C2AFF8F430077A86A /* MockExerciseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE729B2AFF8F430077A86A /* MockExerciseManager.swift */; };
 		D5BE729F2AFF8F830077A86A /* ExerciseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE729E2AFF8F830077A86A /* ExerciseListViewModel.swift */; };
 		D5BE72A12AFFB8830077A86A /* ExerciseItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72A02AFFB8830077A86A /* ExerciseItemViewModel.swift */; };
+		D5BE72A42AFFB97E0077A86A /* ExerciseListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72A32AFFB97E0077A86A /* ExerciseListViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		D5BE729B2AFF8F430077A86A /* MockExerciseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExerciseManager.swift; sourceTree = "<group>"; };
 		D5BE729E2AFF8F830077A86A /* ExerciseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewModel.swift; sourceTree = "<group>"; };
 		D5BE72A02AFFB8830077A86A /* ExerciseItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseItemViewModel.swift; sourceTree = "<group>"; };
+		D5BE72A32AFFB97E0077A86A /* ExerciseListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 		D5BE727D2AFEC0A50077A86A /* WorkoutsTests */ = {
 			isa = PBXGroup;
 			children = (
+				D5BE72A22AFFB95F0077A86A /* ViewController */,
 				D5BE72972AFF83D30077A86A /* ViewModel */,
 				D5BE728E2AFED5B20077A86A /* Services */,
 				D5BE72852AFEC0DB0077A86A /* Network */,
@@ -199,6 +202,14 @@
 				D5BE72A02AFFB8830077A86A /* ExerciseItemViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D5BE72A22AFFB95F0077A86A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72A32AFFB97E0077A86A /* ExerciseListViewControllerTests.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,6 +333,7 @@
 				D5BE72932AFEE1FB0077A86A /* MockAPIClient.swift in Sources */,
 				D5BE72872AFEC1390077A86A /* APIClientTests.swift in Sources */,
 				D5BE728A2AFEC23D0077A86A /* MockURLProtocol.swift in Sources */,
+				D5BE72A42AFFB97E0077A86A /* ExerciseListViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

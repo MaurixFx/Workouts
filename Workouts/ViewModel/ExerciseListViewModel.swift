@@ -47,7 +47,7 @@ final class ExerciseListViewModel: ExerciseListViewModelProtocol {
     
     // MARK: - Init
     
-    init(service: ExerciseService) {
+    init(service: ExerciseService = ExerciseManager()) {
         self.service = service
     }
 
