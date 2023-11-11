@@ -20,6 +20,7 @@ final class ExerciseListViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(ExerciseItemViewCell.self, forCellWithReuseIdentifier: ExerciseItemViewCell.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
         collectionView.dataSource = self
         collectionView.delegate = self
 
@@ -62,7 +63,7 @@ final class ExerciseListViewController: UIViewController {
     // MARK: - Setup View
     
     private func setUpView() {
-        view.backgroundColor = .white
+        view.backgroundColor = Colors.beige
         configureCollectionView()
         configureSpinnerLoaderView()
     }
@@ -90,9 +91,9 @@ final class ExerciseListViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .systemOrange
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.backgroundColor = Colors.beige
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
         
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.standardAppearance = appearance

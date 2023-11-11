@@ -28,6 +28,8 @@
 		D5BE72B12AFFF23D0077A86A /* ExerciseEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72B02AFFF23D0077A86A /* ExerciseEndpoint.swift */; };
 		D5BE72B42B00179D0077A86A /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D5BE72B32B00179D0077A86A /* SDWebImageSwiftUI */; };
 		D5BE72B62B0018DB0077A86A /* ExerciseItemViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72B52B0018DB0077A86A /* ExerciseItemViewModelTests.swift */; };
+		D5BE72BA2B0021B40077A86A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72B92B0021B40077A86A /* UIColor+Extension.swift */; };
+		D5BE72BD2B0021EB0077A86A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72BC2B0021EB0077A86A /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		D5BE72AD2AFFC5140077A86A /* ExerciseItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseItemViewCell.swift; sourceTree = "<group>"; };
 		D5BE72B02AFFF23D0077A86A /* ExerciseEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseEndpoint.swift; sourceTree = "<group>"; };
 		D5BE72B52B0018DB0077A86A /* ExerciseItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseItemViewModelTests.swift; sourceTree = "<group>"; };
+		D5BE72B92B0021B40077A86A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		D5BE72BC2B0021EB0077A86A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 		D5BE72602AFEB6B10077A86A /* Workouts */ = {
 			isa = PBXGroup;
 			children = (
+				D5BE72B72B0021910077A86A /* Resources */,
 				D5BE72A52AFFC3D00077A86A /* View */,
 				D5BE729D2AFF8F670077A86A /* ViewModel */,
 				D5BE728B2AFED4B10077A86A /* Network */,
@@ -258,6 +263,31 @@
 			path = Endpoints;
 			sourceTree = "<group>";
 		};
+		D5BE72B72B0021910077A86A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72BB2B0021D80077A86A /* Colors */,
+				D5BE72B82B00219E0077A86A /* Helpers */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D5BE72B82B00219E0077A86A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72B92B0021B40077A86A /* UIColor+Extension.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D5BE72BB2B0021D80077A86A /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72BC2B0021EB0077A86A /* Colors.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -366,8 +396,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5BE72B12AFFF23D0077A86A /* ExerciseEndpoint.swift in Sources */,
+				D5BE72BD2B0021EB0077A86A /* Colors.swift in Sources */,
 				D5BE729F2AFF8F830077A86A /* ExerciseListViewModel.swift in Sources */,
 				D5BE72662AFEB6B10077A86A /* ViewController.swift in Sources */,
+				D5BE72BA2B0021B40077A86A /* UIColor+Extension.swift in Sources */,
 				D5BE72962AFEE2AC0077A86A /* ExerciseManager.swift in Sources */,
 				D5BE72622AFEB6B10077A86A /* AppDelegate.swift in Sources */,
 				D5BE72A82AFFC3E70077A86A /* ExerciseListViewController.swift in Sources */,

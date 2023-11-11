@@ -19,6 +19,6 @@ struct ExerciseItemViewModel: Equatable {
     var mainImageURL: URL? {
         guard let images else { return nil }
         
-        return URL(string: images.first(where: { $0.isMain ?? false })?.image ?? "")
+        return URL(string: images.first(where: { $0.isMain })?.image ?? "")
     }
 }

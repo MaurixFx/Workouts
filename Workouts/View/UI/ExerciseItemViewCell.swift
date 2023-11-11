@@ -16,10 +16,9 @@ final class ExerciseItemViewCell: UICollectionViewCell {
 
     private let exerciseImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .red
         return imageView
     }()
 
@@ -27,6 +26,8 @@ final class ExerciseItemViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.font = UIFont(name: "AvenirNext-Medium", size: 13.0)
         return label
     }()
     
@@ -51,14 +52,15 @@ final class ExerciseItemViewCell: UICollectionViewCell {
     }
     
     private func setUpView() {
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .clear
         setUpMainStackView()
         setUpTextStackView()
     }
 
     private func setUpMainStackView() {
+        mainStackView.backgroundColor = .white
         mainStackView.axis = .vertical
-        mainStackView.alignment = .leading
+        mainStackView.alignment = .center
         mainStackView.distribution = .fill
         mainStackView.spacing = 8
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -83,7 +85,7 @@ final class ExerciseItemViewCell: UICollectionViewCell {
     private func setUpTextStackView() {
         textDetailStackView.axis = .vertical
         textDetailStackView.distribution = .fill
-        textDetailStackView.alignment = .leading
+        textDetailStackView.alignment = .center
 
         textDetailStackView.isLayoutMarginsRelativeArrangement = true
         textDetailStackView.layoutMargins = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
