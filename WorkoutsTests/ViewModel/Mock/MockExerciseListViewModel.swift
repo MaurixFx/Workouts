@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import Combine
 @testable import Workouts
 
 final class MockExerciseListViewModel: ExerciseListViewModelProtocol {
-    var currentState: Workouts.ExerciseListViewModel.State = .loading
+    var currentState: CurrentValueSubject<ExerciseListViewModel.State, Never> = CurrentValueSubject<ExerciseListViewModel.State, Never>(.loading)
+    
     var numberOfItems: Int {
         return 0
     }

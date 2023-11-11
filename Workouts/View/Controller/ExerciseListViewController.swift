@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Combine
 
 final class ExerciseListViewController: UIViewController {
     private let viewModel: ExerciseListViewModelProtocol
@@ -23,6 +24,8 @@ final class ExerciseListViewController: UIViewController {
 
         return collectionView
     }()
+    
+    private var anyCancellables = [AnyCancellable]()
 
     // MARK: - Init
 
@@ -40,7 +43,9 @@ final class ExerciseListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpView()
         load()
+        bindViewModel()
     }
     
     // MARK: - Setup View
@@ -65,6 +70,20 @@ final class ExerciseListViewController: UIViewController {
         Task {
             await viewModel.loadExercises()
         }
+    }
+    
+    // MARK: - BindViewModel
+    
+    private func bindViewModel() {
+        viewModel.currentState.sink { [weak self] state in
+            switch state {
+            case .loading:
+                print("loading")
+            default:
+                break
+            }
+        }
+        .store(in: &anyCancellables)
     }
 }
 

@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import Combine
 
 protocol ExerciseListViewModelProtocol {
-    var currentState: ExerciseListViewModel.State { get }
+    var currentState: CurrentValueSubject<ExerciseListViewModel.State, Never> { get }
     var numberOfItems: Int { get }
 
     func loadExercises() async
@@ -18,8 +19,8 @@ protocol ExerciseListViewModelProtocol {
 
 final class ExerciseListViewModel: ExerciseListViewModelProtocol {
     private let service: ExerciseService
-    private(set) var currentState: State = .loading
     private var exercices: [Exercise] = []
+    var currentState: CurrentValueSubject<State, Never> = CurrentValueSubject<State, Never>(.loading)
     
     private enum Constants {
         static let cellHeight: CGFloat = 200
@@ -54,9 +55,9 @@ final class ExerciseListViewModel: ExerciseListViewModelProtocol {
     func loadExercises() async {
         do {
             exercices = try await service.fetch()
-            currentState = .reloadCollection
+            currentState.value = .reloadCollection
         } catch {
-            currentState = .error(error)
+            currentState.value = .error(error)
         }
     }
     

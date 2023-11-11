@@ -13,7 +13,7 @@ final class ExerciseListViewModelTest: XCTestCase {
     func test_init_currentStateShouldBeLoading() {
         let (sut, _) = makeSUT()
         
-        XCTAssertTrue(sut.currentState == .loading)
+        XCTAssertTrue(sut.currentState.value == .loading)
     }
     
     func test_loadExercises_callsExerciseManager() async {
@@ -32,7 +32,7 @@ final class ExerciseListViewModelTest: XCTestCase {
         
         await sut.loadExercises()
         
-        XCTAssertEqual(sut.currentState, .error(expectedError), "currentState should be .error when ExerciseManager fails")
+        XCTAssertEqual(sut.currentState.value, .error(expectedError), "currentState should be .error when ExerciseManager fails")
     }
     
     func test_loadExercises_setCurrentStateToReloadCollection_whenExerciseManagerSucceeds() async {
@@ -41,7 +41,7 @@ final class ExerciseListViewModelTest: XCTestCase {
         
         await sut.loadExercises()
         
-        XCTAssertEqual(sut.currentState, .reloadCollection, "currentState should be .reloadCollection when ExerciseManager succeeds")
+        XCTAssertEqual(sut.currentState.value, .reloadCollection, "currentState should be .reloadCollection when ExerciseManager succeeds")
     }
     
     func test_loadExercises_setExercicesArrayList_whenExerciseManagerSucceeds() async throws {
