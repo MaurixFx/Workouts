@@ -25,6 +25,7 @@
 		D5BE72A42AFFB97E0077A86A /* ExerciseListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72A32AFFB97E0077A86A /* ExerciseListViewControllerTests.swift */; };
 		D5BE72A82AFFC3E70077A86A /* ExerciseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72A72AFFC3E70077A86A /* ExerciseListViewController.swift */; };
 		D5BE72AE2AFFC5140077A86A /* ExerciseItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72AD2AFFC5140077A86A /* ExerciseItemViewCell.swift */; };
+		D5BE72B12AFFF23D0077A86A /* ExerciseEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72B02AFFF23D0077A86A /* ExerciseEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		D5BE72A32AFFB97E0077A86A /* ExerciseListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewControllerTests.swift; sourceTree = "<group>"; };
 		D5BE72A72AFFC3E70077A86A /* ExerciseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewController.swift; sourceTree = "<group>"; };
 		D5BE72AD2AFFC5140077A86A /* ExerciseItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseItemViewCell.swift; sourceTree = "<group>"; };
+		D5BE72B02AFFF23D0077A86A /* ExerciseEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 		D5BE72942AFEE2980077A86A /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				D5BE72AF2AFFF22A0077A86A /* Endpoints */,
 				D5BE72952AFEE2AC0077A86A /* ExerciseManager.swift */,
 			);
 			path = Service;
@@ -240,6 +243,14 @@
 				D5BE72AD2AFFC5140077A86A /* ExerciseItemViewCell.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		D5BE72AF2AFFF22A0077A86A /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72B02AFFF23D0077A86A /* ExerciseEndpoint.swift */,
+			);
+			path = Endpoints;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,6 +354,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5BE72B12AFFF23D0077A86A /* ExerciseEndpoint.swift in Sources */,
 				D5BE729F2AFF8F830077A86A /* ExerciseListViewModel.swift in Sources */,
 				D5BE72662AFEB6B10077A86A /* ViewController.swift in Sources */,
 				D5BE72962AFEE2AC0077A86A /* ExerciseManager.swift in Sources */,

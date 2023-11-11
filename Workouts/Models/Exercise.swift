@@ -25,6 +25,6 @@ struct Exercise: Codable, Equatable {
 
 struct ExerciseImage: Codable {
     let id: Int
-    let isMain: Bool
+    let isMain: Bool?
     let image: String
 }

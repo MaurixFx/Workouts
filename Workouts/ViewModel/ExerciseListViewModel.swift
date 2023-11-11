@@ -43,6 +43,7 @@ final class ExerciseListViewModel {
         self.service = service
     }
 
+    @MainActor
     func loadExercises() async {
         do {
             exercices = try await service.fetch()

@@ -94,8 +94,10 @@ final class ExerciseListViewController: UIViewController {
         viewModel.currentState.sink { [weak self] state in
             switch state {
             case .loading:
-                self?.spinnerLoaderView.isHidden = false
                 self?.spinnerLoaderView.startAnimating()
+            case .reloadCollection:
+                self?.collectionView.reloadData()
+                self?.spinnerLoaderView.stopAnimating()
             default:
                 break
             }

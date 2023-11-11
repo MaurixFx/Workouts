@@ -21,7 +21,7 @@ final class ExerciseManager: ExerciseService {
     }
     
     func fetch() async throws -> [Exercise] {
-        let response = try await client.get("http://www.fakeURL.com", responseType: ExerciseResponse.self)
+        let response = try await client.get(ExerciseAPIEndpoint.url, responseType: ExerciseResponse.self)
         return response.results
     }
 }
