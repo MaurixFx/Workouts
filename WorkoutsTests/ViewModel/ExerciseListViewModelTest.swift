@@ -69,6 +69,16 @@ final class ExerciseListViewModelTest: XCTestCase {
         XCTAssertEqual(sut.exerciseListItemViewModel(for: 3), nil)
     }
     
+    func test_exerciseItemViewModel_returnsExpectedValue_whenRowExists() async {
+        let (sut, service) = makeSUT()
+        service.fetchResult = .success(anyExerciseResponse.results)
+        let expectedItemViewModel = ExerciseItemViewModel(name: "Abs Abs", images: [])
+        
+        await sut.loadExercises()
+
+        XCTAssertEqual(sut.exerciseListItemViewModel(for: 0), expectedItemViewModel)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: ExerciseListViewModel, service: MockExerciseManager) {
