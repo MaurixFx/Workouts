@@ -23,6 +23,8 @@
 		D5BE729F2AFF8F830077A86A /* ExerciseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE729E2AFF8F830077A86A /* ExerciseListViewModel.swift */; };
 		D5BE72A12AFFB8830077A86A /* ExerciseItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72A02AFFB8830077A86A /* ExerciseItemViewModel.swift */; };
 		D5BE72A42AFFB97E0077A86A /* ExerciseListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72A32AFFB97E0077A86A /* ExerciseListViewControllerTests.swift */; };
+		D5BE72A82AFFC3E70077A86A /* ExerciseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72A72AFFC3E70077A86A /* ExerciseListViewController.swift */; };
+		D5BE72AB2AFFC4790077A86A /* MockExerciseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72AA2AFFC4790077A86A /* MockExerciseListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		D5BE729E2AFF8F830077A86A /* ExerciseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewModel.swift; sourceTree = "<group>"; };
 		D5BE72A02AFFB8830077A86A /* ExerciseItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseItemViewModel.swift; sourceTree = "<group>"; };
 		D5BE72A32AFFB97E0077A86A /* ExerciseListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewControllerTests.swift; sourceTree = "<group>"; };
+		D5BE72A72AFFC3E70077A86A /* ExerciseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewController.swift; sourceTree = "<group>"; };
+		D5BE72AA2AFFC4790077A86A /* MockExerciseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExerciseListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,7 @@
 		D5BE72602AFEB6B10077A86A /* Workouts */ = {
 			isa = PBXGroup;
 			children = (
+				D5BE72A52AFFC3D00077A86A /* View */,
 				D5BE729D2AFF8F670077A86A /* ViewModel */,
 				D5BE728B2AFED4B10077A86A /* Network */,
 				D5BE72942AFEE2980077A86A /* Service */,
@@ -182,6 +187,7 @@
 		D5BE72972AFF83D30077A86A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D5BE72A92AFFC4540077A86A /* Mock */,
 				D5BE72982AFF83EB0077A86A /* ExerciseListViewModelTest.swift */,
 			);
 			path = ViewModel;
@@ -210,6 +216,30 @@
 				D5BE72A32AFFB97E0077A86A /* ExerciseListViewControllerTests.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D5BE72A52AFFC3D00077A86A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72A62AFFC3D90077A86A /* Controller */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D5BE72A62AFFC3D90077A86A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72A72AFFC3E70077A86A /* ExerciseListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D5BE72A92AFFC4540077A86A /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72AA2AFFC4790077A86A /* MockExerciseListViewModel.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,6 +347,7 @@
 				D5BE72662AFEB6B10077A86A /* ViewController.swift in Sources */,
 				D5BE72962AFEE2AC0077A86A /* ExerciseManager.swift in Sources */,
 				D5BE72622AFEB6B10077A86A /* AppDelegate.swift in Sources */,
+				D5BE72A82AFFC3E70077A86A /* ExerciseListViewController.swift in Sources */,
 				D5BE72A12AFFB8830077A86A /* ExerciseItemViewModel.swift in Sources */,
 				D5BE72772AFEBE180077A86A /* Exercise.swift in Sources */,
 				D5BE728D2AFED4BD0077A86A /* APIClient.swift in Sources */,
@@ -331,6 +362,7 @@
 				D5BE729C2AFF8F430077A86A /* MockExerciseManager.swift in Sources */,
 				D5BE72902AFED60B0077A86A /* ExerciseManagerTests.swift in Sources */,
 				D5BE72932AFEE1FB0077A86A /* MockAPIClient.swift in Sources */,
+				D5BE72AB2AFFC4790077A86A /* MockExerciseListViewModel.swift in Sources */,
 				D5BE72872AFEC1390077A86A /* APIClientTests.swift in Sources */,
 				D5BE728A2AFEC23D0077A86A /* MockURLProtocol.swift in Sources */,
 				D5BE72A42AFFB97E0077A86A /* ExerciseListViewControllerTests.swift in Sources */,
