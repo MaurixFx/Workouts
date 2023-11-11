@@ -49,7 +49,6 @@ final class ExerciseListViewController: UIViewController {
         super.viewDidLoad()
         
         setUpView()
-        load()
         bindViewModel()
     }
     
@@ -82,7 +81,7 @@ final class ExerciseListViewController: UIViewController {
     
     // MARK: - Load
     
-    private func load() {
+    func load() {
         Task {
             await viewModel.loadExercises()
         }

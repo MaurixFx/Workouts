@@ -11,7 +11,7 @@ import XCTest
 
 final class ExerciseListViewControllerTests: XCTestCase {
     func test_spinnerLoaderView_shouldExistsOnTheViewController() throws {
-        let (sut, _) = makeSUT()
+        let sut = makeSUT(expectedResult: .success(anyExerciseResponse.results))
 
         let spinnerLoaderView: UIActivityIndicatorView = try XCTUnwrap(
             Mirror(reflecting: sut).child(named: "spinnerLoaderView")
@@ -21,25 +21,25 @@ final class ExerciseListViewControllerTests: XCTestCase {
     }
     
     func test_collectionView_shouldExistsOnTheViewController() throws {
-        let (sut, _) = makeSUT()
+        let sut = makeSUT(expectedResult: .success(anyExerciseResponse.results))
 
         XCTAssertNotNil(sut.collectionView, "collectionView should exist on the viewController")
     }
     
     func test_delegate_shouldHaveBeenAssigned() throws {
-        let (sut, _) = makeSUT()
+        let sut = makeSUT(expectedResult: .success(anyExerciseResponse.results))
 
         XCTAssertNotNil(sut.collectionView.delegate, "collectionView delegate protocol should have been assigned")
     }
     
     func test_datasource_shouldHaveBeenAssigned() throws {
-        let (sut, _) = makeSUT()
+        let sut = makeSUT(expectedResult: .success(anyExerciseResponse.results))
 
         XCTAssertNotNil(sut.collectionView.dataSource, "collectionView datasource protocol should have been assigned")
     }
     
     func test_viewDidLoad_shouldAddTwoViewComponentsToTheMainView() {
-        let (sut, _) = makeSUT()
+        let sut = makeSUT(expectedResult: .success(anyExerciseResponse.results))
         
         XCTAssertEqual(sut.view.subviews.count, 2, "viewDidLoad should have added two UI components to the main view")
     }
@@ -48,10 +48,23 @@ final class ExerciseListViewControllerTests: XCTestCase {
         let sut = makeSUT(expectedResult: .success(anyExerciseResponse.results))
         
         sut.loadViewIfNeeded()
+        sut.load()
         
         let datasource = sut.collectionView.dataSource!
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            XCTAssertEqual(datasource.collectionView(sut.collectionView, numberOfItemsInSection: 0), self.anyExerciseResponse.results.count, "")
+            XCTAssertEqual(datasource.collectionView(sut.collectionView, numberOfItemsInSection: 0), self.anyExerciseResponse.results.count, "numberOfItemsInSection should be equal to the expected response")
+        })
+    }
+    
+    func test_numberOfItemsInSection_returnsTheZero_whenServiceResponseIsAFailure() throws {
+        let sut = makeSUT(expectedResult: .failure(APIError.invalidResponse))
+        
+        sut.loadViewIfNeeded()
+        sut.load()
+        
+        let datasource = sut.collectionView.dataSource!
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            XCTAssertEqual(datasource.collectionView(sut.collectionView, numberOfItemsInSection: 0), 0, "numberOfItemsInSection should be zero when service response is a failure")
         })
     }
     
