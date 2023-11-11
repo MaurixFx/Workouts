@@ -7,7 +7,16 @@
 
 import Foundation
 
-final class ExerciseListViewModel {
+protocol ExerciseListViewModelProtocol {
+    var currentState: ExerciseListViewModel.State { get }
+    var numberOfItems: Int { get }
+
+    func loadExercises() async
+    func exerciseListItemViewModel(for row: Int) -> ExerciseItemViewModel?
+    func cellSizeItem(with collectionWidth: CGFloat) -> CGSize
+}
+
+final class ExerciseListViewModel: ExerciseListViewModelProtocol {
     private let service: ExerciseService
     private(set) var currentState: State = .initial
     private var exercices: [Exercise] = []
