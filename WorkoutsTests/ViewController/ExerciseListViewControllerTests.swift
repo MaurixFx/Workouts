@@ -68,6 +68,32 @@ final class ExerciseListViewControllerTests: XCTestCase {
         })
     }
     
+    func test_cellForRow_shouldDisplayTheExerciseDataInExerciseItemViewCell() throws {
+        let expectedItems = anyExerciseResponse.results
+        let sut = makeSUT(expectedResult: .success(expectedItems))
+        let indexPath = IndexPath(row: 0, section: 0)
+        
+        sut.loadViewIfNeeded()
+        sut.load()
+
+        let dataSource = sut.collectionView.dataSource
+        
+        var exerciseItemCell: ExerciseItemViewCell?
+        let itemViewModel = ExerciseItemViewModel(name: "Abs Abs", images: [])
+        if let cell = dataSource?.collectionView(sut.collectionView, cellForItemAt: indexPath) as? ExerciseItemViewCell {
+            exerciseItemCell = cell
+            cell.displayItemExercise(with: itemViewModel)
+            
+            let nameLabel: UILabel = try XCTUnwrap(
+                Mirror(reflecting: cell).child(named: "nameLabel")
+            )
+            
+            XCTAssertEqual(nameLabel.text, itemViewModel.name, "The name displayed on the label should be equal to the name of the item")
+        }
+        
+        XCTAssertNotNil(exerciseItemCell)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(expectedResult: Result<[Exercise], Error>) -> ExerciseListViewController {
