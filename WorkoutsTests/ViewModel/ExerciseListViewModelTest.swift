@@ -11,8 +11,7 @@ import XCTest
 
 final class ExerciseListViewModelTest: XCTestCase {
     func test_loadExercises_callsExerciseManager() async {
-        let service = MockExerciseManager()
-        let sut = ExerciseListViewModel(service: service)
+        let (sut, service) = makeSUT()
         
         await sut.loadExercises()
         
@@ -22,8 +21,7 @@ final class ExerciseListViewModelTest: XCTestCase {
     
     func test_loadExercises_setCurrentStateToError_whenExerciseManagerFails() async {
         let expectedError = APIError.invalidResponse
-        let service = MockExerciseManager()
-        let sut = ExerciseListViewModel(service: service)
+        let (sut, service) = makeSUT()
         service.fetchResult = .failure(expectedError)
         
         await sut.loadExercises()
@@ -32,8 +30,7 @@ final class ExerciseListViewModelTest: XCTestCase {
     }
     
     func test_loadExercises_setCurrentStateToReloadCollection_whenExerciseManagerSucceeds() async {
-        let service = MockExerciseManager()
-        let sut = ExerciseListViewModel(service: service)
+        let (sut, service) = makeSUT()
         service.fetchResult = .success(anyExerciseResponse.results)
         
         await sut.loadExercises()
@@ -42,6 +39,13 @@ final class ExerciseListViewModelTest: XCTestCase {
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT() -> (sut: ExerciseListViewModel, service: MockExerciseManager) {
+        let service = MockExerciseManager()
+        let sut = ExerciseListViewModel(service: service)
+        
+        return (sut, service)
+    }
     
     private var anyExerciseResponse: ExerciseResponse {
         .init(results: [
