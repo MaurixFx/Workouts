@@ -79,6 +79,15 @@ final class ExerciseListViewModelTest: XCTestCase {
         XCTAssertEqual(sut.exerciseListItemViewModel(for: 0), expectedItemViewModel)
     }
     
+    func test_cellSizeItem_returnsExpectedValue() async {
+        let (sut, service) = makeSUT()
+        service.fetchResult = .success(anyExerciseResponse.results)
+        
+        await sut.loadExercises()
+
+        XCTAssertEqual(sut.cellSizeItem(with: 400), .init(width: 200, height: 200))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: ExerciseListViewModel, service: MockExerciseManager) {

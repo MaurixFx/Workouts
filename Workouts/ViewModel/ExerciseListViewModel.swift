@@ -12,6 +12,11 @@ final class ExerciseListViewModel {
     private(set) var currentState: State = .initial
     private var exercices: [Exercise] = []
     
+    private enum Constants {
+        static let cellHeight: CGFloat = 200
+        static let widthDivider: CGFloat = 2
+    }
+    
     enum State: Equatable {
         static func == (lhs: State, rhs: State) -> Bool {
             switch (lhs, rhs) {
@@ -58,6 +63,10 @@ final class ExerciseListViewModel {
         let item = exercices[row]
         
         return .init(name: item.name, images: item.images)
+    }
+    
+    func cellSizeItem(with collectionWidth: CGFloat) -> CGSize {
+        .init(width: collectionWidth / Constants.widthDivider, height: Constants.cellHeight)
     }
 }
 
