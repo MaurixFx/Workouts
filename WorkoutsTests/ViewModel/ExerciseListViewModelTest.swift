@@ -38,6 +38,19 @@ final class ExerciseListViewModelTest: XCTestCase {
         XCTAssertEqual(sut.currentState, .reloadCollection, "currentState should be .reloadCollection when ExerciseManager succeeds")
     }
     
+    func test_loadExercises_setExercicesArrayList_whenExerciseManagerSucceeds() async throws {
+        let (sut, service) = makeSUT()
+        service.fetchResult = .success(anyExerciseResponse.results)
+        
+        await sut.loadExercises()
+        
+        let exercices: [Exercise] = try XCTUnwrap(
+            Mirror(reflecting: sut).child(named: "exercices")
+        )
+        
+        XCTAssertEqual(exercices, anyExerciseResponse.results, "exercices array list should be equal to the expected exercies list")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: ExerciseListViewModel, service: MockExerciseManager) {
@@ -81,6 +94,7 @@ final class ExerciseListViewModelTest: XCTestCase {
         }
         
         private(set) var currentState: State = .initial
+        private var exercices: [Exercise] = []
         
         init(service: ExerciseService) {
             self.service = service
@@ -88,7 +102,7 @@ final class ExerciseListViewModelTest: XCTestCase {
 
         func loadExercises() async {
             do {
-                _ = try await service.fetch()
+                exercices = try await service.fetch()
                 currentState = .reloadCollection
             } catch {
                 currentState = .error(error)
@@ -119,5 +133,11 @@ final class ExerciseListViewModelTest: XCTestCase {
                 }
             }
         }
+    }
+}
+
+extension Mirror {
+    func child<T>(named name: String) -> T? {
+        children.first(where: { $0.label == name })?.value as? T
     }
 }
