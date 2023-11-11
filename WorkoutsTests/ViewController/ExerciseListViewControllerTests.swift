@@ -22,6 +22,14 @@ final class ExerciseListViewControllerTests: XCTestCase {
         XCTAssertNotNil(spinnerLoaderView, "spinnerLoaderView should exist on the viewController")
     }
     
+    func test_collectionView_shouldExistsOnTheViewController() throws {
+        let service = MockExerciseManager()
+        let viewModel = ExerciseListViewModel(service: service)
+        let sut = ExerciseListViewController(viewModel: viewModel)
+
+        XCTAssertNotNil(sut.collectionView, "collectionView should exist on the viewController")
+    }
+    
     func test_viewDidLoad_shouldAddTwoViewComponentsToTheMainView() {
         let service = MockExerciseManager()
         let viewModel = ExerciseListViewModel(service: service)

@@ -12,7 +12,7 @@ import Combine
 final class ExerciseListViewController: UIViewController {
     private let viewModel: ExerciseListViewModel
     
-    private lazy var collectionView: UICollectionView = {
+    private(set) lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
 
