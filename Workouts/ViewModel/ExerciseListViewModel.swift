@@ -69,12 +69,3 @@ final class ExerciseListViewModel {
         .init(width: collectionWidth / Constants.widthDivider, height: Constants.cellHeight)
     }
 }
-
-struct ExerciseItemViewModel: Equatable {
-    static func == (lhs: ExerciseItemViewModel, rhs: ExerciseItemViewModel) -> Bool {
-        lhs.name == rhs.name
-    }
-    
-    let name: String
-    let images: [ExerciseImage]?
-}

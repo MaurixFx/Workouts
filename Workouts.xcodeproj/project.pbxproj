@@ -21,6 +21,7 @@
 		D5BE72992AFF83EB0077A86A /* ExerciseListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72982AFF83EB0077A86A /* ExerciseListViewModelTest.swift */; };
 		D5BE729C2AFF8F430077A86A /* MockExerciseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE729B2AFF8F430077A86A /* MockExerciseManager.swift */; };
 		D5BE729F2AFF8F830077A86A /* ExerciseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE729E2AFF8F830077A86A /* ExerciseListViewModel.swift */; };
+		D5BE72A12AFFB8830077A86A /* ExerciseItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72A02AFFB8830077A86A /* ExerciseItemViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		D5BE72982AFF83EB0077A86A /* ExerciseListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewModelTest.swift; sourceTree = "<group>"; };
 		D5BE729B2AFF8F430077A86A /* MockExerciseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExerciseManager.swift; sourceTree = "<group>"; };
 		D5BE729E2AFF8F830077A86A /* ExerciseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewModel.swift; sourceTree = "<group>"; };
+		D5BE72A02AFFB8830077A86A /* ExerciseItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseItemViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				D5BE729E2AFF8F830077A86A /* ExerciseListViewModel.swift */,
+				D5BE72A02AFFB8830077A86A /* ExerciseItemViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				D5BE72662AFEB6B10077A86A /* ViewController.swift in Sources */,
 				D5BE72962AFEE2AC0077A86A /* ExerciseManager.swift in Sources */,
 				D5BE72622AFEB6B10077A86A /* AppDelegate.swift in Sources */,
+				D5BE72A12AFFB8830077A86A /* ExerciseItemViewModel.swift in Sources */,
 				D5BE72772AFEBE180077A86A /* Exercise.swift in Sources */,
 				D5BE728D2AFED4BD0077A86A /* APIClient.swift in Sources */,
 			);
