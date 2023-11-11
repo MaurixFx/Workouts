@@ -44,16 +44,27 @@ final class ExerciseListViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.view.subviews.count, 2, "viewDidLoad should have added two UI components to the main view")
     }
     
+    func test_numberOfItemsInSection_returnsTheExpectValue() throws {
+        let sut = makeSUT(expectedResult: .success(anyExerciseResponse.results))
+        
+        sut.loadViewIfNeeded()
+        
+        let datasource = sut.collectionView.dataSource!
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            XCTAssertEqual(datasource.collectionView(sut.collectionView, numberOfItemsInSection: 0), self.anyExerciseResponse.results.count, "")
+        })
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: ExerciseListViewController, service: MockExerciseManager) {
+    private func makeSUT(expectedResult: Result<[Exercise], Error>) -> ExerciseListViewController {
         let service = MockExerciseManager()
         let viewModel = ExerciseListViewModel(service: service)
         let sut = ExerciseListViewController(viewModel: viewModel)
         
-        service.fetchResult = .success(anyExerciseResponse.results)
+        service.fetchResult = expectedResult
         
-        return (sut, service)
+        return sut
     }
     
     private var anyExerciseResponse: ExerciseResponse {
