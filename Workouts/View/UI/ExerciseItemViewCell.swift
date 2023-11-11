@@ -86,5 +86,13 @@ final class ExerciseItemViewCell: UICollectionViewCell {
         textDetailStackView.addArrangedSubview(nameLabel)
         mainStackView.addArrangedSubview(textDetailStackView)
     }
+    
+    // MARK: - displayItemExercise
+    
+    func displayItemExercise(with viewModel: ExerciseItemViewModel?) {
+        guard let viewModel else { return }
+
+        nameLabel.text = viewModel.name
+    }
 }
 
