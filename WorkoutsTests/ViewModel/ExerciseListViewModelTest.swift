@@ -16,7 +16,8 @@ final class ExerciseListViewModelTest: XCTestCase {
         
         await sut.loadExercises()
         
-        XCTAssertTrue(service.fetchWasCalled)
+        XCTAssertTrue(service.fetchWasCalled, "fetch method on ExerciseManager should have been called")
+        XCTAssertEqual(service.fetchCallsCount, 1, "fetch method on ExerciseManager should have been called just once")
     }
     
     func test_loadExercises_setCurrentStateToError_whenExerciseManagerFails() async {
