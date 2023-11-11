@@ -45,4 +45,8 @@ final class ExerciseListViewModel {
             currentState = .error(error)
         }
     }
+    
+    var numberOfItems: Int {
+        exercices.count
+    }
 }

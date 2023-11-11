@@ -51,6 +51,15 @@ final class ExerciseListViewModelTest: XCTestCase {
         XCTAssertEqual(exercices, anyExerciseResponse.results, "exercices array list should be equal to the expected exercies list")
     }
     
+    func test_numberOfItems_returnsTheExpectedValue() async {
+        let (sut, service) = makeSUT()
+        service.fetchResult = .success(anyExerciseResponse.results)
+        
+        await sut.loadExercises()
+        
+        XCTAssertEqual(sut.numberOfItems, 1)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: ExerciseListViewModel, service: MockExerciseManager) {
