@@ -30,6 +30,29 @@ final class ExerciseListViewModelTest: XCTestCase {
         XCTAssertEqual(sut.currentState, .error(expectedError), "currentState should be .error when ExerciseManager fails")
     }
     
+    func test_loadExercises_setCurrentStateToReloadCollection_whenExerciseManagerSucceeds() async {
+        let service = MockExerciseManager()
+        let sut = ExerciseListViewModel(service: service)
+        service.fetchResult = .success(anyExerciseResponse.results)
+        
+        await sut.loadExercises()
+        
+        XCTAssertEqual(sut.currentState, .reloadCollection, "currentState should be .reloadCollection when ExerciseManager succeeds")
+    }
+    
+    // MARK: - Helpers
+    
+    private var anyExerciseResponse: ExerciseResponse {
+        .init(results: [
+            Exercise(id: 4,
+                     name: "Abs Abs",
+                     description: "bla bla bla bla",
+                     images: [],
+                     variations: []
+                    )
+        ])
+    }
+    
     private class ExerciseListViewModel {
         private let service: ExerciseService
         
@@ -37,6 +60,8 @@ final class ExerciseListViewModelTest: XCTestCase {
             static func == (lhs: State, rhs: State) -> Bool {
                 switch (lhs, rhs) {
                 case (.initial, .initial):
+                    return true
+                case (.reloadCollection, .reloadCollection):
                     return true
                 case let (.error(error1), .error(error2)):
                     return type(of: error1) == type(of: error2) && "\(error1)" == "\(error2)"
@@ -46,6 +71,7 @@ final class ExerciseListViewModelTest: XCTestCase {
             }
             
             case initial
+            case reloadCollection
             case error(Error)
         }
         
@@ -58,6 +84,7 @@ final class ExerciseListViewModelTest: XCTestCase {
         func loadExercises() async {
             do {
                 _ = try await service.fetch()
+                currentState = .reloadCollection
             } catch {
                 currentState = .error(error)
             }
@@ -82,8 +109,8 @@ final class ExerciseListViewModelTest: XCTestCase {
                 switch fetchResult {
                 case .failure(let error):
                     continuation.resume(throwing: error)
-                default:
-                    break
+                case .success(let exercises):
+                    continuation.resume(returning: exercises)
                 }
             }
         }
