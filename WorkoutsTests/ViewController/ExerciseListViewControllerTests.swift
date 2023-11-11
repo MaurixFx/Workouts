@@ -21,4 +21,12 @@ final class ExerciseListViewControllerTests: XCTestCase {
         
         XCTAssertNotNil(spinnerLoaderView, "spinnerLoaderView should exist on the viewController")
     }
+    
+    func test_viewDidLoad_shouldAddTwoViewComponentsToTheMainView() {
+        let service = MockExerciseManager()
+        let viewModel = ExerciseListViewModel(service: service)
+        let sut = ExerciseListViewController(viewModel: viewModel)
+        
+        XCTAssertEqual(sut.view.subviews.count, 2, "viewDidLoad should have added two UI components to the main view")
+    }
 }
