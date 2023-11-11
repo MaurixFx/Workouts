@@ -18,7 +18,7 @@ protocol ExerciseListViewModelProtocol {
 
 final class ExerciseListViewModel: ExerciseListViewModelProtocol {
     private let service: ExerciseService
-    private(set) var currentState: State = .initial
+    private(set) var currentState: State = .loading
     private var exercices: [Exercise] = []
     
     private enum Constants {
@@ -29,7 +29,7 @@ final class ExerciseListViewModel: ExerciseListViewModelProtocol {
     enum State: Equatable {
         static func == (lhs: State, rhs: State) -> Bool {
             switch (lhs, rhs) {
-            case (.initial, .initial):
+            case (.loading, .loading):
                 return true
             case (.reloadCollection, .reloadCollection):
                 return true
@@ -40,7 +40,7 @@ final class ExerciseListViewModel: ExerciseListViewModelProtocol {
             }
         }
         
-        case initial
+        case loading
         case reloadCollection
         case error(Error)
     }

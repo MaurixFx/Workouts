@@ -51,7 +51,7 @@ final class ExerciseListViewControllerTests: XCTestCase {
     }
     
     private class MockExerciseListViewModel: ExerciseListViewModelProtocol {
-        var currentState: Workouts.ExerciseListViewModel.State = .initial
+        var currentState: Workouts.ExerciseListViewModel.State = .loading
         var numberOfItems: Int {
             return 0
         }

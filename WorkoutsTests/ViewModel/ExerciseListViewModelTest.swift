@@ -10,10 +10,10 @@ import XCTest
 @testable import Workouts
 
 final class ExerciseListViewModelTest: XCTestCase {
-    func test_init_currentStateShouldBeInitial() {
+    func test_init_currentStateShouldBeLoading() {
         let (sut, _) = makeSUT()
         
-        XCTAssertTrue(sut.currentState == .initial)
+        XCTAssertTrue(sut.currentState == .loading)
     }
     
     func test_loadExercises_callsExerciseManager() async {
