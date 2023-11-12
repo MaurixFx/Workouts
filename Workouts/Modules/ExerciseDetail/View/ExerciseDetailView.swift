@@ -8,19 +8,21 @@
 import SwiftUI
 
 struct ExerciseDetailView: View {
-    let exercise: Exercise
+    let viewModel: ExerciseDetailViewModel
     
     var body: some View {
-        Text(exercise.name)
+        Text(viewModel.name)
     }
 }
 
 #Preview {
-    ExerciseDetailView(
-        exercise: Exercise(id: 1,
-                           name: "Abdominales",
-                           description: "blalaalalal", 
-                           images: [],
-                           variations: [])
-    )
+    let viewModel = ExerciseDetailViewModel(exercise: Exercise(id: 1,
+                                                                      name: "Abdominales",
+                                                                      description: "As a warmup, use light dumbbells, one in each hand. Lunge in alternating directions, forward, sideways, backwards and 45 degree angles.",
+                                                                      images: [
+                                                                       ExerciseImage(id: 2, isMain: true, image: "")
+                                                                              ],
+                                                                      variations: []))
+
+    return ExerciseDetailView(viewModel: viewModel)
 }

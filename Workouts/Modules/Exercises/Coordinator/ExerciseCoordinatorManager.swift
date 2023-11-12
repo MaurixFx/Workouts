@@ -21,7 +21,8 @@ final class ExerciseCoordinatorManager: ExerciseCoordinator {
     func showExerciseDetail(with exercise: Exercise) {
         guard let viewController = presentationViewController?() else { return }
 
-        let exerciseDetailView = ExerciseDetailView(exercise: exercise)
+        let viewModel = ExerciseDetailViewModel(exercise: exercise)
+        let exerciseDetailView = ExerciseDetailView(viewModel: viewModel)
         let hostingVC = UIHostingController(rootView: exerciseDetailView)
         
         viewController.navigationController?.pushViewController(hostingVC, animated: true)
