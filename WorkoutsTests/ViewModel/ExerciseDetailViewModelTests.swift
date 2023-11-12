@@ -19,31 +19,23 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         XCTAssertEqual(service.fetchVariationsCallsCount, 1, "fetchVariations should have been called just once")
     }
     
-    func test_loadExerciseVariations_doesNotSetTheExercisesResult_whenExerciseManagerFails() async throws {
+    func test_loadExerciseVariations_doesNotSetTheExercisesResult_whenExerciseManagerFails() async {
         let expectedError = APIError.invalidResponse
         let (sut, service) = makeSUT(with: anyExerciseWithTwoImages)
         service.fetchResult = .failure(expectedError)
         
         await sut.loadExerciseVariations()
         
-        let exerciseVariations: [Exercise] = try XCTUnwrap(
-            Mirror(reflecting: sut).child(named: "exerciseVariations")
-        )
-        
-        XCTAssertTrue(exerciseVariations.isEmpty, "currentState should be .error when ExerciseManager fails")
+        XCTAssertTrue(sut.exerciseVariations.isEmpty, "should have not set the exercises result when ExerciseManager fails")
     }
     
-    func test_loadExerciseVariations_setTheExpectedExercisesResult_whenExerciseManagerSucceeds() async throws {
+    func test_loadExerciseVariations_setTheExpectedExercisesResult_whenExerciseManagerSucceeds() async {
         let (sut, service) = makeSUT(with: anyExerciseWithTwoImages)
         service.fetchResult = .success(anyExerciseResponse.results)
         
         await sut.loadExerciseVariations()
         
-        let exerciseVariations: [Exercise] = try XCTUnwrap(
-            Mirror(reflecting: sut).child(named: "exerciseVariations")
-        )
-        
-        XCTAssertEqual(exerciseVariations, anyExerciseResponse.results, "currentState should be .error when ExerciseManager fails")
+        XCTAssertEqual(sut.exerciseVariations, anyExerciseResponse.results, "should have set the exercises result when ExerciseManager succeeds")
     }
     
     func test_shouldDisplayImagesSection_returnsTrue_whenExerciseHasMoreThanOneImage() {

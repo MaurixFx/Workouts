@@ -7,17 +7,20 @@
 
 import Foundation
 
-final class ExerciseDetailViewModel {
+final class ExerciseDetailViewModel: ObservableObject {
     
     private let exercise: Exercise
     private let service: ExerciseService
-    private var exerciseVariations: [Exercise] = []
+    @Published var exerciseVariations: [Exercise] = []
     
+    // MARK: - Init
+
     init(exercise: Exercise, service: ExerciseService = ExerciseManager()) {
         self.exercise = exercise
         self.service = service
     }
     
+    @MainActor
     func loadExerciseVariations() async {
         if let exercices = try? await service.fetchVariations(for: [1]) {
             exerciseVariations = exercices

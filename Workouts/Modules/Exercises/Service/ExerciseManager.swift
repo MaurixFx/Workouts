@@ -33,7 +33,7 @@ final class ExerciseManager: ExerciseService {
             for id in variationIDs {
                 group.addTask {
                     do {
-                        let exercise = try await self.client.get("endpoint", responseType: Exercise.self)
+                        let exercise = try await self.client.get(ExerciseDetailAPIEndpoint.url(with: id), responseType: Exercise.self)
                         return (exercise, nil)
                     } catch {
                         return (nil, error)

@@ -10,3 +10,9 @@ import Foundation
 enum ExerciseAPIEndpoint {
     static let url = "https://wger.de/api/v2/exerciseinfo/"
 }
+
+enum ExerciseDetailAPIEndpoint {
+    static func url(with id: Int) -> String {
+        "https://wger.de/api/v2/exerciseinfo/\(id)"
+    }
+}

@@ -6,12 +6,100 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ExerciseDetailView: View {
-    let viewModel: ExerciseDetailViewModel
-    
+    @StateObject var viewModel: ExerciseDetailViewModel
+
     var body: some View {
-        Text(viewModel.name)
+        ZStack {
+            Color(uiColor: Colors.beige)
+                .ignoresSafeArea()
+
+            ScrollView {
+                VStack {
+                    VStack(spacing: 30) {
+                        WebImage(url: viewModel.exerciseImageURL)
+                            .placeholder(Image("trainers").resizable())
+                            .resizable()
+                            .frame(width: 250, height: 250)
+                            .cornerRadius(8)
+                        
+                        VStack(spacing: 10) {
+                            Text(viewModel.name)
+                                .font(.custom(
+                                    "AvenirNext-Bold",
+                                    fixedSize: 17))
+                            
+                            Text(viewModel.description)
+                                .font(.custom(
+                                    "AvenirNext-Regular",
+                                    fixedSize: 15))
+                        }
+                    }
+                    
+                    if viewModel.shouldDisplayImagesSection {
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Images")
+                                .font(.custom(
+                                    "AvenirNext-Bold",
+                                    fixedSize: 18))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                            Divider().background(.gray)
+                            
+                            ScrollView(.horizontal) {
+                                LazyHGrid(rows: [GridItem(.flexible())], spacing: 16) {
+                                    ForEach(0..<3) { _ in
+                                        Button(action: {
+                                            
+                                        }, label: {
+                                            Color.red
+                                                .frame(width: 150, height: 150)
+                                                .cornerRadius(8)
+                                        })
+                                    }
+                                }
+                            }
+                        }
+                        .padding(.top, 20)
+                    }
+                    
+                    if viewModel.shouldDisplayVariationsSection {
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Variations")
+                                .font(.custom(
+                                    "AvenirNext-Bold",
+                                    fixedSize: 18))
+
+                            Divider()
+                                .background(.gray)
+
+                            ScrollView(.horizontal) {
+                                LazyHGrid(rows: [GridItem(.flexible())], spacing: 16) {
+                                    ForEach($viewModel.exerciseVariations) { _ in
+                                        Button(action: {
+
+                                        }, label: {
+                                            Color.red
+                                                .frame(width: 150, height: 150)
+                                                .cornerRadius(8)
+                                        })
+                                    }
+                                }
+                            }
+                        }
+                        .padding(.top, 20)
+                    }
+                }
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 16)
+        }
+        .navigationBarTitle("", displayMode: .inline)
+        .task {
+            await viewModel.loadExerciseVariations()
+        }
     }
 }
 
