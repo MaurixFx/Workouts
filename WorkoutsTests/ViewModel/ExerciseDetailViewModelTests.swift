@@ -11,7 +11,7 @@ import XCTest
 
 final class ExerciseDetailViewModelTests: XCTestCase {
     func test_loadExerciseVariations_callsExerciseManager() async {
-        let (sut, service) = makeSUT()
+        let (sut, service) = makeSUT(with: anyExerciseWithImages)
         
         await sut.loadExerciseVariations()
         
@@ -21,7 +21,7 @@ final class ExerciseDetailViewModelTests: XCTestCase {
     
     func test_loadExerciseVariations_doesNotSetTheExercisesResult_whenExerciseManagerFails() async throws {
         let expectedError = APIError.invalidResponse
-        let (sut, service) = makeSUT()
+        let (sut, service) = makeSUT(with: anyExerciseWithImages)
         service.fetchResult = .failure(expectedError)
         
         await sut.loadExerciseVariations()
@@ -34,7 +34,7 @@ final class ExerciseDetailViewModelTests: XCTestCase {
     }
     
     func test_loadExerciseVariations_setTheExpectedExercisesResult_whenExerciseManagerSucceeds() async throws {
-        let (sut, service) = makeSUT()
+        let (sut, service) = makeSUT(with: anyExerciseWithImages)
         service.fetchResult = .success(anyExerciseResponse.results)
         
         await sut.loadExerciseVariations()
@@ -46,13 +46,39 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         XCTAssertEqual(exerciseVariations, anyExerciseResponse.results, "currentState should be .error when ExerciseManager fails")
     }
     
+    func test_shouldDisplayImagesSection_returnsTrue_whenExerciseHasMoreThanOneImage() {
+        let (sut, service) = makeSUT(with: anyExerciseWithImages)
+        service.fetchResult = .success(anyExerciseResponse.results)
+        
+        XCTAssertTrue(sut.shouldDisplayImagesSection, "shouldDisplayImagesSection should be equal to true when the exercise has more than one image")
+    }
+    
+    func test_shouldDisplayImagesSection_returnsFalse_whenExerciseDoesNotHaveMoreThanOneImage() {
+        let (sut, service) = makeSUT(with: anyExerciseResponse.results.first!)
+        service.fetchResult = .success(anyExerciseResponse.results)
+        
+        XCTAssertTrue(sut.shouldDisplayImagesSection == false, "shouldDisplayImagesSection should be equal to false when the exercise does not have more than one image")
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: ExerciseDetailViewModel, service: MockExerciseManager) {
+    private func makeSUT(with exercise: Exercise) -> (sut: ExerciseDetailViewModel, service: MockExerciseManager) {
         let service = MockExerciseManager()
-        let sut = ExerciseDetailViewModel(service: service)
+        let sut = ExerciseDetailViewModel(exercise: exercise, service: service)
         
         return (sut, service)
+    }
+    
+    private var anyExerciseWithImages: Exercise {
+        Exercise(id: 1,
+                 name: "Abs Abs",
+                 description: "bla bla bla bla",
+                 images: [
+                    ExerciseImage(id: 1, isMain: true, image: "https://fakeURL.com"),
+                    ExerciseImage(id: 2, isMain: true, image: "https://fakeURL.com")
+                 ],
+                 variations: []
+        )
     }
     
     private var anyExerciseResponse: ExerciseResponse {
@@ -68,10 +94,12 @@ final class ExerciseDetailViewModelTests: XCTestCase {
     
     private class ExerciseDetailViewModel {
         
+        private let exercise: Exercise
         private let service: ExerciseService
         private var exerciseVariations: [Exercise] = []
         
-        init(service: ExerciseService = ExerciseManager()) {
+        init(exercise: Exercise, service: ExerciseService = ExerciseManager()) {
+            self.exercise = exercise
             self.service = service
         }
         
@@ -79,6 +107,14 @@ final class ExerciseDetailViewModelTests: XCTestCase {
             if let exercices = try? await service.fetchVariations(for: [1]) {
                 exerciseVariations = exercices
             }
+        }
+        
+        var shouldDisplayImagesSection: Bool {
+            guard let images = exercise.images else {
+                return false
+            }
+            
+            return images.count > 1
         }
     }
 }
