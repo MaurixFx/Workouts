@@ -53,6 +53,31 @@ final class ExerciseManagerTests: XCTestCase {
         XCTAssertEqual(client.getCallsCount, 2, "get method on MockAPIClient should get called the expected times depending on the number of variations")
     }
     
+    func test_fetchVariations_throwsAnError_whenAPIClientFails() async {
+        let expectedError = APIError.invalidResponse
+        let (sut, client) = makeSUT()
+        client.getResult = .failure(expectedError)
+
+        do {
+            _ = try await sut.fetchVariations(for: [2,3])
+            XCTFail("fetch operation should have not succeed")
+        } catch {
+            XCTAssertEqual(error as? APIError, expectedError, "The error coming from the fetch variations operation should be same that the expected error")
+        }
+    }
+    
+    func test_fetchVariations_returnsAnExerciseList_whenAPIClientSucceeds() async {
+        let (sut, client) = makeSUT()
+        client.getResult = .success(anyExerciseResponse.results.first!)
+
+        do {
+            let receivedExerciseList = try await sut.fetchVariations(for: [2])
+            XCTAssertEqual(receivedExerciseList, anyExerciseResponse.results, "receivedExerciseList should the same that the expected exercise list")
+        } catch {
+            XCTFail("fetch operation should have not failed, it got instead an \(error.localizedDescription)")
+        }
+    }
+    
     // MARK: - Helpers
 
     private var anyExerciseResponse: ExerciseResponse {
