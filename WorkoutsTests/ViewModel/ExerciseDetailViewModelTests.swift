@@ -90,6 +90,24 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         XCTAssertEqual(sut.description, "bla bla bla bla")
     }
     
+    func test_shouldDisplayVariationsSection_returnsTrue_whenExerciseVariationsCollectionIsNotEmpty() async {
+        let (sut, service) = makeSUT(with: anyExerciseWithTwoImages)
+        service.fetchResult = .success(anyExerciseResponse.results)
+        
+        await sut.loadExerciseVariations()
+        
+        XCTAssertTrue(sut.shouldDisplayVariationsSection, "shouldDisplayVariationsSection should be equal to true when the exercisesVariations array is not empty")
+    }
+    
+    func test_shouldDisplayVariationsSection_returnsFalse_whenExerciseVariationsCollectionIsEmpty() async {
+        let (sut, service) = makeSUT(with: anyExerciseWithTwoImages)
+        service.fetchResult = .failure(APIError.invalidResponse)
+        
+        await sut.loadExerciseVariations()
+        
+        XCTAssertTrue(sut.shouldDisplayVariationsSection == false, "shouldDisplayVariationsSection should be equal to false when the exercisesVariations array is empty")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(with exercise: Exercise) -> (sut: ExerciseDetailViewModel, service: MockExerciseManager) {
@@ -170,6 +188,10 @@ final class ExerciseDetailViewModelTests: XCTestCase {
             }
             
             return images.count > 1
+        }
+        
+        var shouldDisplayVariationsSection: Bool {
+            return exerciseVariations.count > 0
         }
     }
 }
