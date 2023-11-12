@@ -11,8 +11,7 @@ import XCTest
 
 final class ExerciseDetailViewModelTests: XCTestCase {
     func test_loadExerciseVariations_callsExerciseManager() async {
-        let service = MockExerciseManager()
-        let sut = ExerciseDetailViewModel(service: service)
+        let (sut, service) = makeSUT()
         
         await sut.loadExerciseVariations()
         
@@ -22,8 +21,7 @@ final class ExerciseDetailViewModelTests: XCTestCase {
     
     func test_loadExerciseVariations_doesNotSetTheExercisesResult_whenExerciseManagerFails() async throws {
         let expectedError = APIError.invalidResponse
-        let service = MockExerciseManager()
-        let sut = ExerciseDetailViewModel(service: service)
+        let (sut, service) = makeSUT()
         service.fetchResult = .failure(expectedError)
         
         await sut.loadExerciseVariations()
@@ -35,7 +33,27 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         XCTAssertTrue(exerciseVariations.isEmpty, "currentState should be .error when ExerciseManager fails")
     }
     
+    func test_loadExerciseVariations_setTheExpectedExercisesResult_whenExerciseManagerSucceeds() async throws {
+        let (sut, service) = makeSUT()
+        service.fetchResult = .success(anyExerciseResponse.results)
+        
+        await sut.loadExerciseVariations()
+        
+        let exerciseVariations: [Exercise] = try XCTUnwrap(
+            Mirror(reflecting: sut).child(named: "exerciseVariations")
+        )
+        
+        XCTAssertEqual(exerciseVariations, anyExerciseResponse.results, "currentState should be .error when ExerciseManager fails")
+    }
+    
     // MARK: - Helpers
+    
+    private func makeSUT() -> (sut: ExerciseDetailViewModel, service: MockExerciseManager) {
+        let service = MockExerciseManager()
+        let sut = ExerciseDetailViewModel(service: service)
+        
+        return (sut, service)
+    }
     
     private var anyExerciseResponse: ExerciseResponse {
         .init(results: [
