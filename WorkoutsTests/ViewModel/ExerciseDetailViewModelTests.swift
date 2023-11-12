@@ -76,10 +76,16 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         XCTAssertEqual(sut.name, "Abs Abs")
     }
     
-    func test_description_returnsExpectedValue() {
+    func test_description_returnsExpectedValue_whenDescriptionDoesNotContainHTMLFormats() {
         let (sut, _) = makeSUT(with: anyExerciseWithTwoImages)
         
         XCTAssertEqual(sut.description, "bla bla bla bla")
+    }
+    
+    func test_description_returnsExpectedValue_whenDescriptiontContainsHTMLFormats() {
+        let (sut, _) = makeSUT(with: anyExerciseWithHTMLDescription)
+        
+        XCTAssertEqual(sut.description, "Ausgangsposition:\nBeginnen Sie im Stehen mit Kurzhanteln in jeder Hand, mit geradem Rücken und hüftbreit auseinander stehenden Füßen. Die Arme sind entspannt und zeigen nach unten. Die Knie sollten leicht gebeugt, die Bauchmuskeln angespannt und die Schultern nach unten gerichtet sein.\nDie Schritte:\n\t1.\tBeugen Sie einen Arm am Ellenbogen und führen Sie die Hantel bis zur Schulter. Ihr Oberarm sollte während dieser Bewegung unbeweglich bleiben.\n\t2.\tBringen Sie die Hantel wieder nach unten, bis sich Ihr Arm in seiner ursprünglichen, entspannten Position befindet.\n\t3.\tWiederholen Sie die Übung mit dem anderen Arm.\n")
     }
     
     func test_shouldDisplayVariationsSection_returnsTrue_whenExerciseVariationsCollectionIsNotEmpty() async {
@@ -107,6 +113,16 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         let sut = ExerciseDetailViewModel(exercise: exercise, service: service)
         
         return (sut, service)
+    }
+    
+    private var anyExerciseWithHTMLDescription: Exercise {
+        Exercise(
+            id: 1,
+            name: "Jumps",
+            description: "<p>Ausgangsposition:</p><p>Beginnen Sie im Stehen mit Kurzhanteln in jeder Hand, mit geradem Rücken und hüftbreit auseinander stehenden Füßen. Die Arme sind entspannt und zeigen nach unten. Die Knie sollten leicht gebeugt, die Bauchmuskeln angespannt und die Schultern nach unten gerichtet sein.</p><p>Die Schritte:</p><ol><li>Beugen Sie einen Arm am Ellenbogen und führen Sie die Hantel bis zur Schulter. Ihr Oberarm sollte während dieser Bewegung unbeweglich bleiben.</li><li>Bringen Sie die Hantel wieder nach unten, bis sich Ihr Arm in seiner ursprünglichen, entspannten Position befindet.</li><li>Wiederholen Sie die Übung mit dem anderen Arm.</li></ol>",
+            images: [],
+            variations: []
+        )
     }
     
     private var anyExerciseWithTwoImages: Exercise {

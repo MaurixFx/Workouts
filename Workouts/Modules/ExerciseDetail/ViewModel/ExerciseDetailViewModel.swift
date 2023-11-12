@@ -14,7 +14,7 @@ final class ExerciseDetailViewModel: ObservableObject {
     @Published var exerciseVariations: [Exercise] = []
     
     // MARK: - Init
-
+    
     init(exercise: Exercise, service: ExerciseService = ExerciseManager()) {
         self.exercise = exercise
         self.service = service
@@ -38,7 +38,7 @@ final class ExerciseDetailViewModel: ObservableObject {
     }
     
     var description: String {
-        exercise.description
+        exercise.description.plainTextFromHTML ?? ""
     }
     
     var shouldDisplayImagesSection: Bool {
