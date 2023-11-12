@@ -10,12 +10,18 @@ import UIKit
 import Combine
 
 final class ExerciseListViewController: UIViewController {
+    private enum Constants {
+        static let minimumInterSpacing: CGFloat = 8
+        static let spinnerSize: CGFloat = 100
+        static let collectionViewPadding: CGFloat = 10
+    }
+    
     private let viewModel: ExerciseListViewModel
     
     private(set) lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 8
+        layout.minimumInteritemSpacing = Constants.minimumInterSpacing
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(ExerciseItemViewCell.self, forCellWithReuseIdentifier: ExerciseItemViewCell.identifier)
@@ -70,13 +76,13 @@ final class ExerciseListViewController: UIViewController {
     private func configureCollectionView() {
         view.addSubview(collectionView)
         
-        collectionView.anchorToSuperview(top: 10, leading: 0, bottom: 10, trailing: 0)
+        collectionView.anchorToSuperview(top: Constants.collectionViewPadding, leading: 0, bottom: Constants.collectionViewPadding, trailing: 0)
     }
     
     private func configureSpinnerLoaderView() {
         view.addSubview(spinnerLoaderView)
         
-        spinnerLoaderView.setDimensions(width: 100, height: 100)
+        spinnerLoaderView.setDimensions(width: Constants.spinnerSize, height: Constants.spinnerSize)
         spinnerLoaderView.centerInSuperview()
     }
     
@@ -141,6 +147,14 @@ extension ExerciseListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         0
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension ExerciseListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.didSelectItem(for: indexPath.row)
     }
 }
 
