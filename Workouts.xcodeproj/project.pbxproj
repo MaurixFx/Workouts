@@ -31,6 +31,8 @@
 		D5BE72BA2B0021B40077A86A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72B92B0021B40077A86A /* UIColor+Extension.swift */; };
 		D5BE72BD2B0021EB0077A86A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72BC2B0021EB0077A86A /* Colors.swift */; };
 		D5BE72BF2B0029570077A86A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72BE2B0029570077A86A /* UIView+Extension.swift */; };
+		D5BE72C52B00DE390077A86A /* ExerciseCoordinatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72C42B00DE390077A86A /* ExerciseCoordinatorManager.swift */; };
+		D5BE72C92B00DEE80077A86A /* ExerciseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72C82B00DEE80077A86A /* ExerciseDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		D5BE72B92B0021B40077A86A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D5BE72BC2B0021EB0077A86A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D5BE72BE2B0029570077A86A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		D5BE72C42B00DE390077A86A /* ExerciseCoordinatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCoordinatorManager.swift; sourceTree = "<group>"; };
+		D5BE72C82B00DEE80077A86A /* ExerciseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				D5BE72C22B00DDDD0077A86A /* Exercises */,
+				D5BE72C62B00DEBD0077A86A /* ExerciseDetail */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 		D5BE72C22B00DDDD0077A86A /* Exercises */ = {
 			isa = PBXGroup;
 			children = (
+				D5BE72C32B00DE280077A86A /* Coordinator */,
 				D5BE72A52AFFC3D00077A86A /* View */,
 				D5BE729D2AFF8F670077A86A /* ViewModel */,
 				D5BE728B2AFED4B10077A86A /* Network */,
@@ -305,6 +311,30 @@
 				D5BE72752AFEBE010077A86A /* Models */,
 			);
 			path = Exercises;
+			sourceTree = "<group>";
+		};
+		D5BE72C32B00DE280077A86A /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72C42B00DE390077A86A /* ExerciseCoordinatorManager.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		D5BE72C62B00DEBD0077A86A /* ExerciseDetail */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72C72B00DED60077A86A /* View */,
+			);
+			path = ExerciseDetail;
+			sourceTree = "<group>";
+		};
+		D5BE72C72B00DED60077A86A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72C82B00DEE80077A86A /* ExerciseDetailView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,6 +444,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5BE72C52B00DE390077A86A /* ExerciseCoordinatorManager.swift in Sources */,
+				D5BE72C92B00DEE80077A86A /* ExerciseDetailView.swift in Sources */,
 				D5BE72B12AFFF23D0077A86A /* ExerciseEndpoint.swift in Sources */,
 				D5BE72BF2B0029570077A86A /* UIView+Extension.swift in Sources */,
 				D5BE72BD2B0021EB0077A86A /* Colors.swift in Sources */,

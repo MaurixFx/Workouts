@@ -88,13 +88,3 @@ final class ExerciseListViewModel {
         coordinator.showExerciseDetail(with: item)
     }
 }
-
-protocol ExerciseCoordinator {
-    func showExerciseDetail(with exercise: Exercise)
-}
-
-class ExerciseCoordinatorManager: ExerciseCoordinator {
-    func showExerciseDetail(with exercise: Exercise) {
-        
-    }
-}
