@@ -32,7 +32,12 @@ final class MockExerciseManager: ExerciseService {
         }
     }
     
+    private(set) var fetchVariationsWasCalled = false
+    private(set) var fetchVariationsCallsCount = 0
+
     func fetchVariations(for variationIDs: [Int]) async throws -> [Exercise] {
+        fetchVariationsWasCalled = true
+        fetchVariationsCallsCount += 1
         return []
     }
 }

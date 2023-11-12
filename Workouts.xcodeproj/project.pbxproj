@@ -33,6 +33,7 @@
 		D5BE72BF2B0029570077A86A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72BE2B0029570077A86A /* UIView+Extension.swift */; };
 		D5BE72C52B00DE390077A86A /* ExerciseCoordinatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72C42B00DE390077A86A /* ExerciseCoordinatorManager.swift */; };
 		D5BE72C92B00DEE80077A86A /* ExerciseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72C82B00DEE80077A86A /* ExerciseDetailView.swift */; };
+		D5BE72CB2B0118DA0077A86A /* ExerciseDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72CA2B0118DA0077A86A /* ExerciseDetailViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		D5BE72BE2B0029570077A86A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		D5BE72C42B00DE390077A86A /* ExerciseCoordinatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCoordinatorManager.swift; sourceTree = "<group>"; };
 		D5BE72C82B00DEE80077A86A /* ExerciseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailView.swift; sourceTree = "<group>"; };
+		D5BE72CA2B0118DA0077A86A /* ExerciseDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 			children = (
 				D5BE72982AFF83EB0077A86A /* ExerciseListViewModelTest.swift */,
 				D5BE72B52B0018DB0077A86A /* ExerciseItemViewModelTests.swift */,
+				D5BE72CA2B0118DA0077A86A /* ExerciseDetailViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5BE72CB2B0118DA0077A86A /* ExerciseDetailViewModelTests.swift in Sources */,
 				D5BE72992AFF83EB0077A86A /* ExerciseListViewModelTest.swift in Sources */,
 				D5BE72B62B0018DB0077A86A /* ExerciseItemViewModelTests.swift in Sources */,
 				D5BE729C2AFF8F430077A86A /* MockExerciseManager.swift in Sources */,
