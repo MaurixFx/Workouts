@@ -112,12 +112,8 @@
 		D5BE72602AFEB6B10077A86A /* Workouts */ = {
 			isa = PBXGroup;
 			children = (
+				D5BE72C02B00DDCA0077A86A /* Modules */,
 				D5BE72B72B0021910077A86A /* Resources */,
-				D5BE72A52AFFC3D00077A86A /* View */,
-				D5BE729D2AFF8F670077A86A /* ViewModel */,
-				D5BE728B2AFED4B10077A86A /* Network */,
-				D5BE72942AFEE2980077A86A /* Service */,
-				D5BE72752AFEBE010077A86A /* Models */,
 				D5BE72612AFEB6B10077A86A /* AppDelegate.swift */,
 				D5BE72652AFEB6B10077A86A /* ViewController.swift */,
 				D5BE726A2AFEB6BC0077A86A /* Assets.xcassets */,
@@ -289,6 +285,26 @@
 				D5BE72BC2B0021EB0077A86A /* Colors.swift */,
 			);
 			path = Colors;
+			sourceTree = "<group>";
+		};
+		D5BE72C02B00DDCA0077A86A /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72C22B00DDDD0077A86A /* Exercises */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		D5BE72C22B00DDDD0077A86A /* Exercises */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72A52AFFC3D00077A86A /* View */,
+				D5BE729D2AFF8F670077A86A /* ViewModel */,
+				D5BE728B2AFED4B10077A86A /* Network */,
+				D5BE72942AFEE2980077A86A /* Service */,
+				D5BE72752AFEBE010077A86A /* Models */,
+			);
+			path = Exercises;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
