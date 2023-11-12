@@ -10,6 +10,8 @@ import Combine
 
 final class ExerciseListViewModel {
     private let service: ExerciseService
+    private let coordinator: ExerciseCoordinator
+
     private var exercices: [Exercise] = []
     var currentState = CurrentValueSubject<State, Never>(.loading)
     
@@ -39,8 +41,9 @@ final class ExerciseListViewModel {
     
     // MARK: - Init
     
-    init(service: ExerciseService = ExerciseManager()) {
+    init(service: ExerciseService = ExerciseManager(), coordinator: ExerciseCoordinator = ExerciseCoordinatorManager()) {
         self.service = service
+        self.coordinator = coordinator
     }
 
     @MainActor
@@ -58,16 +61,40 @@ final class ExerciseListViewModel {
     }
     
     func exerciseListItemViewModel(for row: Int) -> ExerciseItemViewModel? {
-        guard row >= 0 && row < exercices.count else {
+        guard let item = getExerciseItem(for: row) else {
             return nil
         }
-        
-        let item = exercices[row]
         
         return .init(name: item.name, images: item.images)
     }
     
     func cellSizeItem(with collectionWidth: CGFloat) -> CGSize {
         .init(width: collectionWidth / Constants.widthDivider, height: Constants.cellHeight)
+    }
+    
+    private func getExerciseItem(for row: Int) -> Exercise? {
+        guard row >= 0 && row < exercices.count else {
+            return nil
+        }
+        
+        return exercices[row]
+    }
+    
+    func didSelectItem(for row: Int) {
+        guard let item = getExerciseItem(for: row) else {
+            return
+        }
+        
+        coordinator.showExerciseDetail(with: item)
+    }
+}
+
+protocol ExerciseCoordinator {
+    func showExerciseDetail(with exercise: Exercise)
+}
+
+class ExerciseCoordinatorManager: ExerciseCoordinator {
+    func showExerciseDetail(with exercise: Exercise) {
+        
     }
 }

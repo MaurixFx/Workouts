@@ -11,13 +11,13 @@ import XCTest
 
 final class ExerciseListViewModelTest: XCTestCase {
     func test_init_currentStateShouldBeLoading() {
-        let (sut, _) = makeSUT()
+        let (sut, _, _) = makeSUT()
         
         XCTAssertTrue(sut.currentState.value == .loading)
     }
     
     func test_loadExercises_callsExerciseManager() async {
-        let (sut, service) = makeSUT()
+        let (sut, service, _) = makeSUT()
         
         await sut.loadExercises()
         
@@ -27,7 +27,7 @@ final class ExerciseListViewModelTest: XCTestCase {
     
     func test_loadExercises_setCurrentStateToError_whenExerciseManagerFails() async {
         let expectedError = APIError.invalidResponse
-        let (sut, service) = makeSUT()
+        let (sut, service, _) = makeSUT()
         service.fetchResult = .failure(expectedError)
         
         await sut.loadExercises()
@@ -36,7 +36,7 @@ final class ExerciseListViewModelTest: XCTestCase {
     }
     
     func test_loadExercises_setCurrentStateToReloadCollection_whenExerciseManagerSucceeds() async {
-        let (sut, service) = makeSUT()
+        let (sut, service, _) = makeSUT()
         service.fetchResult = .success(anyExerciseResponse.results)
         
         await sut.loadExercises()
@@ -45,7 +45,7 @@ final class ExerciseListViewModelTest: XCTestCase {
     }
     
     func test_loadExercises_setExercicesArrayList_whenExerciseManagerSucceeds() async throws {
-        let (sut, service) = makeSUT()
+        let (sut, service, _) = makeSUT()
         service.fetchResult = .success(anyExerciseResponse.results)
         
         await sut.loadExercises()
@@ -58,7 +58,7 @@ final class ExerciseListViewModelTest: XCTestCase {
     }
     
     func test_numberOfItems_returnsExpectedValue() async {
-        let (sut, service) = makeSUT()
+        let (sut, service, _) = makeSUT()
         service.fetchResult = .success(anyExerciseResponse.results)
         
         await sut.loadExercises()
@@ -67,7 +67,7 @@ final class ExerciseListViewModelTest: XCTestCase {
     }
     
     func test_exerciseItemViewModel_returnsNil_whenRowDoesNotExist() async {
-        let (sut, service) = makeSUT()
+        let (sut, service, _) = makeSUT()
         service.fetchResult = .success(anyExerciseResponse.results)
         
         await sut.loadExercises()
@@ -76,7 +76,7 @@ final class ExerciseListViewModelTest: XCTestCase {
     }
     
     func test_exerciseItemViewModel_returnsExpectedValue_whenRowExists() async {
-        let (sut, service) = makeSUT()
+        let (sut, service, _) = makeSUT()
         service.fetchResult = .success(anyExerciseResponse.results)
         let expectedItemViewModel = ExerciseItemViewModel(name: "Abs Abs", images: [])
         
@@ -86,7 +86,7 @@ final class ExerciseListViewModelTest: XCTestCase {
     }
     
     func test_cellSizeItem_returnsExpectedValue() async {
-        let (sut, service) = makeSUT()
+        let (sut, service, _) = makeSUT()
         service.fetchResult = .success(anyExerciseResponse.results)
         
         await sut.loadExercises()
@@ -94,13 +94,36 @@ final class ExerciseListViewModelTest: XCTestCase {
         XCTAssertEqual(sut.cellSizeItem(with: 400), .init(width: 200, height: 260))
     }
     
+    func test_didSelectItem_callsCoordinator_whenExerciseItemExists() async {
+        let (sut, service, coordinator) = makeSUT()
+        service.fetchResult = .success(anyExerciseResponse.results)
+        
+        await sut.loadExercises()
+        sut.didSelectItem(for: 0)
+        
+        XCTAssertTrue(coordinator.showExerciseDetailWasCalled, "showExerciseDetail should have been called")
+        XCTAssertEqual(coordinator.showExerciseDetailCallsCount, 1, "showExerciseDetail should have been called just once")
+    }
+    
+    func test_didSelectItem_doesNotcallCoordinator_whenExerciseItemDoesNotExist() async {
+        let (sut, service, coordinator) = makeSUT()
+        service.fetchResult = .success(anyExerciseResponse.results)
+        
+        await sut.loadExercises()
+        sut.didSelectItem(for: 4)
+        
+        XCTAssertTrue(coordinator.showExerciseDetailWasCalled == false, "showExerciseDetail should have not been called when the exercise item does not exist")
+        XCTAssertEqual(coordinator.showExerciseDetailCallsCount, 0, "showExerciseDetail should have not been when the exercise item does not exist")
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: ExerciseListViewModel, service: MockExerciseManager) {
+    private func makeSUT() -> (sut: ExerciseListViewModel, service: MockExerciseManager, coordinator: MockExerciseCoordinator) {
         let service = MockExerciseManager()
-        let sut = ExerciseListViewModel(service: service)
+        let coordinator = MockExerciseCoordinator()
+        let sut = ExerciseListViewModel(service: service, coordinator: coordinator)
         
-        return (sut, service)
+        return (sut, service, coordinator)
     }
     
     private var anyExerciseResponse: ExerciseResponse {
@@ -112,6 +135,16 @@ final class ExerciseListViewModelTest: XCTestCase {
                      variations: []
                     )
         ])
+    }
+    
+    private class MockExerciseCoordinator: ExerciseCoordinator {
+        private(set) var showExerciseDetailCallsCount = 0
+        private(set) var showExerciseDetailWasCalled = false
+
+        func showExerciseDetail(with exercise: Exercise) {
+            showExerciseDetailWasCalled = true
+            showExerciseDetailCallsCount += 1
+        }
     }
 }
 
