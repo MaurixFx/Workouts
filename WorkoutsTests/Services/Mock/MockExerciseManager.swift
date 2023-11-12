@@ -31,4 +31,8 @@ final class MockExerciseManager: ExerciseService {
             }
         }
     }
+    
+    func fetchVariations(for variationIDs: [Int]) async throws -> [Exercise] {
+        return []
+    }
 }

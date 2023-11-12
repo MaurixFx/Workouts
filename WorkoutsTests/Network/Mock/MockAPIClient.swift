@@ -11,7 +11,7 @@ import Foundation
 final class MockAPIClient: HTTPClient {
     private(set) var getCallsCount = 0
     private(set) var getWasCalled = false
-    var getResult: Result<ExerciseResponse, APIError>?
+    var getResult: Result<Any, APIError>?
 
     func get<T>(_ url: String, responseType: T.Type) async throws -> T where T : Decodable {
         getWasCalled = true

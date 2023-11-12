@@ -43,6 +43,16 @@ final class ExerciseManagerTests: XCTestCase {
         }
     }
     
+    func test_fetchVariations_callsAPIClient() async {
+        let (sut, client) = makeSUT()
+        client.getResult = .success(anyExerciseResponse.results.first!)
+
+        _ = try? await sut.fetchVariations(for: [2,3])
+
+        XCTAssertTrue(client.getWasCalled, "get method on MockAPIClient should get called")
+        XCTAssertEqual(client.getCallsCount, 2, "get method on MockAPIClient should get called the expected times depending on the number of variations")
+    }
+    
     // MARK: - Helpers
 
     private var anyExerciseResponse: ExerciseResponse {
