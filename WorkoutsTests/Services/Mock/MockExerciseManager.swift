@@ -38,6 +38,19 @@ final class MockExerciseManager: ExerciseService {
     func fetchVariations(for variationIDs: [Int]) async throws -> [Exercise] {
         fetchVariationsWasCalled = true
         fetchVariationsCallsCount += 1
-        return []
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            guard let fetchResult else {
+                continuation.resume(throwing: APIError.invalidResponse)
+                return
+            }
+            
+            switch fetchResult {
+            case .failure(let error):
+                continuation.resume(throwing: error)
+            case .success(let exercises):
+                continuation.resume(returning: exercises)
+            }
+        }
     }
 }
