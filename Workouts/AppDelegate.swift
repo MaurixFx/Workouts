@@ -17,11 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        let viewController = ExerciseListViewController(viewModel: ExerciseListViewModel())
+        
+        setUpRootViewController(with: window)
+        return true
+    }
+    
+    private func setUpRootViewController(with window: UIWindow?) {
+        let coordinator = ExerciseCoordinatorManager()
+        let viewModel = ExerciseListViewModel(coordinator: coordinator)
+        let viewController = ExerciseListViewController(viewModel: viewModel)
+        
+        coordinator.presentationViewController = {
+            return viewController
+        }
+        
         let navigationController = UINavigationController(rootViewController: viewController)
         window?.rootViewController = navigationController
         viewController.load()
-        return true
     }
 }
 
