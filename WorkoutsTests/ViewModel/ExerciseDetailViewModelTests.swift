@@ -106,6 +106,20 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         XCTAssertTrue(sut.shouldDisplayVariationsSection == false, "shouldDisplayVariationsSection should be equal to false when the exercisesVariations array is empty")
     }
     
+    func test_exerciseImages_returnsEmpty_whenExerciseDoesNotHaveImagesArray() {
+        let (sut, service) = makeSUT(with: anyExerciseWithHTMLDescription)
+        service.fetchResult = .failure(APIError.invalidResponse)
+        
+        XCTAssertTrue(sut.exerciseImages.isEmpty, "exerciseImages should have returned empty when the exercise does not have a images array list")
+    }
+    
+    func test_exerciseImages_returnsExpectedImagesArrayList_whenExerciseHasImagesArray() {
+        let (sut, service) = makeSUT(with: anyExerciseWithTwoImages)
+        service.fetchResult = .failure(APIError.invalidResponse)
+        
+        XCTAssertEqual(sut.exerciseImages.count, 2, "exerciseImages should have returned the expected amount of images when the exercise has a images array list")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(with exercise: Exercise) -> (sut: ExerciseDetailViewModel, service: MockExerciseManager) {

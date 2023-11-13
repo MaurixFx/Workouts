@@ -52,4 +52,12 @@ final class ExerciseDetailViewModel: ObservableObject {
     var shouldDisplayVariationsSection: Bool {
         return exerciseVariations.count > 0
     }
+    
+    var exerciseImageViewModel: ExerciseImageViewModel {
+        .init(exerciseImage: exercise.mainExerciseImage)
+    }
+    
+    var exerciseImages: [ExerciseImage] {
+        exercise.images ?? []
+    }
 }

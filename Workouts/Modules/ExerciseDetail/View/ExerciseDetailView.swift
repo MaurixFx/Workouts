@@ -40,9 +40,7 @@ struct ExerciseDetailView: View {
     
     private var topSection: some View {
         VStack(spacing: 30) {
-            WebImage(url: viewModel.exerciseImageURL)
-                .placeholder(Image("trainers").resizable())
-                .resizable()
+            ExerciseImageView(viewModel: viewModel.exerciseImageViewModel)
                 .frame(width: 250, height: 250)
                 .cornerRadius(8)
             
@@ -72,14 +70,10 @@ struct ExerciseDetailView: View {
             
             ScrollView(.horizontal) {
                 LazyHGrid(rows: [GridItem(.flexible())], spacing: 16) {
-                    ForEach(0..<3) { _ in
-                        Button(action: {
-                            
-                        }, label: {
-                            Color.red
-                                .frame(width: 150, height: 150)
-                                .cornerRadius(8)
-                        })
+                    ForEach(viewModel.exerciseImages) { exerciseImage in
+                        ExerciseImageView(viewModel: .init(exerciseImage: exerciseImage))
+                            .frame(width: 150, height: 150)
+                            .cornerRadius(8)
                     }
                 }
             }

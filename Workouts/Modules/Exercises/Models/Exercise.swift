@@ -21,9 +21,15 @@ struct Exercise: Codable, Identifiable, Equatable {
     let description: String
     let images: [ExerciseImage]?
     let variations: [Int]?
+    
+    var mainExerciseImage: ExerciseImage? {
+        guard let images = images else { return nil }
+        
+        return images.first(where: { $0.isMain })
+    }
 }
 
-struct ExerciseImage: Codable {
+struct ExerciseImage: Codable, Identifiable {
     let id: Int
     let isMain: Bool
     let image: String
