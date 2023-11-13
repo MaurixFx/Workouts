@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D5BE72622AFEB6B10077A86A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72612AFEB6B10077A86A /* AppDelegate.swift */; };
-		D5BE72662AFEB6B10077A86A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72652AFEB6B10077A86A /* ViewController.swift */; };
 		D5BE726B2AFEB6BC0077A86A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5BE726A2AFEB6BC0077A86A /* Assets.xcassets */; };
 		D5BE726E2AFEB6BC0077A86A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BE726C2AFEB6BC0077A86A /* LaunchScreen.storyboard */; };
 		D5BE72772AFEBE180077A86A /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72762AFEBE180077A86A /* Exercise.swift */; };
@@ -55,7 +54,6 @@
 /* Begin PBXFileReference section */
 		D5BE725E2AFEB6B10077A86A /* Workouts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Workouts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5BE72612AFEB6B10077A86A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D5BE72652AFEB6B10077A86A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D5BE726A2AFEB6BC0077A86A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5BE726D2AFEB6BC0077A86A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D5BE726F2AFEB6BC0077A86A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -133,7 +131,6 @@
 				D5BE72C02B00DDCA0077A86A /* Modules */,
 				D5BE72B72B0021910077A86A /* Resources */,
 				D5BE72612AFEB6B10077A86A /* AppDelegate.swift */,
-				D5BE72652AFEB6B10077A86A /* ViewController.swift */,
 				D5BE726A2AFEB6BC0077A86A /* Assets.xcassets */,
 				D5BE726C2AFEB6BC0077A86A /* LaunchScreen.storyboard */,
 				D5BE726F2AFEB6BC0077A86A /* Info.plist */,
@@ -488,7 +485,6 @@
 				D5BE72BF2B0029570077A86A /* UIView+Extension.swift in Sources */,
 				D5BE72BD2B0021EB0077A86A /* Colors.swift in Sources */,
 				D5BE729F2AFF8F830077A86A /* ExerciseListViewModel.swift in Sources */,
-				D5BE72662AFEB6B10077A86A /* ViewController.swift in Sources */,
 				D5BE72BA2B0021B40077A86A /* UIColor+Extension.swift in Sources */,
 				D5BE72D02B0128CD0077A86A /* String+Extension.swift in Sources */,
 				D5BE72962AFEE2AC0077A86A /* ExerciseManager.swift in Sources */,
@@ -725,6 +721,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5355TA2ZTC;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mauriciofigueroa.WorkoutsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -745,6 +742,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5355TA2ZTC;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mauriciofigueroa.WorkoutsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
