@@ -113,7 +113,7 @@ struct ExerciseDetailView: View {
                                                                       images: [
                                                                        ExerciseImage(id: 2, isMain: true, image: "")
                                                                               ],
-                                                               variations: []), coordinator: ExerciseCoordinatorManager())
+                                                               variations: []), coordinator: ExerciseCoordinatorManager(), isVariationExerciseDetail: false)
 
     return ExerciseDetailView(viewModel: viewModel)
 }

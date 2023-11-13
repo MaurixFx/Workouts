@@ -24,7 +24,7 @@ final class ExerciseCoordinatorManagerTests: XCTestCase {
         let delegate = MockViewControllerDelegate()
         navigationController.delegate = delegate
         
-        sut.showExerciseDetail(with: anyExercise)
+        sut.showExerciseDetail(with: anyExercise, isVariationExerciseDetail: false)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             XCTAssertNotNil(delegate.didPresentViewController, "HostViewController should have been presented")
@@ -52,7 +52,7 @@ final class ExerciseCoordinatorManagerTests: XCTestCase {
         let delegate = MockViewControllerDelegate()
         navigationController.delegate = delegate
     
-        sut.showExerciseDetail(with: anyExercise)
+        sut.showExerciseDetail(with: anyExercise, isVariationExerciseDetail: false)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             XCTAssertNil(delegate.didPresentViewController, "HostViewController should have not been presented")

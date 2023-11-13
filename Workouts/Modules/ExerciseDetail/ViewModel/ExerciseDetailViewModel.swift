@@ -12,19 +12,23 @@ final class ExerciseDetailViewModel: ObservableObject {
     private let exercise: Exercise
     private let service: ExerciseService
     private let coordinator: ExerciseCoordinator
+    private let isVariationExerciseDetail: Bool
     @Published var exerciseVariations: [Exercise] = []
     
     // MARK: - Init
     
-    init(exercise: Exercise, service: ExerciseService = ExerciseManager(), coordinator: ExerciseCoordinator) {
+    init(exercise: Exercise, service: ExerciseService = ExerciseManager(), coordinator: ExerciseCoordinator, isVariationExerciseDetail: Bool) {
         self.exercise = exercise
         self.service = service
         self.coordinator = coordinator
+        self.isVariationExerciseDetail = isVariationExerciseDetail
     }
     
     @MainActor
     func loadExerciseVariations() async {
-        if let exercices = try? await service.fetchVariations(for: exercise.variations ?? []) {
+        guard !isVariationExerciseDetail, let variations = exercise.variations else { return }
+
+        if let exercices = try? await service.fetchVariations(for: variations) {
             exerciseVariations = exercices
         }
     }
@@ -62,6 +66,6 @@ final class ExerciseDetailViewModel: ObservableObject {
     }
     
     func didSelectVariation(with exercise: Exercise) {
-        coordinator.showExerciseDetail(with: exercise)
+        coordinator.showExerciseDetail(with: exercise, isVariationExerciseDetail: true)
     }
 }

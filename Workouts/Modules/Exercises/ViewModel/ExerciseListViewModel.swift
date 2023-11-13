@@ -85,6 +85,6 @@ final class ExerciseListViewModel {
             return
         }
         
-        coordinator.showExerciseDetail(with: item)
+        coordinator.showExerciseDetail(with: item, isVariationExerciseDetail: false)
     }
 }

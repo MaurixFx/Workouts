@@ -14,7 +14,7 @@ final class MockExerciseCoordinator: ExerciseCoordinator {
     private(set) var showExerciseDetailCallsCount = 0
     private(set) var showExerciseDetailWasCalled = false
 
-    func showExerciseDetail(with exercise: Exercise) {
+    func showExerciseDetail(with exercise: Exercise, isVariationExerciseDetail: Bool) {
         showExerciseDetailWasCalled = true
         showExerciseDetailCallsCount += 1
     }

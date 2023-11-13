@@ -10,13 +10,31 @@ import XCTest
 @testable import Workouts
 
 final class ExerciseDetailViewModelTests: XCTestCase {
-    func test_loadExerciseVariations_callsExerciseManager() async {
+    func test_loadExerciseVariations_callsExerciseManager_whenVariationExerciseDetailIsFalse_andVariationArrayIsNotNil() async {
         let (sut, service, _) = makeSUT(with: anyExerciseWithTwoImages)
         
         await sut.loadExerciseVariations()
         
         XCTAssertTrue(service.fetchVariationsWasCalled, "fetchVariations should have been called")
         XCTAssertEqual(service.fetchVariationsCallsCount, 1, "fetchVariations should have been called just once")
+    }
+    
+    func test_loadExerciseVariations_shouldNotCallExerciseManager_whenVariationExerciseDetailIsTrue() async {
+        let (sut, service, _) = makeSUT(with: anyExerciseWithTwoImages, isVariationExerciseDetail: true)
+        
+        await sut.loadExerciseVariations()
+        
+        XCTAssertFalse(service.fetchVariationsWasCalled, "fetchVariations should not have been called")
+        XCTAssertEqual(service.fetchVariationsCallsCount, 0, "fetchVariations should have not been called")
+    }
+    
+    func test_loadExerciseVariations_shouldNotCallExerciseManager_whenVariationArrayIsNil() async {
+        let (sut, service, _) = makeSUT(with: anyExerciseWithNilVariations)
+        
+        await sut.loadExerciseVariations()
+        
+        XCTAssertFalse(service.fetchVariationsWasCalled, "fetchVariations should not have been called")
+        XCTAssertEqual(service.fetchVariationsCallsCount, 0, "fetchVariations should have not been called")
     }
     
     func test_loadExerciseVariations_doesNotSetTheExercisesResult_whenExerciseManagerFails() async {
@@ -146,10 +164,10 @@ final class ExerciseDetailViewModelTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(with exercise: Exercise) -> (sut: ExerciseDetailViewModel, service: MockExerciseManager, coordinator: MockExerciseCoordinator) {
+    private func makeSUT(with exercise: Exercise, isVariationExerciseDetail: Bool = false) -> (sut: ExerciseDetailViewModel, service: MockExerciseManager, coordinator: MockExerciseCoordinator) {
         let service = MockExerciseManager()
         let coordinator = MockExerciseCoordinator()
-        let sut = ExerciseDetailViewModel(exercise: exercise, service: service, coordinator: coordinator)
+        let sut = ExerciseDetailViewModel(exercise: exercise, service: service, coordinator: coordinator, isVariationExerciseDetail: isVariationExerciseDetail)
         
         return (sut, service, coordinator)
     }
@@ -183,6 +201,18 @@ final class ExerciseDetailViewModelTests: XCTestCase {
                     ExerciseImage(id: 2, isMain: false, image: "https://fakeURL.com"),
                  ],
                  variations: []
+        )
+    }
+    
+    private var anyExerciseWithNilVariations: Exercise {
+        Exercise(id: 1,
+                 name: "Abs Abs",
+                 description: "bla bla bla bla",
+                 images: [
+                    ExerciseImage(id: 1, isMain: true, image: "https://fakeURL.com"),
+                    ExerciseImage(id: 2, isMain: false, image: "https://fakeURL.com"),
+                 ],
+                 variations: nil
         )
     }
     
