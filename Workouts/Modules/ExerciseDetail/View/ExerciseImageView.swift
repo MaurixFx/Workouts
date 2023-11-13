@@ -16,6 +16,7 @@ struct ExerciseImageView: View {
         WebImage(url: viewModel.exerciseImageURL)
             .placeholder(Image("trainers").resizable())
             .resizable()
+            .aspectRatio(contentMode: .fit)
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
     }
 }

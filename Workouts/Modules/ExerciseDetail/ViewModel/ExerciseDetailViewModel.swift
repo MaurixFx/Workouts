@@ -54,4 +54,8 @@ final class ExerciseDetailViewModel: ObservableObject {
     var exerciseImages: [ExerciseImage] {
         exercise.images ?? []
     }
+    
+    var exerciseItemViewModel: ExerciseItemViewModel {
+        .init(name: exercise.name, mainExerciseImage: exercise.mainExerciseImage)
+    }
 }

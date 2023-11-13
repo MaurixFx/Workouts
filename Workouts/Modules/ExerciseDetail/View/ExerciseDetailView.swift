@@ -94,13 +94,7 @@ struct ExerciseDetailView: View {
             ScrollView(.horizontal) {
                 LazyHGrid(rows: [GridItem(.flexible())], spacing: 16) {
                     ForEach($viewModel.exerciseVariations) { _ in
-                        Button(action: {
-
-                        }, label: {
-                            Color.red
-                                .frame(width: 150, height: 150)
-                                .cornerRadius(8)
-                        })
+                        ExerciseItemView(viewModel: viewModel.exerciseItemViewModel)
                     }
                 }
             }

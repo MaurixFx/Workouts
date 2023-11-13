@@ -125,6 +125,14 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         XCTAssertEqual(sut.exerciseImageViewModel.exerciseImageURL, URL(string: "https://fakeURL.com"), "exerciseImageViewModel should have returned the expected value")
     }
     
+    func test_exerciseItemViewModel_returnsExpectedValue() {
+        let (sut, _) = makeSUT(with: anyExerciseWithTwoImages)
+        let expectedExerciseImage = ExerciseImage(id: 1, isMain: true, image: "https://fakeURL.com")
+        
+        XCTAssertEqual(sut.exerciseItemViewModel.mainExerciseImage, expectedExerciseImage, "mainExerciseImage should have returned the expected value")
+        XCTAssertEqual(sut.exerciseItemViewModel.name, "Abs Abs", "name should have returned the expected value")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(with exercise: Exercise) -> (sut: ExerciseDetailViewModel, service: MockExerciseManager) {
