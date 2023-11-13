@@ -39,6 +39,7 @@
 		D5BE72D22B012C420077A86A /* ExerciseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72D12B012C420077A86A /* ExerciseImageView.swift */; };
 		D5BE72D42B012C940077A86A /* ExerciseImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72D32B012C940077A86A /* ExerciseImageViewModel.swift */; };
 		D5BE72D72B021FAA0077A86A /* ExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72D62B021FAA0077A86A /* ExerciseTests.swift */; };
+		D5BE72D92B02278C0077A86A /* ExerciseImageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72D82B02278C0077A86A /* ExerciseImageViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		D5BE72D12B012C420077A86A /* ExerciseImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseImageView.swift; sourceTree = "<group>"; };
 		D5BE72D32B012C940077A86A /* ExerciseImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseImageViewModel.swift; sourceTree = "<group>"; };
 		D5BE72D62B021FAA0077A86A /* ExerciseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTests.swift; sourceTree = "<group>"; };
+		D5BE72D82B02278C0077A86A /* ExerciseImageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseImageViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 				D5BE72982AFF83EB0077A86A /* ExerciseListViewModelTest.swift */,
 				D5BE72B52B0018DB0077A86A /* ExerciseItemViewModelTests.swift */,
 				D5BE72CA2B0118DA0077A86A /* ExerciseDetailViewModelTests.swift */,
+				D5BE72D82B02278C0077A86A /* ExerciseImageViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 				D5BE72992AFF83EB0077A86A /* ExerciseListViewModelTest.swift in Sources */,
 				D5BE72B62B0018DB0077A86A /* ExerciseItemViewModelTests.swift in Sources */,
 				D5BE729C2AFF8F430077A86A /* MockExerciseManager.swift in Sources */,
+				D5BE72D92B02278C0077A86A /* ExerciseImageViewModelTests.swift in Sources */,
 				D5BE72902AFED60B0077A86A /* ExerciseManagerTests.swift in Sources */,
 				D5BE72932AFEE1FB0077A86A /* MockAPIClient.swift in Sources */,
 				D5BE72872AFEC1390077A86A /* APIClientTests.swift in Sources */,

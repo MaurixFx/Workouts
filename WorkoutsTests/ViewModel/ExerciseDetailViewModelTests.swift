@@ -39,35 +39,21 @@ final class ExerciseDetailViewModelTests: XCTestCase {
     }
     
     func test_shouldDisplayImagesSection_returnsTrue_whenExerciseHasMoreThanOneImage() {
-        let (sut, service) = makeSUT(with: anyExerciseWithTwoImages)
-        service.fetchResult = .success(anyExerciseResponse.results)
+        let (sut, _) = makeSUT(with: anyExerciseWithTwoImages)
         
         XCTAssertTrue(sut.shouldDisplayImagesSection, "shouldDisplayImagesSection should be equal to true when the exercise has more than one image")
     }
     
     func test_shouldDisplayImagesSection_returnsFalse_whenExerciseDoesNotHaveMoreThanOneImage() {
-        let (sut, service) = makeSUT(with: anyExerciseResponse.results.first!)
-        service.fetchResult = .success(anyExerciseResponse.results)
+        let (sut, _) = makeSUT(with: anyExerciseResponse.results.first!)
         
         XCTAssertTrue(sut.shouldDisplayImagesSection == false, "shouldDisplayImagesSection should be equal to false when the exercise does not have more than one image")
     }
     
-    func test_exerciseImageURL_returnsAnURL_whenMainImageExists() {
-        let (sut, _) = makeSUT(with: anyExerciseWithTwoImages)
+    func test_shouldDisplayImagesSection_returnsFalse_whenExerciseImagesArrayIsNil() {
+        let (sut, _) = makeSUT(with: anyExerciseWithNilImages)
         
-        XCTAssertEqual(sut.exerciseImageURL, URL(string: "https://fakeURL.com"), "exerciseImageURL should have returned the expected URL")
-    }
-    
-    func test_exerciseImageURL_returnsNil_whenImagesArrayIsEmpty() {
-        let (sut, _) = makeSUT(with: Exercise(id: 1, name: "", description: "", images: [], variations: []))
-        
-        XCTAssertEqual(sut.exerciseImageURL, nil, "exerciseImageURL should have returned nil when images array is empty")
-    }
-    
-    func test_exerciseImageURL_returnsNil_whenMainImageDoesNotExist() {
-        let (sut, _) = makeSUT(with: anyExerciseWithoutMainImage)
-        
-        XCTAssertEqual(sut.exerciseImageURL, nil, "exerciseImageURL should have returned nil when main image does not exist")
+        XCTAssertTrue(sut.shouldDisplayImagesSection == false, "shouldDisplayImagesSection should be equal to false when the exercise does not have more than one image")
     }
     
     func test_name_returnsExpectedValue() {
@@ -88,6 +74,12 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         XCTAssertEqual(sut.description, "Ausgangsposition:\nBeginnen Sie im Stehen mit Kurzhanteln in jeder Hand, mit geradem Rücken und hüftbreit auseinander stehenden Füßen. Die Arme sind entspannt und zeigen nach unten. Die Knie sollten leicht gebeugt, die Bauchmuskeln angespannt und die Schultern nach unten gerichtet sein.\nDie Schritte:\n\t1.\tBeugen Sie einen Arm am Ellenbogen und führen Sie die Hantel bis zur Schulter. Ihr Oberarm sollte während dieser Bewegung unbeweglich bleiben.\n\t2.\tBringen Sie die Hantel wieder nach unten, bis sich Ihr Arm in seiner ursprünglichen, entspannten Position befindet.\n\t3.\tWiederholen Sie die Übung mit dem anderen Arm.\n")
     }
     
+    func test_description_returnsEmptyText_whenDescriptiontContainsWrongHTMLFormat() {
+        let (sut, _) = makeSUT(with: anyExerciseWithWrongHTMLDescription)
+        
+        XCTAssertTrue(sut.description.isEmpty, "description should have returned empty text since it has a wrong HTML format")
+    }
+    
     func test_shouldDisplayVariationsSection_returnsTrue_whenExerciseVariationsCollectionIsNotEmpty() async {
         let (sut, service) = makeSUT(with: anyExerciseWithTwoImages)
         service.fetchResult = .success(anyExerciseResponse.results)
@@ -106,8 +98,15 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         XCTAssertTrue(sut.shouldDisplayVariationsSection == false, "shouldDisplayVariationsSection should be equal to false when the exercisesVariations array is empty")
     }
     
-    func test_exerciseImages_returnsEmpty_whenExerciseDoesNotHaveImagesArray() {
+    func test_exerciseImages_returnsEmpty_whenExerciseHasAnEmptyImagesArray() {
         let (sut, service) = makeSUT(with: anyExerciseWithHTMLDescription)
+        service.fetchResult = .failure(APIError.invalidResponse)
+        
+        XCTAssertTrue(sut.exerciseImages.isEmpty, "exerciseImages should have returned empty when the exercise does not have a images array list")
+    }
+    
+    func test_exerciseImages_returnsEmpty_whenExerciseHasANilImagesArray() {
+        let (sut, service) = makeSUT(with: anyExerciseWithNilImages)
         service.fetchResult = .failure(APIError.invalidResponse)
         
         XCTAssertTrue(sut.exerciseImages.isEmpty, "exerciseImages should have returned empty when the exercise does not have a images array list")
@@ -118,6 +117,12 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         service.fetchResult = .failure(APIError.invalidResponse)
         
         XCTAssertEqual(sut.exerciseImages.count, 2, "exerciseImages should have returned the expected amount of images when the exercise has a images array list")
+    }
+    
+    func test_exerciseImageViewModel_returnsExpectedValue() {
+        let (sut, _) = makeSUT(with: anyExerciseWithTwoImages)
+        
+        XCTAssertEqual(sut.exerciseImageViewModel.exerciseImageURL, URL(string: "https://fakeURL.com"), "exerciseImageViewModel should have returned the expected value")
     }
     
     // MARK: - Helpers
@@ -139,6 +144,16 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         )
     }
     
+    private var anyExerciseWithWrongHTMLDescription: Exercise {
+        Exercise(
+            id: 1,
+            name: "Jumps",
+            description: "",
+            images: [],
+            variations: []
+        )
+    }
+    
     private var anyExerciseWithTwoImages: Exercise {
         Exercise(id: 1,
                  name: "Abs Abs",
@@ -147,6 +162,15 @@ final class ExerciseDetailViewModelTests: XCTestCase {
                     ExerciseImage(id: 1, isMain: true, image: "https://fakeURL.com"),
                     ExerciseImage(id: 2, isMain: false, image: "https://fakeURL.com"),
                  ],
+                 variations: []
+        )
+    }
+    
+    private var anyExerciseWithNilImages: Exercise {
+        Exercise(id: 1,
+                 name: "Abs Abs",
+                 description: "bla bla bla bla",
+                 images: nil,
                  variations: []
         )
     }

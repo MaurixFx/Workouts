@@ -22,7 +22,6 @@ extension String {
             let attributedString = try NSAttributedString(data: data, options: options, documentAttributes: nil)
             return attributedString.string
         } catch {
-            print("Error converting HTML to plain text: \(error)")
             return nil
         }
     }

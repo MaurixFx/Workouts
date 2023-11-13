@@ -27,12 +27,6 @@ final class ExerciseDetailViewModel: ObservableObject {
         }
     }
     
-    var exerciseImageURL: URL? {
-        guard let images = exercise.images else { return nil }
-        
-        return URL(string: images.first(where: { $0.isMain })?.image ?? "")
-    }
-    
     var name: String {
         exercise.name
     }
