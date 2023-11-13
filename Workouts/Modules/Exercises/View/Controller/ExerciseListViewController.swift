@@ -87,8 +87,6 @@ final class ExerciseListViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = Colors.beige
         appearance.titleTextAttributes = [.foregroundColor: UIColor.black]

@@ -16,6 +16,8 @@ final class ExerciseListViewModelTest: XCTestCase {
         XCTAssertTrue(sut.currentState.value == .loading)
     }
     
+    // MARK: - loadExercises
+    
     func test_loadExercises_callsExerciseManager() async {
         let (sut, service, _) = makeSUT()
         
@@ -57,6 +59,8 @@ final class ExerciseListViewModelTest: XCTestCase {
         XCTAssertEqual(exercices, anyExerciseResponse.results, "exercices array list should be equal to the expected exercies list")
     }
     
+    // MARK: - numberOfItems
+    
     func test_numberOfItems_returnsExpectedValue() async {
         let (sut, service, _) = makeSUT()
         service.fetchResult = .success(anyExerciseResponse.results)
@@ -65,6 +69,8 @@ final class ExerciseListViewModelTest: XCTestCase {
         
         XCTAssertEqual(sut.numberOfItems, 1, "should have returned 1 since the array just have one item")
     }
+    
+    // MARK: - exerciseItemViewModel
     
     func test_exerciseItemViewModel_returnsNil_whenRowDoesNotExist() async {
         let (sut, service, _) = makeSUT()
@@ -85,6 +91,8 @@ final class ExerciseListViewModelTest: XCTestCase {
         XCTAssertEqual(sut.exerciseListItemViewModel(for: 0), expectedItemViewModel, "should have returned the expectedItemViewModel")
     }
     
+    // MARK: - exerciseItemViewModel
+    
     func test_cellSizeItem_returnsExpectedValue() async {
         let (sut, service, _) = makeSUT()
         service.fetchResult = .success(anyExerciseResponse.results)
@@ -93,6 +101,8 @@ final class ExerciseListViewModelTest: XCTestCase {
 
         XCTAssertEqual(sut.cellSizeItem(with: 400), .init(width: 200, height: 260))
     }
+    
+    // MARK: - didSelectItem
     
     func test_didSelectItem_callsCoordinator_whenExerciseItemExists() async {
         let (sut, service, coordinator) = makeSUT()
@@ -124,17 +134,6 @@ final class ExerciseListViewModelTest: XCTestCase {
         let sut = ExerciseListViewModel(service: service, coordinator: coordinator)
         
         return (sut, service, coordinator)
-    }
-    
-    private var anyExerciseResponse: ExerciseResponse {
-        .init(results: [
-            Exercise(id: 4,
-                     name: "Abs Abs",
-                     description: "bla bla bla bla",
-                     images: [],
-                     variations: []
-                    )
-        ])
     }
 }
 

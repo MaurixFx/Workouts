@@ -10,6 +10,8 @@ import XCTest
 @testable import Workouts
 
 final class ExerciseDetailViewModelTests: XCTestCase {
+    // MARK: - loadExerciseVariations
+
     func test_loadExerciseVariations_callsExerciseManager_whenVariationExerciseDetailIsFalse_andVariationArrayIsNotNil() async {
         let (sut, service, _) = makeSUT(with: anyExerciseWithTwoImages)
         
@@ -56,6 +58,8 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         XCTAssertEqual(sut.exerciseVariations, anyExerciseResponse.results, "should have set the exercises result when ExerciseManager succeeds")
     }
     
+    // MARK: - shouldDisplayImagesSection
+    
     func test_shouldDisplayImagesSection_returnsTrue_whenExerciseHasMoreThanOneImage() {
         let (sut, _, _) = makeSUT(with: anyExerciseWithTwoImages)
         
@@ -74,11 +78,15 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         XCTAssertTrue(sut.shouldDisplayImagesSection == false, "shouldDisplayImagesSection should be equal to false when the exercise does not have more than one image")
     }
     
+    // MARK: - name
+    
     func test_name_returnsExpectedValue() {
         let (sut, _, _) = makeSUT(with: anyExerciseWithTwoImages)
         
         XCTAssertEqual(sut.name, "Abs Abs")
     }
+    
+    // MARK: - description
     
     func test_description_returnsExpectedValue_whenDescriptionDoesNotContainHTMLFormats() {
         let (sut, _, _) = makeSUT(with: anyExerciseWithTwoImages)
@@ -98,6 +106,8 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         XCTAssertTrue(sut.description.isEmpty, "description should have returned empty text since it has a wrong HTML format")
     }
     
+    // MARK: - shouldDisplayVariationsSection
+    
     func test_shouldDisplayVariationsSection_returnsTrue_whenExerciseVariationsCollectionIsNotEmpty() async {
         let (sut, service, _) = makeSUT(with: anyExerciseWithTwoImages)
         service.fetchResult = .success(anyExerciseResponse.results)
@@ -115,6 +125,8 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         
         XCTAssertTrue(sut.shouldDisplayVariationsSection == false, "shouldDisplayVariationsSection should be equal to false when the exercisesVariations array is empty")
     }
+    
+    // MARK: - exerciseImages
     
     func test_exerciseImages_returnsEmpty_whenExerciseHasAnEmptyImagesArray() {
         let (sut, service, _) = makeSUT(with: anyExerciseWithHTMLDescription)
@@ -137,11 +149,15 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         XCTAssertEqual(sut.exerciseImages.count, 2, "exerciseImages should have returned the expected amount of images when the exercise has a images array list")
     }
     
+    // MARK: - exerciseImageViewModel
+    
     func test_exerciseImageViewModel_returnsExpectedValue() {
         let (sut, _, _) = makeSUT(with: anyExerciseWithTwoImages)
         
         XCTAssertEqual(sut.exerciseImageViewModel.exerciseImageURL, URL(string: "https://fakeURL.com"), "exerciseImageViewModel should have returned the expected value")
     }
+    
+    // MARK: - exerciseItemViewModel
     
     func test_exerciseItemViewModel_returnsExpectedValue() {
         let (sut, _, _) = makeSUT(with: anyExerciseWithTwoImages)
@@ -152,6 +168,8 @@ final class ExerciseDetailViewModelTests: XCTestCase {
         XCTAssertEqual(item.mainExerciseImage, expectedExerciseImage, "mainExerciseImage should have returned the expected value")
         XCTAssertEqual(item.name, "Abs Abs", "name should have returned the expected value")
     }
+    
+    // MARK: - didSelectVariation
     
     func test_didSelectVariation_callsCoordinator() {
         let (sut, _, coordinator) = makeSUT(with: anyExerciseWithTwoImages)
@@ -234,16 +252,5 @@ final class ExerciseDetailViewModelTests: XCTestCase {
                  ],
                  variations: []
         )
-    }
-    
-    private var anyExerciseResponse: ExerciseResponse {
-        .init(results: [
-            Exercise(id: 4,
-                     name: "Abs Abs",
-                     description: "bla bla bla bla",
-                     images: [],
-                     variations: []
-                    )
-        ])
     }
 }

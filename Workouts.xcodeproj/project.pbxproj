@@ -42,6 +42,7 @@
 		D5BE72DC2B023E0C0077A86A /* ExerciseCoordinatorManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72DB2B023E0C0077A86A /* ExerciseCoordinatorManagerTests.swift */; };
 		D5BE72DE2B0246D80077A86A /* ExerciseItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72DD2B0246D80077A86A /* ExerciseItemView.swift */; };
 		D5BE72E12B0257B60077A86A /* MockExerciseCoordinatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72E02B0257B60077A86A /* MockExerciseCoordinatorManager.swift */; };
+		D5EF2DE12B029F5C005792D9 /* XCTest-share-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EF2DE02B029F5C005792D9 /* XCTest-share-extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		D5BE72DB2B023E0C0077A86A /* ExerciseCoordinatorManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCoordinatorManagerTests.swift; sourceTree = "<group>"; };
 		D5BE72DD2B0246D80077A86A /* ExerciseItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseItemView.swift; sourceTree = "<group>"; };
 		D5BE72E02B0257B60077A86A /* MockExerciseCoordinatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExerciseCoordinatorManager.swift; sourceTree = "<group>"; };
+		D5EF2DE02B029F5C005792D9 /* XCTest-share-extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest-share-extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 		D5BE727D2AFEC0A50077A86A /* WorkoutsTests */ = {
 			isa = PBXGroup;
 			children = (
+				D5EF2DDF2B029F39005792D9 /* Helpers */,
 				D5BE72DA2B023DE90077A86A /* Coordinator */,
 				D5BE72D52B021F9D0077A86A /* Model */,
 				D5BE72A22AFFB95F0077A86A /* ViewController */,
@@ -396,6 +399,14 @@
 			path = Mock;
 			sourceTree = "<group>";
 		};
+		D5EF2DDF2B029F39005792D9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D5EF2DE02B029F5C005792D9 /* XCTest-share-extension.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -531,6 +542,7 @@
 			files = (
 				D5BE72CB2B0118DA0077A86A /* ExerciseDetailViewModelTests.swift in Sources */,
 				D5BE72D72B021FAA0077A86A /* ExerciseTests.swift in Sources */,
+				D5EF2DE12B029F5C005792D9 /* XCTest-share-extension.swift in Sources */,
 				D5BE72992AFF83EB0077A86A /* ExerciseListViewModelTest.swift in Sources */,
 				D5BE72B62B0018DB0077A86A /* ExerciseItemViewModelTests.swift in Sources */,
 				D5BE72DC2B023E0C0077A86A /* ExerciseCoordinatorManagerTests.swift in Sources */,

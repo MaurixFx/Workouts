@@ -13,18 +13,11 @@ import SwiftUI
 final class ExerciseCoordinatorManagerTests: XCTestCase {
     func test_showExerciseDetail_presentsHostingViewControllerWithExerciseDetailView_whenPresentationViewControllerHasBeenSet() {
         let expectation = expectation(description: "HostingViewController presentation")
+        let delegate = MockViewControllerDelegate()
 
         let (sut, navigationController) = makeSUT()
         
-        sut.presentationViewController = {
-            expectation.fulfill()
-            return navigationController
-        }
-        
-        let delegate = MockViewControllerDelegate()
-        navigationController.delegate = delegate
-        
-        sut.showExerciseDetail(with: anyExercise, isVariationExerciseDetail: false)
+        setPresentationViewController(with: navigationController, sut: sut, expectation: expectation)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             XCTAssertNotNil(delegate.didPresentViewController, "HostViewController should have been presented")
@@ -41,18 +34,11 @@ final class ExerciseCoordinatorManagerTests: XCTestCase {
     
     func test_showExerciseDetail_doesNotPresentHostingViewControllerWithExerciseDetailView_whenPresentationViewControllerHasNotBeenSet() {
         let expectation = expectation(description: "HostingViewController presentation")
-
-        let (sut, navigationController) = makeSUT()
-        
-        sut.presentationViewController = {
-            expectation.fulfill()
-            return nil
-        }
-        
         let delegate = MockViewControllerDelegate()
-        navigationController.delegate = delegate
-    
-        sut.showExerciseDetail(with: anyExercise, isVariationExerciseDetail: false)
+
+        let (sut, _) = makeSUT()
+        
+        setPresentationViewController(with: nil, sut: sut, expectation: expectation)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             XCTAssertNil(delegate.didPresentViewController, "HostViewController should have not been presented")
@@ -73,6 +59,21 @@ final class ExerciseCoordinatorManagerTests: XCTestCase {
     
     private var anyExercise: Exercise {
         Exercise(id: 1, name: "Jumping high", description: "Super jump", images: [], variations: [])
+    }
+    
+    private func setPresentationViewController(with navigationController: UINavigationController?, sut: ExerciseCoordinatorManager, expectation: XCTestExpectation) {
+        sut.presentationViewController = {
+            expectation.fulfill()
+            return navigationController
+        }
+        
+        let delegate = MockViewControllerDelegate()
+        
+        if let navigationController {
+            navigationController.delegate = delegate
+        }
+    
+        sut.showExerciseDetail(with: anyExercise, isVariationExerciseDetail: false)
     }
     
     private class MockViewControllerDelegate: NSObject, UINavigationControllerDelegate {

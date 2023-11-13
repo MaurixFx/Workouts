@@ -17,19 +17,7 @@ final class MockExerciseManager: ExerciseService {
         fetchWasCalled = true
         fetchCallsCount += 1
         
-        return try await withCheckedThrowingContinuation { continuation in
-            guard let fetchResult else {
-                continuation.resume(throwing: APIError.invalidResponse)
-                return
-            }
-            
-            switch fetchResult {
-            case .failure(let error):
-                continuation.resume(throwing: error)
-            case .success(let exercises):
-                continuation.resume(returning: exercises)
-            }
-        }
+        return try await result()
     }
     
     private(set) var fetchVariationsWasCalled = false
@@ -39,6 +27,10 @@ final class MockExerciseManager: ExerciseService {
         fetchVariationsWasCalled = true
         fetchVariationsCallsCount += 1
         
+        return try await result()
+    }
+    
+    private func result() async throws -> [Exercise] {
         return try await withCheckedThrowingContinuation { continuation in
             guard let fetchResult else {
                 continuation.resume(throwing: APIError.invalidResponse)

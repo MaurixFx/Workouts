@@ -91,17 +91,6 @@ final class APIClientTests: XCTestCase {
         URL(string: "https://www.fakeurl.com")!
     }
     
-    private var anyExerciseResponse: ExerciseResponse {
-        .init(results: [
-            Exercise(id: 4,
-                     name: "Abs Abs",
-                     description: "bla bla bla bla",
-                     images: [],
-                     variations: []
-                    )
-        ])
-    }
-    
     private var anyValidData: Data? {
         let jsonString = """
                          {

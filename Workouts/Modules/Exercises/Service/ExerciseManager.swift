@@ -21,10 +21,14 @@ final class ExerciseManager: ExerciseService {
         self.client = client
     }
     
+    // MARK: - Fetch
+    
     func fetch() async throws -> [Exercise] {
         let response = try await client.get(ExerciseAPIEndpoint.url, responseType: ExerciseResponse.self)
         return response.results
     }
+    
+    // MARK: - Fetch variations
 
     func fetchVariations(for variationIDs: [Int]) async throws -> [Exercise] {
         var exercises = [Exercise]()

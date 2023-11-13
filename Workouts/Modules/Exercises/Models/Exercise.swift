@@ -22,6 +22,7 @@ struct Exercise: Codable, Identifiable, Equatable {
     let images: [ExerciseImage]?
     let variations: [Int]?
     
+    /// Returns the main image of the exercise if exists, otherwise returns nil
     var mainExerciseImage: ExerciseImage? {
         guard let images = images else { return nil }
         

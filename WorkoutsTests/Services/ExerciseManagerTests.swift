@@ -10,6 +10,9 @@ import XCTest
 @testable import Workouts
 
 final class ExerciseManagerTests: XCTestCase {
+    
+    // MARK: - Fetch
+
     func test_fetch_callsAPIClient() async {
         let (sut, client) = makeSUT()
         
@@ -42,6 +45,8 @@ final class ExerciseManagerTests: XCTestCase {
             XCTFail("fetch operation should have not failed, it got instead an \(error.localizedDescription)")
         }
     }
+    
+    // MARK: - Fetch Variations
     
     func test_fetchVariations_callsAPIClient() async {
         let (sut, client) = makeSUT()
@@ -79,17 +84,6 @@ final class ExerciseManagerTests: XCTestCase {
     }
     
     // MARK: - Helpers
-
-    private var anyExerciseResponse: ExerciseResponse {
-        .init(results: [
-            Exercise(id: 4,
-                     name: "Abs Abs",
-                     description: "bla bla bla bla",
-                     images: [],
-                     variations: []
-                    )
-        ])
-    }
     
     private func makeSUT() -> (sut: ExerciseManager, client: MockAPIClient) {
         let client = MockAPIClient()

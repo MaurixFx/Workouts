@@ -10,6 +10,8 @@ import XCTest
 @testable import Workouts
 
 final class ExerciseListViewControllerTests: XCTestCase {
+    // MARK: - spinnerLoaderView
+
     func test_spinnerLoaderView_shouldExistsOnTheViewController() throws {
         let sut = makeSUT(expectedResult: .success(anyExerciseResponse.results))
 
@@ -19,6 +21,8 @@ final class ExerciseListViewControllerTests: XCTestCase {
         
         XCTAssertNotNil(spinnerLoaderView, "spinnerLoaderView should exist on the viewController")
     }
+    
+    // MARK: - collectionView
     
     func test_collectionView_shouldExistsOnTheViewController() throws {
         let sut = makeSUT(expectedResult: .success(anyExerciseResponse.results))
@@ -38,11 +42,15 @@ final class ExerciseListViewControllerTests: XCTestCase {
         XCTAssertNotNil(sut.collectionView.dataSource, "collectionView datasource protocol should have been assigned")
     }
     
+    // MARK: - viewDidLoad
+    
     func test_viewDidLoad_shouldAddTwoViewComponentsToTheMainView() {
         let sut = makeSUT(expectedResult: .success(anyExerciseResponse.results))
         
         XCTAssertEqual(sut.view.subviews.count, 2, "viewDidLoad should have added two UI components to the main view")
     }
+    
+    // MARK: - numberOfItemsInSection
     
     func test_numberOfItemsInSection_returnsTheExpectValue() throws {
         let sut = makeSUT(expectedResult: .success(anyExerciseResponse.results))
@@ -67,6 +75,8 @@ final class ExerciseListViewControllerTests: XCTestCase {
             XCTAssertEqual(datasource.collectionView(sut.collectionView, numberOfItemsInSection: 0), 0, "numberOfItemsInSection should be zero when service response is a failure")
         })
     }
+    
+    // MARK: - cellForRow
     
     func test_cellForRow_shouldDisplayTheExerciseDataInExerciseItemViewCell() throws {
         let expectedItems = anyExerciseResponse.results
@@ -104,16 +114,5 @@ final class ExerciseListViewControllerTests: XCTestCase {
         service.fetchResult = expectedResult
         
         return sut
-    }
-    
-    private var anyExerciseResponse: ExerciseResponse {
-        .init(results: [
-            Exercise(id: 4,
-                     name: "Abs Abs",
-                     description: "bla bla bla bla",
-                     images: [],
-                     variations: []
-                    )
-        ])
     }
 }

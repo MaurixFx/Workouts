@@ -19,7 +19,7 @@ final class ExerciseListViewModel {
         static let cellHeight: CGFloat = 260
         static let widthDivider: CGFloat = 2
     }
-    
+
     enum State: Equatable {
         static func == (lhs: State, rhs: State) -> Bool {
             switch (lhs, rhs) {
@@ -46,6 +46,9 @@ final class ExerciseListViewModel {
         self.coordinator = coordinator
     }
 
+    /// Loads exercises
+    /// set state to .reloadCollection when fetch request is succesful
+    /// set state to error when fetch request fails
     @MainActor
     func loadExercises() async {
         do {
@@ -56,10 +59,12 @@ final class ExerciseListViewModel {
         }
     }
     
+    /// Returns number of exercises
     var numberOfItems: Int {
         exercices.count
     }
     
+    /// Returns required item viewModel to display the data of the Exercise
     func exerciseListItemViewModel(for row: Int) -> ExerciseItemViewModel? {
         guard let item = getExerciseItem(for: row) else {
             return nil
@@ -68,6 +73,7 @@ final class ExerciseListViewModel {
         return .init(name: item.name, mainExerciseImage: item.mainExerciseImage)
     }
     
+    /// Returns the size for each collection view cell
     func cellSizeItem(with collectionWidth: CGFloat) -> CGSize {
         .init(width: collectionWidth / Constants.widthDivider, height: Constants.cellHeight)
     }
@@ -80,6 +86,8 @@ final class ExerciseListViewModel {
         return exercices[row]
     }
     
+    /// Displays the exercise detail view
+    /// parameter 'isVariationExerciseDetail' to false, because the intention is to display a exercise detail view
     func didSelectItem(for row: Int) {
         guard let item = getExerciseItem(for: row) else {
             return
