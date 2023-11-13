@@ -29,8 +29,12 @@ struct Exercise: Codable, Identifiable, Equatable {
     }
 }
 
-struct ExerciseImage: Codable, Identifiable {
+struct ExerciseImage: Codable, Identifiable, Equatable {
     let id: Int
     let isMain: Bool
     let image: String
+    
+    static func == (lhs: ExerciseImage, rhs: ExerciseImage) -> Bool {
+        lhs.id == rhs.id
+    }
 }

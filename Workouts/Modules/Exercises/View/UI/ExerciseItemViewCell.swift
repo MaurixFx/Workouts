@@ -99,7 +99,7 @@ final class ExerciseItemViewCell: UICollectionViewCell {
         guard let viewModel else { return }
 
         nameLabel.text = viewModel.name
-        exerciseImageView.sd_setImage(with: viewModel.mainImageURL, placeholderImage: UIImage(named: "trainers"))
+        exerciseImageView.sd_setImage(with: viewModel.mainExerciseImageURL, placeholderImage: UIImage(named: "trainers"))
     }
 }
 

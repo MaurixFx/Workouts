@@ -78,7 +78,7 @@ final class ExerciseListViewModelTest: XCTestCase {
     func test_exerciseItemViewModel_returnsExpectedValue_whenRowExists() async {
         let (sut, service, _) = makeSUT()
         service.fetchResult = .success(anyExerciseResponse.results)
-        let expectedItemViewModel = ExerciseItemViewModel(name: "Abs Abs", images: [])
+        let expectedItemViewModel = ExerciseItemViewModel(name: "Abs Abs", mainExerciseImage: nil)
         
         await sut.loadExercises()
 

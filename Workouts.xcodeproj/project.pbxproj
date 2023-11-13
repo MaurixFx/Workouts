@@ -38,6 +38,7 @@
 		D5BE72D02B0128CD0077A86A /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72CF2B0128CD0077A86A /* String+Extension.swift */; };
 		D5BE72D22B012C420077A86A /* ExerciseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72D12B012C420077A86A /* ExerciseImageView.swift */; };
 		D5BE72D42B012C940077A86A /* ExerciseImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72D32B012C940077A86A /* ExerciseImageViewModel.swift */; };
+		D5BE72D72B021FAA0077A86A /* ExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72D62B021FAA0077A86A /* ExerciseTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		D5BE72CF2B0128CD0077A86A /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		D5BE72D12B012C420077A86A /* ExerciseImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseImageView.swift; sourceTree = "<group>"; };
 		D5BE72D32B012C940077A86A /* ExerciseImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseImageViewModel.swift; sourceTree = "<group>"; };
+		D5BE72D62B021FAA0077A86A /* ExerciseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 		D5BE727D2AFEC0A50077A86A /* WorkoutsTests */ = {
 			isa = PBXGroup;
 			children = (
+				D5BE72D52B021F9D0077A86A /* Model */,
 				D5BE72A22AFFB95F0077A86A /* ViewController */,
 				D5BE72972AFF83D30077A86A /* ViewModel */,
 				D5BE728E2AFED5B20077A86A /* Services */,
@@ -360,6 +363,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		D5BE72D52B021F9D0077A86A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72D62B021FAA0077A86A /* ExerciseTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -494,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5BE72CB2B0118DA0077A86A /* ExerciseDetailViewModelTests.swift in Sources */,
+				D5BE72D72B021FAA0077A86A /* ExerciseTests.swift in Sources */,
 				D5BE72992AFF83EB0077A86A /* ExerciseListViewModelTest.swift in Sources */,
 				D5BE72B62B0018DB0077A86A /* ExerciseItemViewModelTests.swift in Sources */,
 				D5BE729C2AFF8F430077A86A /* MockExerciseManager.swift in Sources */,

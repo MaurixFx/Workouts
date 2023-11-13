@@ -65,7 +65,7 @@ final class ExerciseListViewModel {
             return nil
         }
         
-        return .init(name: item.name, images: item.images)
+        return .init(name: item.name, mainExerciseImage: item.mainExerciseImage)
     }
     
     func cellSizeItem(with collectionWidth: CGFloat) -> CGSize {

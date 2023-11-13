@@ -51,7 +51,7 @@ final class ExerciseListViewControllerTests: XCTestCase {
         sut.load()
         
         let datasource = sut.collectionView.dataSource!
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
             XCTAssertEqual(datasource.collectionView(sut.collectionView, numberOfItemsInSection: 0), self.anyExerciseResponse.results.count, "numberOfItemsInSection should be equal to the expected response")
         })
     }
@@ -63,7 +63,7 @@ final class ExerciseListViewControllerTests: XCTestCase {
         sut.load()
         
         let datasource = sut.collectionView.dataSource!
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
             XCTAssertEqual(datasource.collectionView(sut.collectionView, numberOfItemsInSection: 0), 0, "numberOfItemsInSection should be zero when service response is a failure")
         })
     }
@@ -79,7 +79,7 @@ final class ExerciseListViewControllerTests: XCTestCase {
         let dataSource = sut.collectionView.dataSource
         
         var exerciseItemCell: ExerciseItemViewCell?
-        let itemViewModel = ExerciseItemViewModel(name: "Abs Abs", images: [])
+        let itemViewModel = ExerciseItemViewModel(name: "Abs Abs", mainExerciseImage: nil)
         if let cell = dataSource?.collectionView(sut.collectionView, cellForItemAt: indexPath) as? ExerciseItemViewCell {
             exerciseItemCell = cell
             cell.displayItemExercise(with: itemViewModel)

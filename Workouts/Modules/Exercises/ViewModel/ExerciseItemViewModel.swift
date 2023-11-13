@@ -13,12 +13,10 @@ struct ExerciseItemViewModel: Equatable {
     }
     
     let name: String
-    let images: [ExerciseImage]?
+    let mainExerciseImage: ExerciseImage?
     
     /// Returns imageURL for the image where the property isMain is true
-    var mainImageURL: URL? {
-        guard let images else { return nil }
-        
-        return URL(string: images.first(where: { $0.isMain })?.image ?? "")
+    var mainExerciseImageURL: URL? {
+        return URL(string: mainExerciseImage?.image ?? "")
     }
 }
