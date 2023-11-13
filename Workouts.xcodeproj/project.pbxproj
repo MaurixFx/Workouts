@@ -41,6 +41,7 @@
 		D5BE72D92B02278C0077A86A /* ExerciseImageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72D82B02278C0077A86A /* ExerciseImageViewModelTests.swift */; };
 		D5BE72DC2B023E0C0077A86A /* ExerciseCoordinatorManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72DB2B023E0C0077A86A /* ExerciseCoordinatorManagerTests.swift */; };
 		D5BE72DE2B0246D80077A86A /* ExerciseItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72DD2B0246D80077A86A /* ExerciseItemView.swift */; };
+		D5BE72E12B0257B60077A86A /* MockExerciseCoordinatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72E02B0257B60077A86A /* MockExerciseCoordinatorManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		D5BE72D82B02278C0077A86A /* ExerciseImageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseImageViewModelTests.swift; sourceTree = "<group>"; };
 		D5BE72DB2B023E0C0077A86A /* ExerciseCoordinatorManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCoordinatorManagerTests.swift; sourceTree = "<group>"; };
 		D5BE72DD2B0246D80077A86A /* ExerciseItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseItemView.swift; sourceTree = "<group>"; };
+		D5BE72E02B0257B60077A86A /* MockExerciseCoordinatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExerciseCoordinatorManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -380,9 +382,18 @@
 		D5BE72DA2B023DE90077A86A /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				D5BE72DF2B0257A70077A86A /* Mock */,
 				D5BE72DB2B023E0C0077A86A /* ExerciseCoordinatorManagerTests.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		D5BE72DF2B0257A70077A86A /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				D5BE72E02B0257B60077A86A /* MockExerciseCoordinatorManager.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -523,6 +534,7 @@
 				D5BE72992AFF83EB0077A86A /* ExerciseListViewModelTest.swift in Sources */,
 				D5BE72B62B0018DB0077A86A /* ExerciseItemViewModelTests.swift in Sources */,
 				D5BE72DC2B023E0C0077A86A /* ExerciseCoordinatorManagerTests.swift in Sources */,
+				D5BE72E12B0257B60077A86A /* MockExerciseCoordinatorManager.swift in Sources */,
 				D5BE729C2AFF8F430077A86A /* MockExerciseManager.swift in Sources */,
 				D5BE72D92B02278C0077A86A /* ExerciseImageViewModelTests.swift in Sources */,
 				D5BE72902AFED60B0077A86A /* ExerciseManagerTests.swift in Sources */,

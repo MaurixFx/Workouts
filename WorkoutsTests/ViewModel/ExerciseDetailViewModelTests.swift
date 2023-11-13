@@ -11,7 +11,7 @@ import XCTest
 
 final class ExerciseDetailViewModelTests: XCTestCase {
     func test_loadExerciseVariations_callsExerciseManager() async {
-        let (sut, service) = makeSUT(with: anyExerciseWithTwoImages)
+        let (sut, service, _) = makeSUT(with: anyExerciseWithTwoImages)
         
         await sut.loadExerciseVariations()
         
@@ -21,7 +21,7 @@ final class ExerciseDetailViewModelTests: XCTestCase {
     
     func test_loadExerciseVariations_doesNotSetTheExercisesResult_whenExerciseManagerFails() async {
         let expectedError = APIError.invalidResponse
-        let (sut, service) = makeSUT(with: anyExerciseWithTwoImages)
+        let (sut, service, _) = makeSUT(with: anyExerciseWithTwoImages)
         service.fetchResult = .failure(expectedError)
         
         await sut.loadExerciseVariations()
@@ -30,7 +30,7 @@ final class ExerciseDetailViewModelTests: XCTestCase {
     }
     
     func test_loadExerciseVariations_setTheExpectedExercisesResult_whenExerciseManagerSucceeds() async {
-        let (sut, service) = makeSUT(with: anyExerciseWithTwoImages)
+        let (sut, service, _) = makeSUT(with: anyExerciseWithTwoImages)
         service.fetchResult = .success(anyExerciseResponse.results)
         
         await sut.loadExerciseVariations()
@@ -39,49 +39,49 @@ final class ExerciseDetailViewModelTests: XCTestCase {
     }
     
     func test_shouldDisplayImagesSection_returnsTrue_whenExerciseHasMoreThanOneImage() {
-        let (sut, _) = makeSUT(with: anyExerciseWithTwoImages)
+        let (sut, _, _) = makeSUT(with: anyExerciseWithTwoImages)
         
         XCTAssertTrue(sut.shouldDisplayImagesSection, "shouldDisplayImagesSection should be equal to true when the exercise has more than one image")
     }
     
     func test_shouldDisplayImagesSection_returnsFalse_whenExerciseDoesNotHaveMoreThanOneImage() {
-        let (sut, _) = makeSUT(with: anyExerciseResponse.results.first!)
+        let (sut, _, _) = makeSUT(with: anyExerciseResponse.results.first!)
         
         XCTAssertTrue(sut.shouldDisplayImagesSection == false, "shouldDisplayImagesSection should be equal to false when the exercise does not have more than one image")
     }
     
     func test_shouldDisplayImagesSection_returnsFalse_whenExerciseImagesArrayIsNil() {
-        let (sut, _) = makeSUT(with: anyExerciseWithNilImages)
+        let (sut, _, _) = makeSUT(with: anyExerciseWithNilImages)
         
         XCTAssertTrue(sut.shouldDisplayImagesSection == false, "shouldDisplayImagesSection should be equal to false when the exercise does not have more than one image")
     }
     
     func test_name_returnsExpectedValue() {
-        let (sut, _) = makeSUT(with: anyExerciseWithTwoImages)
+        let (sut, _, _) = makeSUT(with: anyExerciseWithTwoImages)
         
         XCTAssertEqual(sut.name, "Abs Abs")
     }
     
     func test_description_returnsExpectedValue_whenDescriptionDoesNotContainHTMLFormats() {
-        let (sut, _) = makeSUT(with: anyExerciseWithTwoImages)
+        let (sut, _, _) = makeSUT(with: anyExerciseWithTwoImages)
         
         XCTAssertEqual(sut.description, "bla bla bla bla")
     }
     
     func test_description_returnsExpectedValue_whenDescriptiontContainsHTMLFormats() {
-        let (sut, _) = makeSUT(with: anyExerciseWithHTMLDescription)
+        let (sut, _, _) = makeSUT(with: anyExerciseWithHTMLDescription)
         
         XCTAssertEqual(sut.description, "Ausgangsposition:\nBeginnen Sie im Stehen mit Kurzhanteln in jeder Hand, mit geradem Rücken und hüftbreit auseinander stehenden Füßen. Die Arme sind entspannt und zeigen nach unten. Die Knie sollten leicht gebeugt, die Bauchmuskeln angespannt und die Schultern nach unten gerichtet sein.\nDie Schritte:\n\t1.\tBeugen Sie einen Arm am Ellenbogen und führen Sie die Hantel bis zur Schulter. Ihr Oberarm sollte während dieser Bewegung unbeweglich bleiben.\n\t2.\tBringen Sie die Hantel wieder nach unten, bis sich Ihr Arm in seiner ursprünglichen, entspannten Position befindet.\n\t3.\tWiederholen Sie die Übung mit dem anderen Arm.\n")
     }
     
     func test_description_returnsEmptyText_whenDescriptiontContainsWrongHTMLFormat() {
-        let (sut, _) = makeSUT(with: anyExerciseWithWrongHTMLDescription)
+        let (sut, _, _) = makeSUT(with: anyExerciseWithWrongHTMLDescription)
         
         XCTAssertTrue(sut.description.isEmpty, "description should have returned empty text since it has a wrong HTML format")
     }
     
     func test_shouldDisplayVariationsSection_returnsTrue_whenExerciseVariationsCollectionIsNotEmpty() async {
-        let (sut, service) = makeSUT(with: anyExerciseWithTwoImages)
+        let (sut, service, _) = makeSUT(with: anyExerciseWithTwoImages)
         service.fetchResult = .success(anyExerciseResponse.results)
         
         await sut.loadExerciseVariations()
@@ -90,7 +90,7 @@ final class ExerciseDetailViewModelTests: XCTestCase {
     }
     
     func test_shouldDisplayVariationsSection_returnsFalse_whenExerciseVariationsCollectionIsEmpty() async {
-        let (sut, service) = makeSUT(with: anyExerciseWithTwoImages)
+        let (sut, service, _) = makeSUT(with: anyExerciseWithTwoImages)
         service.fetchResult = .failure(APIError.invalidResponse)
         
         await sut.loadExerciseVariations()
@@ -99,47 +99,59 @@ final class ExerciseDetailViewModelTests: XCTestCase {
     }
     
     func test_exerciseImages_returnsEmpty_whenExerciseHasAnEmptyImagesArray() {
-        let (sut, service) = makeSUT(with: anyExerciseWithHTMLDescription)
+        let (sut, service, _) = makeSUT(with: anyExerciseWithHTMLDescription)
         service.fetchResult = .failure(APIError.invalidResponse)
         
         XCTAssertTrue(sut.exerciseImages.isEmpty, "exerciseImages should have returned empty when the exercise does not have a images array list")
     }
     
     func test_exerciseImages_returnsEmpty_whenExerciseHasANilImagesArray() {
-        let (sut, service) = makeSUT(with: anyExerciseWithNilImages)
+        let (sut, service, _) = makeSUT(with: anyExerciseWithNilImages)
         service.fetchResult = .failure(APIError.invalidResponse)
         
         XCTAssertTrue(sut.exerciseImages.isEmpty, "exerciseImages should have returned empty when the exercise does not have a images array list")
     }
     
     func test_exerciseImages_returnsExpectedImagesArrayList_whenExerciseHasImagesArray() {
-        let (sut, service) = makeSUT(with: anyExerciseWithTwoImages)
+        let (sut, service, _) = makeSUT(with: anyExerciseWithTwoImages)
         service.fetchResult = .failure(APIError.invalidResponse)
         
         XCTAssertEqual(sut.exerciseImages.count, 2, "exerciseImages should have returned the expected amount of images when the exercise has a images array list")
     }
     
     func test_exerciseImageViewModel_returnsExpectedValue() {
-        let (sut, _) = makeSUT(with: anyExerciseWithTwoImages)
+        let (sut, _, _) = makeSUT(with: anyExerciseWithTwoImages)
         
         XCTAssertEqual(sut.exerciseImageViewModel.exerciseImageURL, URL(string: "https://fakeURL.com"), "exerciseImageViewModel should have returned the expected value")
     }
     
     func test_exerciseItemViewModel_returnsExpectedValue() {
-        let (sut, _) = makeSUT(with: anyExerciseWithTwoImages)
+        let (sut, _, _) = makeSUT(with: anyExerciseWithTwoImages)
         let expectedExerciseImage = ExerciseImage(id: 1, isMain: true, image: "https://fakeURL.com")
         
-        XCTAssertEqual(sut.exerciseItemViewModel.mainExerciseImage, expectedExerciseImage, "mainExerciseImage should have returned the expected value")
-        XCTAssertEqual(sut.exerciseItemViewModel.name, "Abs Abs", "name should have returned the expected value")
+        let item = sut.exerciseItemViewModel(exercise: anyExerciseWithTwoImages)
+        
+        XCTAssertEqual(item.mainExerciseImage, expectedExerciseImage, "mainExerciseImage should have returned the expected value")
+        XCTAssertEqual(item.name, "Abs Abs", "name should have returned the expected value")
+    }
+    
+    func test_didSelectVariation_callsCoordinator() {
+        let (sut, _, coordinator) = makeSUT(with: anyExerciseWithTwoImages)
+        
+        sut.didSelectVariation(with: anyExerciseWithTwoImages)
+        
+        XCTAssertTrue(coordinator.showExerciseDetailWasCalled, "showExerciseDetailWasCalled should have been called on coordinator")
+        XCTAssertEqual(coordinator.showExerciseDetailCallsCount, 1, "showExerciseDetailWasCalled should have been called on coordinator just once")
     }
     
     // MARK: - Helpers
     
-    private func makeSUT(with exercise: Exercise) -> (sut: ExerciseDetailViewModel, service: MockExerciseManager) {
+    private func makeSUT(with exercise: Exercise) -> (sut: ExerciseDetailViewModel, service: MockExerciseManager, coordinator: MockExerciseCoordinator) {
         let service = MockExerciseManager()
-        let sut = ExerciseDetailViewModel(exercise: exercise, service: service)
+        let coordinator = MockExerciseCoordinator()
+        let sut = ExerciseDetailViewModel(exercise: exercise, service: service, coordinator: coordinator)
         
-        return (sut, service)
+        return (sut, service, coordinator)
     }
     
     private var anyExerciseWithHTMLDescription: Exercise {

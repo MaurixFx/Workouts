@@ -136,17 +136,6 @@ final class ExerciseListViewModelTest: XCTestCase {
                     )
         ])
     }
-    
-    private class MockExerciseCoordinator: ExerciseCoordinator {
-        var presentationViewController: (() -> UIViewController?)?
-        private(set) var showExerciseDetailCallsCount = 0
-        private(set) var showExerciseDetailWasCalled = false
-
-        func showExerciseDetail(with exercise: Exercise) {
-            showExerciseDetailWasCalled = true
-            showExerciseDetailCallsCount += 1
-        }
-    }
 }
 
 extension Mirror {

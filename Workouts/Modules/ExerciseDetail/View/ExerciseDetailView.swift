@@ -93,8 +93,11 @@ struct ExerciseDetailView: View {
 
             ScrollView(.horizontal) {
                 LazyHGrid(rows: [GridItem(.flexible())], spacing: 16) {
-                    ForEach($viewModel.exerciseVariations) { _ in
-                        ExerciseItemView(viewModel: viewModel.exerciseItemViewModel)
+                    ForEach($viewModel.exerciseVariations) { exercise in
+                        ExerciseItemView(viewModel: viewModel.exerciseItemViewModel(exercise: exercise.wrappedValue))
+                            .onTapGesture {
+                                viewModel.didSelectVariation(with: exercise.wrappedValue)
+                            }
                     }
                 }
             }
@@ -110,7 +113,7 @@ struct ExerciseDetailView: View {
                                                                       images: [
                                                                        ExerciseImage(id: 2, isMain: true, image: "")
                                                                               ],
-                                                                      variations: []))
+                                                               variations: []), coordinator: ExerciseCoordinatorManager())
 
     return ExerciseDetailView(viewModel: viewModel)
 }
