@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D54CA8282B03B2F90033C38A /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = D54CA8272B03B2F90033C38A /* SnapshotTesting */; };
 		D5BE72622AFEB6B10077A86A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72612AFEB6B10077A86A /* AppDelegate.swift */; };
 		D5BE726B2AFEB6BC0077A86A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5BE726A2AFEB6BC0077A86A /* Assets.xcassets */; };
 		D5BE726E2AFEB6BC0077A86A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BE726C2AFEB6BC0077A86A /* LaunchScreen.storyboard */; };
@@ -43,10 +44,22 @@
 		D5BE72DE2B0246D80077A86A /* ExerciseItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72DD2B0246D80077A86A /* ExerciseItemView.swift */; };
 		D5BE72E12B0257B60077A86A /* MockExerciseCoordinatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72E02B0257B60077A86A /* MockExerciseCoordinatorManager.swift */; };
 		D5EF2DE12B029F5C005792D9 /* XCTest-share-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EF2DE02B029F5C005792D9 /* XCTest-share-extension.swift */; };
+		D5EF2DF92B03A7B6005792D9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D5EF2DF82B03A7B6005792D9 /* SDWebImageSwiftUI */; };
+		D5EF2E0A2B03A7D4005792D9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D5EF2E092B03A7D4005792D9 /* SDWebImageSwiftUI */; };
+		D5EF2E0F2B03A87F005792D9 /* ExerciseItemViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EF2E0E2B03A87F005792D9 /* ExerciseItemViewTests.swift */; };
+		D5EF2E112B03A95A005792D9 /* ExerciseImageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EF2E102B03A95A005792D9 /* ExerciseImageViewTests.swift */; };
+		D5EF2E162B03ACC1005792D9 /* ExerciseDetailViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EF2E152B03ACC1005792D9 /* ExerciseDetailViewTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		D5BE72802AFEC0A50077A86A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5BE72562AFEB6B10077A86A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5BE725D2AFEB6B10077A86A;
+			remoteInfo = Workouts;
+		};
+		D5EF2E042B03A7CE005792D9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D5BE72562AFEB6B10077A86A /* Project object */;
 			proxyType = 1;
@@ -94,6 +107,10 @@
 		D5BE72DD2B0246D80077A86A /* ExerciseItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseItemView.swift; sourceTree = "<group>"; };
 		D5BE72E02B0257B60077A86A /* MockExerciseCoordinatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExerciseCoordinatorManager.swift; sourceTree = "<group>"; };
 		D5EF2DE02B029F5C005792D9 /* XCTest-share-extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest-share-extension.swift"; sourceTree = "<group>"; };
+		D5EF2E002B03A7CE005792D9 /* WorkoutsSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkoutsSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5EF2E0E2B03A87F005792D9 /* ExerciseItemViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseItemViewTests.swift; sourceTree = "<group>"; };
+		D5EF2E102B03A95A005792D9 /* ExerciseImageViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseImageViewTests.swift; sourceTree = "<group>"; };
+		D5EF2E152B03ACC1005792D9 /* ExerciseDetailViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailViewTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +126,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5EF2DF92B03A7B6005792D9 /* SDWebImageSwiftUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5EF2DFD2B03A7CE005792D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5EF2E0A2B03A7D4005792D9 /* SDWebImageSwiftUI in Frameworks */,
+				D54CA8282B03B2F90033C38A /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +147,9 @@
 			children = (
 				D5BE72602AFEB6B10077A86A /* Workouts */,
 				D5BE727D2AFEC0A50077A86A /* WorkoutsTests */,
+				D5EF2E012B03A7CE005792D9 /* WorkoutsSnapshotTests */,
 				D5BE725F2AFEB6B10077A86A /* Products */,
+				D5EF2DF72B03A7B6005792D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +158,7 @@
 			children = (
 				D5BE725E2AFEB6B10077A86A /* Workouts.app */,
 				D5BE727C2AFEC0A50077A86A /* WorkoutsTests.xctest */,
+				D5EF2E002B03A7CE005792D9 /* WorkoutsSnapshotTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -407,6 +437,55 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		D5EF2DF72B03A7B6005792D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D5EF2E012B03A7CE005792D9 /* WorkoutsSnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				D5EF2E0D2B03A871005792D9 /* Views */,
+			);
+			path = WorkoutsSnapshotTests;
+			sourceTree = "<group>";
+		};
+		D5EF2E0D2B03A871005792D9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D5EF2E142B03ACA1005792D9 /* ExerciseDetailView */,
+				D5EF2E132B03AAA6005792D9 /* ExerciseImageView */,
+				D5EF2E122B03AA9A005792D9 /* ExerciseItemView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D5EF2E122B03AA9A005792D9 /* ExerciseItemView */ = {
+			isa = PBXGroup;
+			children = (
+				D5EF2E0E2B03A87F005792D9 /* ExerciseItemViewTests.swift */,
+			);
+			path = ExerciseItemView;
+			sourceTree = "<group>";
+		};
+		D5EF2E132B03AAA6005792D9 /* ExerciseImageView */ = {
+			isa = PBXGroup;
+			children = (
+				D5EF2E102B03A95A005792D9 /* ExerciseImageViewTests.swift */,
+			);
+			path = ExerciseImageView;
+			sourceTree = "<group>";
+		};
+		D5EF2E142B03ACA1005792D9 /* ExerciseDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				D5EF2E152B03ACC1005792D9 /* ExerciseDetailViewTests.swift */,
+			);
+			path = ExerciseDetailView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -444,8 +523,33 @@
 				D5BE72812AFEC0A50077A86A /* PBXTargetDependency */,
 			);
 			name = WorkoutsTests;
+			packageProductDependencies = (
+				D5EF2DF82B03A7B6005792D9 /* SDWebImageSwiftUI */,
+			);
 			productName = WorkoutsTests;
 			productReference = D5BE727C2AFEC0A50077A86A /* WorkoutsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D5EF2DFF2B03A7CE005792D9 /* WorkoutsSnapshotTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5EF2E062B03A7CE005792D9 /* Build configuration list for PBXNativeTarget "WorkoutsSnapshotTests" */;
+			buildPhases = (
+				D5EF2DFC2B03A7CE005792D9 /* Sources */,
+				D5EF2DFD2B03A7CE005792D9 /* Frameworks */,
+				D5EF2DFE2B03A7CE005792D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5EF2E052B03A7CE005792D9 /* PBXTargetDependency */,
+			);
+			name = WorkoutsSnapshotTests;
+			packageProductDependencies = (
+				D5EF2E092B03A7D4005792D9 /* SDWebImageSwiftUI */,
+				D54CA8272B03B2F90033C38A /* SnapshotTesting */,
+			);
+			productName = WorkoutsSnapshotTests;
+			productReference = D5EF2E002B03A7CE005792D9 /* WorkoutsSnapshotTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -466,6 +570,10 @@
 						LastSwiftMigration = 1500;
 						TestTargetID = D5BE725D2AFEB6B10077A86A;
 					};
+					D5EF2DFF2B03A7CE005792D9 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = D5BE725D2AFEB6B10077A86A;
+					};
 				};
 			};
 			buildConfigurationList = D5BE72592AFEB6B10077A86A /* Build configuration list for PBXProject "Workouts" */;
@@ -479,6 +587,7 @@
 			mainGroup = D5BE72552AFEB6B10077A86A;
 			packageReferences = (
 				D5BE72B22B00179D0077A86A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				D5EF2DF42B03A795005792D9 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = D5BE725F2AFEB6B10077A86A /* Products */;
 			projectDirPath = "";
@@ -486,6 +595,7 @@
 			targets = (
 				D5BE725D2AFEB6B10077A86A /* Workouts */,
 				D5BE727B2AFEC0A50077A86A /* WorkoutsTests */,
+				D5EF2DFF2B03A7CE005792D9 /* WorkoutsSnapshotTests */,
 			);
 		};
 /* End PBXProject section */
@@ -501,6 +611,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D5BE727A2AFEC0A50077A86A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5EF2DFE2B03A7CE005792D9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -557,6 +674,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D5EF2DFC2B03A7CE005792D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5EF2E112B03A95A005792D9 /* ExerciseImageViewTests.swift in Sources */,
+				D5EF2E162B03ACC1005792D9 /* ExerciseDetailViewTests.swift in Sources */,
+				D5EF2E0F2B03A87F005792D9 /* ExerciseItemViewTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -564,6 +691,11 @@
 			isa = PBXTargetDependency;
 			target = D5BE725D2AFEB6B10077A86A /* Workouts */;
 			targetProxy = D5BE72802AFEC0A50077A86A /* PBXContainerItemProxy */;
+		};
+		D5EF2E052B03A7CE005792D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5BE725D2AFEB6B10077A86A /* Workouts */;
+			targetProxy = D5EF2E042B03A7CE005792D9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -793,6 +925,44 @@
 			};
 			name = Release;
 		};
+		D5EF2E072B03A7CE005792D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5355TA2ZTC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mauriciofigueroa.WorkoutsSnapshotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Workouts.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Workouts";
+			};
+			name = Debug;
+		};
+		D5EF2E082B03A7CE005792D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5355TA2ZTC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mauriciofigueroa.WorkoutsSnapshotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Workouts.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Workouts";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -823,6 +993,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		D5EF2E062B03A7CE005792D9 /* Build configuration list for PBXNativeTarget "WorkoutsSnapshotTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5EF2E072B03A7CE005792D9 /* Debug */,
+				D5EF2E082B03A7CE005792D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -834,10 +1013,33 @@
 				minimumVersion = 2.2.4;
 			};
 		};
+		D5EF2DF42B03A795005792D9 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.12.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D54CA8272B03B2F90033C38A /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5EF2DF42B03A795005792D9 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
 		D5BE72B32B00179D0077A86A /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5BE72B22B00179D0077A86A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		D5EF2DF82B03A7B6005792D9 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5BE72B22B00179D0077A86A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		D5EF2E092B03A7D4005792D9 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D5BE72B22B00179D0077A86A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
