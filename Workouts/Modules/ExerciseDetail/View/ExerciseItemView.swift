@@ -47,11 +47,14 @@ struct ExerciseItemView: View {
     }
 }
 
-#Preview {
-    let viewModel = ExerciseItemViewModel(
+struct ExerciseItemView_Previews: PreviewProvider {
+    static let viewModel = ExerciseItemViewModel(
         name: "Abdominales",
         mainExerciseImage: nil)
-    return ExerciseItemView(viewModel: viewModel)
+    
+    static var previews: some View {
+        ExerciseItemView(viewModel: viewModel)
+    }
 }
 
 

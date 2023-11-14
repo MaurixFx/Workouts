@@ -106,14 +106,16 @@ struct ExerciseDetailView: View {
     }
 }
 
-#Preview {
-    let viewModel = ExerciseDetailViewModel(exercise: Exercise(id: 1,
+struct ExerciseDetailView_Previews: PreviewProvider {
+    static let viewModel = ExerciseDetailViewModel(exercise: Exercise(id: 1,
                                                                       name: "Abdominales",
                                                                       description: "As a warmup, use light dumbbells, one in each hand. Lunge in alternating directions, forward, sideways, backwards and 45 degree angles.",
                                                                       images: [
                                                                        ExerciseImage(id: 2, isMain: true, image: "")
                                                                               ],
                                                                variations: []), coordinator: ExerciseCoordinatorManager(), isVariationExerciseDetail: false)
-
-    return ExerciseDetailView(viewModel: viewModel)
+    
+    static var previews: some View {
+        ExerciseDetailView(viewModel: viewModel)
+    }
 }
