@@ -30,7 +30,7 @@ struct ExerciseDetailView: View {
                 }
             }
             .padding(.horizontal, 16)
-            .padding(.top, 16)
+            .padding([.top, .bottom], 16)
         }
         .navigationBarTitle("", displayMode: .inline)
         .task {
