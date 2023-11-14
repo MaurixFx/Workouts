@@ -34,7 +34,7 @@ final class ExerciseListViewModelTest: XCTestCase {
         
         await sut.loadExercises()
         
-        XCTAssertEqual(sut.currentState.value, .error(expectedError), "currentState should be .error when ExerciseManager fails")
+        XCTAssertEqual(sut.currentState.value, .error("We apologise, we cannot display the exercises at the moment, please try again in a few minutes"), "currentState should be .error when ExerciseManager fails")
     }
     
     func test_loadExercises_setCurrentStateToReloadCollection_whenExerciseManagerSucceeds() async {

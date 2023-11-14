@@ -112,17 +112,26 @@ final class ExerciseListViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.currentState.sink { [weak self] state in
+            guard let self = self else { return }
+
             switch state {
             case .loading:
-                self?.spinnerLoaderView.startAnimating()
+                self.spinnerLoaderView.startAnimating()
             case .reloadCollection:
-                self?.collectionView.reloadData()
-                self?.spinnerLoaderView.stopAnimating()
-            default:
-                break
+                self.collectionView.reloadData()
+                self.spinnerLoaderView.stopAnimating()
+            case .error(let errorMessage):
+                self.spinnerLoaderView.stopAnimating()
+                self.displayAlert(with: errorMessage)
             }
         }
         .store(in: &anyCancellables)
+    }
+    
+    private func displayAlert(with errorMessage: String) {
+        let alert = UIAlertController(title: "", message: errorMessage, preferredStyle: .alert)
+        alert.addAction(.init(title: "Close", style: .destructive))
+        present(alert, animated: true)
     }
 }
 
