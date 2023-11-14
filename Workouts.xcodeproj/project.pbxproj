@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D54CA8282B03B2F90033C38A /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = D54CA8272B03B2F90033C38A /* SnapshotTesting */; };
 		D5BE72622AFEB6B10077A86A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72612AFEB6B10077A86A /* AppDelegate.swift */; };
 		D5BE726B2AFEB6BC0077A86A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5BE726A2AFEB6BC0077A86A /* Assets.xcassets */; };
 		D5BE726E2AFEB6BC0077A86A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5BE726C2AFEB6BC0077A86A /* LaunchScreen.storyboard */; };
@@ -43,11 +44,8 @@
 		D5BE72DE2B0246D80077A86A /* ExerciseItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72DD2B0246D80077A86A /* ExerciseItemView.swift */; };
 		D5BE72E12B0257B60077A86A /* MockExerciseCoordinatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72E02B0257B60077A86A /* MockExerciseCoordinatorManager.swift */; };
 		D5EF2DE12B029F5C005792D9 /* XCTest-share-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EF2DE02B029F5C005792D9 /* XCTest-share-extension.swift */; };
-		D5EF2DF62B03A795005792D9 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = D5EF2DF52B03A795005792D9 /* SnapshotTesting */; };
 		D5EF2DF92B03A7B6005792D9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D5EF2DF82B03A7B6005792D9 /* SDWebImageSwiftUI */; };
-		D5EF2DFB2B03A7B6005792D9 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = D5EF2DFA2B03A7B6005792D9 /* SnapshotTesting */; };
 		D5EF2E0A2B03A7D4005792D9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D5EF2E092B03A7D4005792D9 /* SDWebImageSwiftUI */; };
-		D5EF2E0C2B03A7D8005792D9 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = D5EF2E0B2B03A7D8005792D9 /* SnapshotTesting */; };
 		D5EF2E0F2B03A87F005792D9 /* ExerciseItemViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EF2E0E2B03A87F005792D9 /* ExerciseItemViewTests.swift */; };
 		D5EF2E112B03A95A005792D9 /* ExerciseImageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EF2E102B03A95A005792D9 /* ExerciseImageViewTests.swift */; };
 		D5EF2E162B03ACC1005792D9 /* ExerciseDetailViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EF2E152B03ACC1005792D9 /* ExerciseDetailViewTests.swift */; };
@@ -121,7 +119,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5BE72B42B00179D0077A86A /* SDWebImageSwiftUI in Frameworks */,
-				D5EF2DF62B03A795005792D9 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +127,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5EF2DF92B03A7B6005792D9 /* SDWebImageSwiftUI in Frameworks */,
-				D5EF2DFB2B03A7B6005792D9 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,7 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5EF2E0A2B03A7D4005792D9 /* SDWebImageSwiftUI in Frameworks */,
-				D5EF2E0C2B03A7D8005792D9 /* SnapshotTesting in Frameworks */,
+				D54CA8282B03B2F90033C38A /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,7 +504,6 @@
 			name = Workouts;
 			packageProductDependencies = (
 				D5BE72B32B00179D0077A86A /* SDWebImageSwiftUI */,
-				D5EF2DF52B03A795005792D9 /* SnapshotTesting */,
 			);
 			productName = Workouts;
 			productReference = D5BE725E2AFEB6B10077A86A /* Workouts.app */;
@@ -530,7 +525,6 @@
 			name = WorkoutsTests;
 			packageProductDependencies = (
 				D5EF2DF82B03A7B6005792D9 /* SDWebImageSwiftUI */,
-				D5EF2DFA2B03A7B6005792D9 /* SnapshotTesting */,
 			);
 			productName = WorkoutsTests;
 			productReference = D5BE727C2AFEC0A50077A86A /* WorkoutsTests.xctest */;
@@ -552,7 +546,7 @@
 			name = WorkoutsSnapshotTests;
 			packageProductDependencies = (
 				D5EF2E092B03A7D4005792D9 /* SDWebImageSwiftUI */,
-				D5EF2E0B2B03A7D8005792D9 /* SnapshotTesting */,
+				D54CA8272B03B2F90033C38A /* SnapshotTesting */,
 			);
 			productName = WorkoutsSnapshotTests;
 			productReference = D5EF2E002B03A7CE005792D9 /* WorkoutsSnapshotTests.xctest */;
@@ -1030,35 +1024,25 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D54CA8272B03B2F90033C38A /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5EF2DF42B03A795005792D9 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
 		D5BE72B32B00179D0077A86A /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D5BE72B22B00179D0077A86A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
-		};
-		D5EF2DF52B03A795005792D9 /* SnapshotTesting */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D5EF2DF42B03A795005792D9 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
-			productName = SnapshotTesting;
 		};
 		D5EF2DF82B03A7B6005792D9 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D5BE72B22B00179D0077A86A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
 		};
-		D5EF2DFA2B03A7B6005792D9 /* SnapshotTesting */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D5EF2DF42B03A795005792D9 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
-			productName = SnapshotTesting;
-		};
 		D5EF2E092B03A7D4005792D9 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D5BE72B22B00179D0077A86A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
-		};
-		D5EF2E0B2B03A7D8005792D9 /* SnapshotTesting */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D5EF2DF42B03A795005792D9 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
-			productName = SnapshotTesting;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
