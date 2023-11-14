@@ -43,10 +43,20 @@
 		D5BE72DE2B0246D80077A86A /* ExerciseItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72DD2B0246D80077A86A /* ExerciseItemView.swift */; };
 		D5BE72E12B0257B60077A86A /* MockExerciseCoordinatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BE72E02B0257B60077A86A /* MockExerciseCoordinatorManager.swift */; };
 		D5EF2DE12B029F5C005792D9 /* XCTest-share-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EF2DE02B029F5C005792D9 /* XCTest-share-extension.swift */; };
+		D5EF2DE42B03A3E1005792D9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D5EF2DE32B03A3E1005792D9 /* SDWebImageSwiftUI */; };
+		D5EF2DEC2B03A484005792D9 /* WorkoutsEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EF2DEB2B03A484005792D9 /* WorkoutsEndToEndTests.swift */; };
+		D5EF2DF32B03A493005792D9 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D5EF2DF22B03A493005792D9 /* SDWebImageSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		D5BE72802AFEC0A50077A86A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5BE72562AFEB6B10077A86A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5BE725D2AFEB6B10077A86A;
+			remoteInfo = Workouts;
+		};
+		D5EF2DED2B03A484005792D9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D5BE72562AFEB6B10077A86A /* Project object */;
 			proxyType = 1;
@@ -94,6 +104,8 @@
 		D5BE72DD2B0246D80077A86A /* ExerciseItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseItemView.swift; sourceTree = "<group>"; };
 		D5BE72E02B0257B60077A86A /* MockExerciseCoordinatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExerciseCoordinatorManager.swift; sourceTree = "<group>"; };
 		D5EF2DE02B029F5C005792D9 /* XCTest-share-extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest-share-extension.swift"; sourceTree = "<group>"; };
+		D5EF2DE92B03A484005792D9 /* WorkoutsEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkoutsEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5EF2DEB2B03A484005792D9 /* WorkoutsEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsEndToEndTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +121,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5EF2DE42B03A3E1005792D9 /* SDWebImageSwiftUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5EF2DE62B03A484005792D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5EF2DF32B03A493005792D9 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +141,9 @@
 			children = (
 				D5BE72602AFEB6B10077A86A /* Workouts */,
 				D5BE727D2AFEC0A50077A86A /* WorkoutsTests */,
+				D5EF2DEA2B03A484005792D9 /* WorkoutsEndToEndTests */,
 				D5BE725F2AFEB6B10077A86A /* Products */,
+				D5EF2DE22B03A3E1005792D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +152,7 @@
 			children = (
 				D5BE725E2AFEB6B10077A86A /* Workouts.app */,
 				D5BE727C2AFEC0A50077A86A /* WorkoutsTests.xctest */,
+				D5EF2DE92B03A484005792D9 /* WorkoutsEndToEndTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -407,6 +431,21 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		D5EF2DE22B03A3E1005792D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D5EF2DEA2B03A484005792D9 /* WorkoutsEndToEndTests */ = {
+			isa = PBXGroup;
+			children = (
+				D5EF2DEB2B03A484005792D9 /* WorkoutsEndToEndTests.swift */,
+			);
+			path = WorkoutsEndToEndTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -444,8 +483,32 @@
 				D5BE72812AFEC0A50077A86A /* PBXTargetDependency */,
 			);
 			name = WorkoutsTests;
+			packageProductDependencies = (
+				D5EF2DE32B03A3E1005792D9 /* SDWebImageSwiftUI */,
+			);
 			productName = WorkoutsTests;
 			productReference = D5BE727C2AFEC0A50077A86A /* WorkoutsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D5EF2DE82B03A484005792D9 /* WorkoutsEndToEndTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5EF2DEF2B03A484005792D9 /* Build configuration list for PBXNativeTarget "WorkoutsEndToEndTests" */;
+			buildPhases = (
+				D5EF2DE52B03A484005792D9 /* Sources */,
+				D5EF2DE62B03A484005792D9 /* Frameworks */,
+				D5EF2DE72B03A484005792D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5EF2DEE2B03A484005792D9 /* PBXTargetDependency */,
+			);
+			name = WorkoutsEndToEndTests;
+			packageProductDependencies = (
+				D5EF2DF22B03A493005792D9 /* SDWebImageSwiftUI */,
+			);
+			productName = WorkoutsEndToEndTests;
+			productReference = D5EF2DE92B03A484005792D9 /* WorkoutsEndToEndTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -464,6 +527,10 @@
 					D5BE727B2AFEC0A50077A86A = {
 						CreatedOnToolsVersion = 15.0.1;
 						LastSwiftMigration = 1500;
+						TestTargetID = D5BE725D2AFEB6B10077A86A;
+					};
+					D5EF2DE82B03A484005792D9 = {
+						CreatedOnToolsVersion = 15.0.1;
 						TestTargetID = D5BE725D2AFEB6B10077A86A;
 					};
 				};
@@ -486,6 +553,7 @@
 			targets = (
 				D5BE725D2AFEB6B10077A86A /* Workouts */,
 				D5BE727B2AFEC0A50077A86A /* WorkoutsTests */,
+				D5EF2DE82B03A484005792D9 /* WorkoutsEndToEndTests */,
 			);
 		};
 /* End PBXProject section */
@@ -501,6 +569,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D5BE727A2AFEC0A50077A86A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5EF2DE72B03A484005792D9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -557,6 +632,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D5EF2DE52B03A484005792D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5EF2DEC2B03A484005792D9 /* WorkoutsEndToEndTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -564,6 +647,11 @@
 			isa = PBXTargetDependency;
 			target = D5BE725D2AFEB6B10077A86A /* Workouts */;
 			targetProxy = D5BE72802AFEC0A50077A86A /* PBXContainerItemProxy */;
+		};
+		D5EF2DEE2B03A484005792D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5BE725D2AFEB6B10077A86A /* Workouts */;
+			targetProxy = D5EF2DED2B03A484005792D9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -793,6 +881,42 @@
 			};
 			name = Release;
 		};
+		D5EF2DF02B03A484005792D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5355TA2ZTC;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mauriciofigueroa.WorkoutsEndToEndTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Workouts.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Workouts";
+			};
+			name = Debug;
+		};
+		D5EF2DF12B03A484005792D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5355TA2ZTC;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mauriciofigueroa.WorkoutsEndToEndTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Workouts.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Workouts";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -823,6 +947,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		D5EF2DEF2B03A484005792D9 /* Build configuration list for PBXNativeTarget "WorkoutsEndToEndTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5EF2DF02B03A484005792D9 /* Debug */,
+				D5EF2DF12B03A484005792D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -838,6 +971,16 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		D5BE72B32B00179D0077A86A /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5BE72B22B00179D0077A86A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		D5EF2DE32B03A3E1005792D9 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D5BE72B22B00179D0077A86A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		D5EF2DF22B03A493005792D9 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D5BE72B22B00179D0077A86A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
