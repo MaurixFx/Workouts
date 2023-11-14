@@ -17,6 +17,19 @@ final class ExerciseDetailViewTests: XCTestCase {
         
         let view = ExerciseDetailView(viewModel: viewModel)
 
-        assertSnapshots(of: view, as: [.image(layout: .fixed(width: 375, height: 600))], record: true)
+        assertSnapshots(of: view, as: [.image(layout: .fixed(width: 375, height: 600))])
+    }
+    
+    func test_view_looksGood_whenExerciseHasImagesCollectionAndDoesNotHaveVariations() {
+        let exercise = Exercise(id: 1, name: "Jump Jump", description: "Jumping Jumping and dancing", images: [
+            ExerciseImage(id: 1, isMain: true, image: ""),
+            ExerciseImage(id: 2, isMain: true, image: "")
+        ], variations: [])
+        
+        let viewModel = ExerciseDetailViewModel(exercise: exercise, coordinator: ExerciseCoordinatorManager(), isVariationExerciseDetail: false)
+        
+        let view = ExerciseDetailView(viewModel: viewModel)
+
+        assertSnapshots(of: view, as: [.image(layout: .fixed(width: 375, height: 600))])
     }
 }
