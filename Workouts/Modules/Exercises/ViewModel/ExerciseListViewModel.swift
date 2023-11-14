@@ -18,6 +18,7 @@ final class ExerciseListViewModel {
     private enum Constants {
         static let cellHeight: CGFloat = 260
         static let widthDivider: CGFloat = 2
+        static let genericErrorMessage = "We apologise, we cannot display the exercises at the moment, please try again in a few minutes"
     }
 
     enum State: Equatable {
@@ -36,7 +37,7 @@ final class ExerciseListViewModel {
         
         case loading
         case reloadCollection
-        case error(Error)
+        case error(String)
     }
     
     // MARK: - Init
@@ -55,7 +56,7 @@ final class ExerciseListViewModel {
             exercices = try await service.fetch()
             currentState.value = .reloadCollection
         } catch {
-            currentState.value = .error(error)
+            currentState.value = .error(Constants.genericErrorMessage)
         }
     }
     
