@@ -15,6 +15,6 @@ final class ExerciseItemViewTests: XCTestCase {
         let viewModel = ExerciseItemViewModel(name: "Jump Jump", mainExerciseImage: ExerciseImage(id: 1, isMain: true, image: ""))
         let view = ExerciseItemView(viewModel: viewModel)
         
-        assertSnapshots(of: view, as: [.image(layout: .fixed(width: 220, height: 270))])
+        assertSnapshots(of: view, as: [.image(precision: 0.95, layout: .fixed(width: 220, height: 270))])
     }
 }

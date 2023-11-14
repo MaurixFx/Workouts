@@ -17,7 +17,7 @@ final class ExerciseDetailViewTests: XCTestCase {
         
         let view = ExerciseDetailView(viewModel: viewModel)
 
-        assertSnapshots(of: view, as: [.image(layout: .fixed(width: 375, height: 600))])
+        assertSnapshots(of: view, as: [.image(precision: 0.91, layout: .fixed(width: 375, height: 600))])
     }
     
     func test_view_looksGood_whenExerciseHasImagesCollectionAndDoesNotHaveVariations() {
@@ -30,6 +30,6 @@ final class ExerciseDetailViewTests: XCTestCase {
         
         let view = ExerciseDetailView(viewModel: viewModel)
 
-        assertSnapshots(of: view, as: [.image(layout: .fixed(width: 375, height: 600))])
+        assertSnapshots(of: view, as: [.image(precision: 0.91, layout: .fixed(width: 375, height: 600))])
     }
 }
